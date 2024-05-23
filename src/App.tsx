@@ -1,11 +1,9 @@
+import { Router } from "./Router"
+
 function App() {
   return (
-    <>
-      <div>
-        <h1>Acorda pra vida</h1>
-      </div>
+    <Router />
 
-    </>
   )
 }
 
