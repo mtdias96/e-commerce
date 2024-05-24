@@ -2,7 +2,7 @@ import { FaRegHeart } from "react-icons/fa6";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
-import nike1 from '../../assets/images/products/airmax/6.png';
+import nike1 from '../../assets/images/products/airmax/19.png';
 import st4 from '../../assets/images/products/stars/s4.svg';
 
 export function CardProduct() {
