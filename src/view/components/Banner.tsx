@@ -13,7 +13,7 @@ export function Banner(){
     dots: false,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 1500,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,

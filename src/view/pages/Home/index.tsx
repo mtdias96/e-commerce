@@ -22,12 +22,14 @@ export function Home() {
       </section>
 
       <section className="mt-28 flex items-center justify-end bg-banner bg-cover bg-center w-full h-[604px]">
-        <div className="w-[400px] flex flex-col justify-center flex-wrap gap-6 px-6 pr-20 pb-12">
-          <h2 className="text-white text-[55px] font-medium">Melhores Sneakers</h2>
-          <p className="text-gray-400 text-[24px] w-80">Desempenho e design. Levado direto ao limite.</p>
+        <div className="w-[400px] flex flex-col justify-center flex-wrap gap-6 px-6 mr-20 pb-12">
+          <h2 className="text-gray-50 text-[55px] font-medium">Melhores Sneakers</h2>
+          <p className="text-gray-500 text-[24px] w-80">Desempenho e design. Levado direto ao limite.</p>
           <Link className="w-[132px] text-gray-200 text-[20px] font-semibold border-b-2 border-gray-300 transition-opacity duration-300 ease-in-out hover:opacity-60" to="#">Compre agora</Link>
         </div>
       </section>
+
+
     </div>
   )
 
