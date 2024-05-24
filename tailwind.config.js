@@ -174,6 +174,9 @@ export default {
           800: '#E8590C',
           900: '#D9480F',
         },
+      },
+      backgroundImage: {
+        'banner' : "url('./src/assets/images/banner/banner6')"
       }
     },
   },
