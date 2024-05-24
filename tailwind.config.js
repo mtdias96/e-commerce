@@ -176,7 +176,7 @@ export default {
         },
       },
       backgroundImage: {
-        'banner' : "url('./src/assets/images/banner/banner6')"
+        'banner' : "url('./src/assets/images/banner/banner6.jpg')"
       }
     },
   },
