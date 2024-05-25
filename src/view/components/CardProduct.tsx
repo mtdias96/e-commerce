@@ -13,14 +13,14 @@ export function CardProduct() {
       <div className="relative w-80 h-72 overflow-hidden group">
         <img className="w-full h-full object-cover" src={nike1} alt="tenis nike" />
 
-        <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center gap-9 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+        <div className="absolute inset-0 bg-gray-800 bg-opacity-45 flex items-center justify-center gap-9 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
 
-          <Link to='#' className="w-14 h-14 flex items-center justify-center border-2 border-blue-100 rounded-full bg-transparent hover:opacity-45 transition-all">
-            <FaRegHeart className="text-blue-400 w-6 h-6" />
+          <Link to='#' className="w-14 h-14 flex items-center justify-center border-2 border-gray-500 rounded-full bg-transparent hover:opacity-45 transition-all">
+            <FaRegHeart className="text-blue-600 w-6 h-6" />
           </Link>
 
-          <Link to="#" className="w-14 h-14 flex items-center justify-center border-2 border-blue-100 rounded-full bg-transparent hover:opacity-45 transition-all">
-            <IoCartOutline className="text-blue-400 w-6 h-6 " />
+          <Link to="#" className="w-14 h-14 flex items-center justify-center border-2 border-gray-500 rounded-full bg-transparent hover:opacity-45 transition-all">
+            <IoCartOutline className="text-blue-600 w-6 h-6 " />
           </Link>
 
         </div>

@@ -1,52 +1,55 @@
-import { FaRegUser } from "react-icons/fa6";
+import { FaRegCircleUser } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
-import { PiShoppingCartSimpleBold } from "react-icons/pi";
 
+import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { Logo } from "./Logo";
 
 export function Menu() {
   return (
-    <header className="w-full px-28 pt-7 flex flex-col gap-16 ">
-      <div className="flex justify-end gap-8">
-        <div className="flex gap-1 items-center justify-center">
-          <Link className="text-xl flex items-center gap-1 hover:opacity-75 transition-all" to='#'>
-            <FaRegUser className="w-6 h-6" />
-            Perfil
-          </Link>
-        </div>
+    <header className="w-full fixed top-0 left-0 right-0 z-10">
 
-        <div className="flex gap-2 items-center justify-center">
-          <Link className="text-xl flex items-center gap-1 hover:opacity-75 transition-all" to='#'>
-            <PiShoppingCartSimpleBold className="w-6 h-6" />
-            Items
-          </Link>
-        </div>
-
-        <div className="flex gap-4 items-center justify-center">
-          <span className="text-xl text-gray-600 opacity-[0.5]  cursor-pointer hover:opacity-75 transition-all">R$ 2000</span>
-          <IoSearch className="w-6 h-6 cursor-pointer hover:opacity-75 transition-all" />
-        </div>
+      <div className="w-full bg-black flex gap-3 items-center justify-center h-10">
+        <p className="text-white text-sm">Cadastre-se e ganhe 10% de desconto no seu primeiro pedido.</p>
+        <Link className="text-white border-b-2 border-white text-sm hover:opacity-75 transition-all" to='/cadastrar'>Inscreva-se agora</Link>
       </div>
 
-      <nav className="w-full flex items-center  justify-between">
-        <div>
-          <Link to="/" className="flex items-center gap-2">
-            <Logo className="h-10 text-blue-400" />
-            <p className="font-bold text-lg">E-commerce</p>
-          </Link>
+      <div className="w-full px-24 py-9 flex justify-between items-center gap-8 bg-white shadow-md">
+        <div className="flex items-center gap-3">
+          <Logo className="w-8" />
+          <p className="text-2xl font-bold">NEWBOOT</p>
         </div>
 
-        <div>
-          <ul className="flex gap-9  font-sans">
-            <Link className="text-2xl font-semibold hover:opacity-75 transition-all hover:text-blue-900" to="#">INICIO</Link>
-            <Link className="text-2xl font-semibold hover:opacity-75 transition-all hover:text-blue-900" to="#">TÊNIS</Link>
-            <Link className="text-2xl font-semibold hover:opacity-75 transition-all hover:text-blue-900" to="#">BOLSAS</Link>
-            <Link className="text-2xl font-semibold hover:opacity-75 transition-all hover:text-blue-900" to="#">ÓCULOS</Link>
-            <Link className="text-2xl font-semibold hover:opacity-75 transition-all hover:text-blue-900" to="#">CONTATO</Link>
+        <nav>
+          <ul className="flex gap-9 items-center">
+            <Link to="#" className="hover:opacity-65 transition-all">Lançamentos</Link>
+            <Link to="#" className="hover:opacity-65 transition-all">Ofertas</Link>
+            <Link to="#" className="hover:opacity-65 transition-all">Masculino</Link>
+            <Link to="#" className="hover:opacity-65 transition-all">Feminino</Link>
           </ul>
+        </nav>
+
+        <div className="flex items-start p-2.5 gap-3 bg-gray-200 rounded-full  w-[500px] max-xl:hidden">
+          <IoSearch className="w-6 h-6 text-gray-500 cursor-pointer hover:opacity-75 transition-all" />
+          <input
+            type="text"
+            placeholder="Procurar por produto..."
+            className="outline-none bg-transparent placeholder:text-slate-400 "
+          />
         </div>
-      </nav>
+
+        <div className="flex gap-6">
+          <Link to="/" className="hover:opacity-65 transition-all">
+            <FaRegCircleUser className="w-6 h-6" />
+          </Link>
+
+          <Link className="hover:opacity-65 transition-all" to="/">
+            <FiShoppingCart className="w-6 h-6" />
+          </Link>
+        </div>
+      </div>
     </header>
   )
 }
+
+export default Menu
