@@ -14,15 +14,16 @@ export function Banner(){
     dots: false,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 1000,
-    speed: 500,
+    autoplaySpeed: 2500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false
   };
 
   return (
-    <div className="h-[600px] mt-40 slider-container w-full overflow-hidden outline-none">
+    <div className="h-[500px] mt-36 slider-container w-full overflow-hidden outline-none
+    ">
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={image[index]} className="slide-item">

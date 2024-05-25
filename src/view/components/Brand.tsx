@@ -13,15 +13,15 @@ export function Brand() {
     dots: false,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 2000,
-    speed: 500,
+    autoplaySpeed: 2500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false
   };
 
   return (
-    <div className="border bg-slate-50 border-gray-400 rounded-xl slider-container overflow-hidden outline-none w-full">
+    <div className="border  border-gray-400 rounded-xl slider-container overflow-hidden outline-none w-full  shadow-lg ">
       <Slider {...settings}>
         <div className="slide-item  text-white">
           <div className="flex justify-evenly items-center">

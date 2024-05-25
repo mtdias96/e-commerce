@@ -15,11 +15,16 @@ export function Home() {
     <div>
       <Menu />
       <Banner />
-
-      <section className="mt-18">
+      <section className="flex justify-center items-center flex-col gap-8">
+        {/* <p className=" text-2xl font-bold text-gray-800 flex flex-col gap-2 justify-start items-start text-start">
+          COMPRE POR MARCAS
+        </p> */}
+        <Brand />
+      </section>
+      <section className="mt-28">
         <h2 className="text-center text-4xl font-bold">NOVA COLEÇÃO</h2>
         <p className="text-center text-xs">Você não pode perder essa nova coleção. Confira os preços especiais!</p>
-        <div className=" flex flex-wrap gap-6 justify-center mt-12 px-11">
+        <div className=" flex flex-wrap gap-6 justify-center mt-20 px-11">
           <CardProduct />
           <CardProduct />
           <CardProduct />
@@ -33,13 +38,8 @@ export function Home() {
         <button className="mt-10 w-full text-center text-lg text-blue-500 hover:opacity-75 transition-all">Carregar mais</button>
       </section>
 
-      <section className="mt-28 flex justify-center items-center flex-col gap-8">
-        <p className=" text-2xl font-bold text-gray-800 flex flex-col gap-2 justify-start items-start text-start">
-          COMPRE POR MARCAS
-        </p>
-        <Brand />
-      </section>
-      <section className="mt-28 flex items-center justify-end bg-banner bg-cover bg-center w-full h-[604px]">
+
+      <section className=" mt-28 flex items-center justify-end bg-banner bg-cover bg-center w-full h-[604px]">
         <div className="w-[400px] flex flex-col justify-center flex-wrap gap-6 px-6 pr-20 pb-12">
           <h2 className="text-gray-50 text-[55px] font-medium">Melhores Sneakers</h2>
           <p className="text-gray-500 text-[24px] w-80">Desempenho e design. Levado direto ao limite.</p>

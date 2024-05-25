@@ -4,13 +4,13 @@ import { Input } from "../../components/Input";
 import { useRegisterController } from "./useRegisterController";
 
 export function Register() {
-  const {errors, handleSubmit, register} = useRegisterController()
+  const {errors, handleSubmit, register, isLoading} = useRegisterController()
   return (
-    <>
-      <header className=" flex flex-col items-center gap-2">
-        <h1 className="text-2xl font-bold text-blue-950 tracking-[0.5px]">Vamos começar?</h1>
+    <div className="">
+      <header className=" mt-20 flex flex-col items-center gap-2">
+        <h1 className="text-2xl font-bold text-blue-950 tracking-[0.5px]">AINDA NÃO TEM ACESSO?</h1>
 
-        <span className="text-gray-500 text-base tracking-[0.5px]">Crie uma nova conta</span>
+        <span className="text-gray-500 text-base tracking-[0.5px]">CADASTRE-SE EM NOSSA LOJA</span>
       </header>
 
       <form
@@ -19,30 +19,31 @@ export function Register() {
         <Input
           type="text"
           placeholder="Nome Completo"
-          {...register("name")}
-          error={errors.name?.message}
+          error={errors.fullname?.message}
+          {...register("fullname")}
         />
         <Input
           type="email"
           placeholder="E-mail"
-          {...register("email")}
           error={errors.email?.message}
+          {...register("email")}
         />
         <Input
           type="password"
           placeholder="Senha"
-          {...register("password")}
           error={errors.password?.message}
+          {...register("password")}
         />
-        <Button type="submit">Entrar</Button>
+        <Button type="submit" disabled={isLoading} className="mt-4">Entrar</Button>
       </form>
 
       <p className="mt-6 text-right">
           <span className="font-bold text-gray-500 leading-[18px]
-          tracking-wide-[0.5px] mx-1">Já tem uma conta?</span>
+          tracking-wide-[0.5px] mx-1">Já possui uma conta?</span>
           <Link to='/entrar' className=" font-bold text-blue-300 leading-[18px]
           tracking-wide-[0.5px] hover:opacity-75">Entrar</Link>
         </p>
-    </>
+
+    </div>
   )
 }
