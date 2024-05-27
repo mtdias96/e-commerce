@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
 import Banner from "../../components/Banner";
-import { CardProduct } from "../../components/CardProduct";
 import Menu from "../../components/Menu";
 
 import refundIcon from '../../../assets/images/icons/refund.svg';
 import shippingIcon from '../../../assets/images/icons/shipping.svg';
 import supportIcon from '../../../assets/images/icons/support.svg';
 import Brand from "../../components/Brand";
+import { CardProduct } from "../../components/CardProduct";
 import Footer from "../../components/Footer";
 
 export function Home() {
@@ -18,20 +18,16 @@ export function Home() {
       <section className="flex justify-center items-center flex-col gap-8">
         <Brand />
       </section>
-      <section className="mt-28">
+      <section className="mt-28 px-14">
         <h2 className="text-center text-4xl font-bold">NOVA COLEÇÃO</h2>
         <p className="text-center text-xs">Confira tudo que á de novo em nossa loja</p>
-        <div className=" flex flex-wrap gap-6 justify-center mt-20 px-11">
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
 
-        </div>
+        <div className="flex flex-wrap justify-center gap-6 mt-20 px-11">
+      {Array.from({ length: 6 }).map((_, index) => (
+        <CardProduct key={index} />
+      ))}
+    </div>
+
         <button className="mt-10 w-full text-center text-lg text-blue-500 hover:opacity-75 transition-all">Carregar mais</button>
       </section>
 
