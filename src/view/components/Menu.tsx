@@ -25,7 +25,7 @@ export function Menu() {
         <nav>
           <ul className="flex gap-9 items-center">
             <Link to="#" className="hover:opacity-65 transition-all">Novidades</Link>
-            <Link to="#" className="hover:opacity-65 transition-all">Ofertas</Link>
+            <Link to="/shop/product" className="hover:opacity-65 transition-all">Tênis</Link>
             <Link to="#" className="hover:opacity-65 transition-all">Masculino</Link>
             <Link to="#" className="hover:opacity-65 transition-all">Feminino</Link>
           </ul>

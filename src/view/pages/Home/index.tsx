@@ -22,7 +22,7 @@ export function Home() {
         <h2 className="text-center text-4xl font-bold">NOVA COLEÇÃO</h2>
         <p className="text-center text-xs">Confira tudo que á de novo em nossa loja</p>
 
-        <div className="flex flex-wrap justify-center gap-6 mt-20 px-11">
+        <div className="flex flex-wrap  justify-center gap-12 mt-20 px-8">
       {Array.from({ length: 6 }).map((_, index) => (
         <CardProduct key={index} />
       ))}

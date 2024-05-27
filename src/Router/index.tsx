@@ -3,6 +3,7 @@ import { AuthLayout } from '../view/layouts/AuthLayout';
 import { Home } from '../view/pages/Home';
 import { Login } from '../view/pages/Login';
 import { ProductInfo } from '../view/pages/ProductInfo';
+import { ProductList } from '../view/pages/ProductList';
 import { Register } from '../view/pages/Register';
 import { AuthGuard } from './AuthGuard';
 
@@ -22,6 +23,7 @@ export function Router() {
         </Route>
 
         <Route path='/shop/product/:productId' element={<ProductInfo/>} />
+        <Route path='/shop/product' element={<ProductList/>} />
       </Routes>
     </BrowserRouter>
   )

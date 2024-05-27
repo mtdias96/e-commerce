@@ -108,18 +108,6 @@ export function ProductInfo() {
           </div>
         </div>
 
-        {/* <div className="mt-16 mb-20 w-full max-w-3xl p-8 bg-gray-100 rounded">
-          <div className="flex justify-center pb-5 border-b-3 border-gray-200">
-            <h3 className="text-lg">Detalhes do produto</h3>
-          </div>
-          <div className="pt-8 flex justify-center">
-            <p className="text-base text-gray-400">
-              {productId.description}
-            </p>
-          </div>
-        </div> */}
-
-
         <div className="mt-16 mb-20 w-full max-w-[1200px] p-8 bg-gray-50 rounded">
           <div className="flex justify-center pb-5 border-b-3 border-gray-200">
             <h3 className="text-lg">Detalhes do produto</h3>
