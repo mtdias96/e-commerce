@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @font-face {
+  font-family: 'Futurapt';
+  src: url('./assets/font/FuturaCyrillicBold.woff') format('woff'),
+       url('./assets/font/FuturaCyrillicBook.woff') format('woff'),
+       url('./assets/font/FuturaCyrillicDemi.woff') format('woff'),
+       url('./assets/font/FuturaCyrillicExtraBold.woff') format('woff'),
+       url('./assets/font/FuturaCyrillicHeavy.woff') format('woff'),
+       url('./assets/font/FuturaCyrillicLight.woff') format('woff'),
+       url('./assets/font/FuturaCyrillicMedium.woff') format('woff');
+
+  font-weight: normal;
+  font-style: normal;
+} */
+
+body {
+  font-family: 'Nunito', sans-serif;
+}

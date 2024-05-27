@@ -15,14 +15,16 @@ export function Menu() {
       </div>
 
       <div className="w-full px-24 py-9 flex justify-between items-center gap-8 bg-white shadow-md">
+        <Link to="/" className="hover:opacity-75 transition-all">
         <div className="flex items-center gap-3">
           <Logo className="w-8" />
           <p className="text-2xl font-bold">NEWBOOT</p>
         </div>
+        </Link>
 
         <nav>
           <ul className="flex gap-9 items-center">
-            <Link to="#" className="hover:opacity-65 transition-all">Lançamentos</Link>
+            <Link to="#" className="hover:opacity-65 transition-all">Novidades</Link>
             <Link to="#" className="hover:opacity-65 transition-all">Ofertas</Link>
             <Link to="#" className="hover:opacity-65 transition-all">Masculino</Link>
             <Link to="#" className="hover:opacity-65 transition-all">Feminino</Link>

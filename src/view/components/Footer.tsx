@@ -9,7 +9,7 @@ import { Logo } from "./Logo";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-black p-8 md:p-16">
+    <footer className=" w-full bg-black p-8 md:p-16 top-0">
       <div className="flex flex-col md:flex-row justify-between text-white">
         <div className="flex flex-col items-start gap-4 mb-8 md:mb-0 md:w-1/3">
           <div className="flex items-center gap-2">

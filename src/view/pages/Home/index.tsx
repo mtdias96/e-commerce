@@ -16,14 +16,11 @@ export function Home() {
       <Menu />
       <Banner />
       <section className="flex justify-center items-center flex-col gap-8">
-        {/* <p className=" text-2xl font-bold text-gray-800 flex flex-col gap-2 justify-start items-start text-start">
-          COMPRE POR MARCAS
-        </p> */}
         <Brand />
       </section>
       <section className="mt-28">
         <h2 className="text-center text-4xl font-bold">NOVA COLEÇÃO</h2>
-        <p className="text-center text-xs">Você não pode perder essa nova coleção. Confira os preços especiais!</p>
+        <p className="text-center text-xs">Confira tudo que á de novo em nossa loja</p>
         <div className=" flex flex-wrap gap-6 justify-center mt-20 px-11">
           <CardProduct />
           <CardProduct />
@@ -43,7 +40,7 @@ export function Home() {
         <div className="w-[400px] flex flex-col justify-center flex-wrap gap-6 px-6 pr-20 pb-12">
           <h2 className="text-gray-50 text-[55px] font-medium">Melhores Sneakers</h2>
           <p className="text-gray-500 text-[24px] w-80">Desempenho e design. Levado direto ao limite.</p>
-          <Link className="w-[132px] text-gray-200 text-[20px] font-semibold border-b-2 border-gray-300 transition-opacity duration-300 ease-in-out hover:opacity-60" to="#">Compre agora</Link>
+          <Link className="w-[112px] text-gray-200 font-semibold border-b-2 border-gray-300 transition-opacity duration-300 ease-in-out hover:opacity-60" to="#">Compre agora</Link>
         </div>
       </section>
 
@@ -73,9 +70,6 @@ export function Home() {
           </div>
         </div>
       </section>
-
-      <section></section>
-
 
       <Footer/>
     </div>
