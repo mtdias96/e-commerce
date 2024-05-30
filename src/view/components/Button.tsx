@@ -9,7 +9,6 @@ interface ButtonProps extends ComponentProps<'button'> {
 
 export function Button({ className, isLoading, children, disabled,...props }: ButtonProps) {
 
-  console.log(isLoading);
   return (
     <button
       {...props}

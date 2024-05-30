@@ -1,11 +1,21 @@
 import { FiShoppingCart } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
+import { useDiscount } from '../../../app/hooks/useDiscount';
+import imgGroup from '../../../app/utils/imgGroup';
+import scrollTop from '../../../app/utils/scrollTop';
 import Footer from '../../components/Footer';
 import Menu from '../../components/Menu';
 import { useProductInfoController } from './useProductInfoController';
 
 export function ProductInfo() {
-  const { handleMinus, handlePus, quantity, productId } = useProductInfoController()
+  scrollTop()
+  const {id} = useParams()
+  const productId = Number(id?.split(':').slice(1))
+  const { handleMinus, handlePus, quantity, product} = useProductInfoController(productId)
+  const { valueDiscount, formattedValue } = useDiscount(product?.price || 0)
+
+  console.log(product?.size);
 
   return (
     <>
@@ -14,30 +24,31 @@ export function ProductInfo() {
         <div className="mt-20 w-full max-w-7xl flex flex-wrap gap-12 justify-center">
           <div className="flex-shrink-0">
             <div className="mb-16 flex justify-center">
-              <img className="w-[600px] h-[400px] rounded-lg object-cover" src={productId.image[0]} alt="" />
+              {product?.image.slice(0,1).map((_, index) => (
+                <img key={index} className="w-[600px] h-[400px] rounded-lg object-cover" src={imgGroup[product?.image[index]]} alt="" />
+              ))}
             </div>
             <div className="flex justify-between">
-              {productId.image.slice(1).map((img, index) => (
-                <img key={index} className="w-[190px] h-[190px] ml-2 rounded-lg object-cover" src={img} alt="" />
+              {product?.image.slice(1).map((_, index) => (
+                <img key={index} className="w-[160px] h-[160px] ml-2 rounded-lg object-cover" src={imgGroup[product?.image[index]]} alt="" />
               ))}
             </div>
           </div>
 
           <div className="w-full flex flex-col  gap-8 max-w-md">
-            <h2 className="text-2xl font-medium text-gray-900 font-sans">TÊNIS NIKE DUNK LOW "JUST DO IT" AZUL</h2>
+            <h2 className="text-2xl font-medium text-gray-900 font-sans uppercase">{product?.name}</h2>
 
             <div className='flex flex-col justify-between'>
               <div className="flex items-center justify-between mb-2">
-                <h3 className=" text-2xl text-gray-800 font-sans">R$ 999,90</h3>
-                <h3 className="text-gray-500 text-lg line-through">R$ 1800,99</h3>
+                <h3 className=" text-2xl text-gray-800 font-sans">R$ {formattedValue}</h3>
+                <h3 className="text-gray-500 text-lg line-through">R$ {product?.price}</h3>
                 <span className="bg-red-500 border rounded-md p-1 font-semibold">20% OFF</span>
               </div>
 
               <div>
-                <p className='text-gray-600 text-sm font-mono'>em 6X de R$ 166,65(Sem juros)</p>
+                <p className='text-gray-600 text-sm font-mono'>em 6X de R$ {valueDiscount}(Sem juros)</p>
               </div>
             </div>
-            {/*gap*/}
             <div className="flex flex-col gap-8">
               <div className="flex justify-between">
                 <h4 className="text-sm text-gray-700">Disponibilidade</h4>
@@ -48,11 +59,10 @@ export function ProductInfo() {
                 <span className="text-sm text-gray-700">Tenis</span>
               </div>
             </div>
-            {/*gap*/}
             <div className="flex flex-col">
               <label htmlFor="size" className="text-sm text-gray-800 mb-2">Selecione o tamanho:</label>
               <div className="flex gap-2 pb-4 border-b border-gray-300">
-                {[38, 39, 40, 41, 42, 43].map((size) => (
+                {product?.size.map((size) => (
                   <button
                     key={size}
                     className="w-10 h-10 border border-gray-400 rounded flex justify-center items-center text-gray-800 hover:opacity-75 focus:border-black transition-all"
@@ -73,7 +83,7 @@ export function ProductInfo() {
                     className="bg-gray-500 hover:bg-gray-200 border border-gray-300 border-r-0 rounded-s-lg p-3 h-11 focus:outline-none">
 
                     <svg className="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h16" />
                     </svg>
                   </button>
 
@@ -88,7 +98,7 @@ export function ProductInfo() {
                     className="bg-gray-500 hover:bg-gray-200 border border-l-0 border-gray-300 rounded-e-lg p-3 h-11 focus:outline-none">
 
                     <svg className="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16" />
                     </svg>
 
                   </button>
@@ -113,7 +123,7 @@ export function ProductInfo() {
             <h3 className="text-lg">Detalhes do produto</h3>
           </div>
           <div className="pt-8">
-            <p className="text-base text-gray-700">O ar livre é para todos – e este calçado também. O AF1 clássico recebe uma atualização aventureira com cadarços utilitários, materiais duráveis e costuras resistentes. A entressola revestida em tecido é leve e mais flexível, enquanto uma almofada adicional no calcanhar cria conforto extra. Os detalhes bordados contrastam com os detalhes tipo bota para um visual versátil e funcional.</p>
+            <p className="text-base text-gray-700">{product?.description}</p>
           </div>
         </div>
 

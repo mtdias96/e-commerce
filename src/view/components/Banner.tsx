@@ -4,12 +4,10 @@ import 'slick-carousel/slick/slick.css';
 
 import banner1 from '../../assets/images/banner/banner1.jpeg';
 import banner2 from '../../assets/images/banner/banner2.webp';
-import banner3 from '../../assets/images/banner/banner3.png';
 
+const images = [banner1, banner2];
 
-const images = [banner1, banner2, banner3];
-
-export function Banner(){
+export function Banner() {
   const settings: Settings = {
     dots: false,
     infinite: true,
@@ -22,12 +20,11 @@ export function Banner(){
   };
 
   return (
-    <div className="h-[500px] mt-36 slider-container w-full overflow-hidden outline-none
-    ">
+    <div className="mt-36 w-full">
       <Slider {...settings}>
         {images.map((image, index) => (
-          <div key={image[index]} className="slide-item">
-            <img className="h-[500px] w-full object-cover" src={image}/>
+          <div key={index} className="slide-item">
+            <img className="w-full object-cover h-auto" src={image} alt={`Banner ${index + 1}`} />
           </div>
         ))}
       </Slider>

@@ -4,6 +4,7 @@ import { Home } from '../view/pages/Home';
 import { Login } from '../view/pages/Login';
 import { ProductInfo } from '../view/pages/ProductInfo';
 import { ProductList } from '../view/pages/ProductList';
+import { Profile } from '../view/pages/Profile';
 import { Register } from '../view/pages/Register';
 import { AuthGuard } from './AuthGuard';
 
@@ -19,10 +20,11 @@ export function Router() {
         </Route>
 
         <Route element={<AuthGuard isPrivate />}>
-          <Route path='/' element={<Home />} />
+          <Route path='/perfil' element={<Profile />} />
         </Route>
 
-        <Route path='/shop/product/:productId' element={<ProductInfo/>} />
+        <Route path='/' element={<Home/>} />
+        <Route path='/shop/product/:id' element={<ProductInfo/>} />
         <Route path='/shop/product' element={<ProductList/>} />
       </Routes>
     </BrowserRouter>

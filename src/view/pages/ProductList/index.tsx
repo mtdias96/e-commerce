@@ -1,9 +1,10 @@
 import { AsideMenu } from '../../components/AsideMenu';
 import { CardProduct } from '../../components/CardProduct';
 import Menu from '../../components/Menu';
+import { useProductListController } from './useProductListController';
 
 export function ProductList() {
-
+const {products} = useProductListController()
   return (
     <>
       <Menu />
@@ -11,8 +12,8 @@ export function ProductList() {
         <AsideMenu/>
 
         <div className="flex flex-wrap justify-center gap-12 flex-grow">
-          {Array.from({ length: 12 }).map((_, index) => (
-            <CardProduct key={index} />
+          {products?.map((product) => (
+            <CardProduct key={product.id} image={product.image} id={product.id} name={product.name} price={product.price} />
           ))}
         </div>
       </section>

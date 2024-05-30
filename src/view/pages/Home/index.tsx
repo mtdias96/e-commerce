@@ -9,8 +9,10 @@ import supportIcon from '../../../assets/images/icons/support.svg';
 import Brand from "../../components/Brand";
 import { CardProduct } from "../../components/CardProduct";
 import Footer from "../../components/Footer";
+import { useHomeController } from "./useHomeController";
 
 export function Home() {
+  const { newCollection } = useHomeController();
   return (
     <div>
       <Menu />
@@ -23,8 +25,8 @@ export function Home() {
         <p className="text-center text-xs">Confira tudo que á de novo em nossa loja</p>
 
         <div className="flex flex-wrap  justify-center gap-12 mt-20 px-8">
-      {Array.from({ length: 6 }).map((_, index) => (
-        <CardProduct key={index} />
+      {newCollection.map((product) => (
+        <CardProduct price={product.price} id={product.id} image={product.image} name={product.name} key={product.name} />
       ))}
     </div>
 

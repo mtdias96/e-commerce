@@ -5,13 +5,10 @@ import { Input } from "../../components/Input";
 import { useLoginController } from "./useLoginController";
 export function Login() {
   const { handleSubmit, register, errors, isLoading } = useLoginController()
-  console.log(isLoading);
   return (
     <>
       <header className="mt-40 flex flex-col items-center gap-2">
         <h1 className="text-3xl font-bold text-blue-950 tracking-[0.5px]">ACESSE SUA CONTA</h1>
-
-        {/* <span className="text-gray-500 text-base tracking-[0.5px]">PARA CONTINUAR SUA COMPRA</span> */}
       </header>
 
       <form onSubmit={handleSubmit} className="mt-16 flex flex-col gap-2 w-full ">

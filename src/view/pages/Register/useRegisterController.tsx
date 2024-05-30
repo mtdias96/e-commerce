@@ -3,15 +3,9 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
+import { useAuth } from "../../../app/hooks/useAuth";
 import { authService } from "../../../app/services/authService";
 import { SignupParams } from "../../../app/services/authService/signup";
-
-// const passwordSchema = z.string()
-//   .min(8, "Senha deve conter pelo menos 8 caracteres")
-//   .refine(value => /[A-Z]/.test(value), "Senha deve conter pelo menos uma letra maiúscula")
-//   .refine(value => /[a-z]/.test(value), "Senha deve conter pelo menos uma letra minúscula")
-//   .refine(value => /[0-9]/.test(value), "Senha deve conter pelo menos um número")
-//   .refine(value => /[^a-zA-Z0-9]/.test(value), "Senha deve conter pelo menos um caractere especial");
 
 const user = z.object({
   fullname: z.string().min(3, 'Nome é obrigatório'),
@@ -36,10 +30,13 @@ export function useRegisterController(){
   },
  })
 
+ const {signin} = useAuth()
+
   const handleSubmit = hookFormSubmit(async (data) => {
     try{
-      const {accessToken} = await mutateAsync(data)
-      console.log({accessToken});
+      const {accessToken} =  await mutateAsync(data)
+
+      signin(accessToken)
     }catch{
       toast.error("Ocorreu um erro ao criar sua conta!")
     }

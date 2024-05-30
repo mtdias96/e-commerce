@@ -5,6 +5,7 @@ import { AuthProvider } from "./app/context/AuthContext"
 
 const queryClient = new QueryClient()
 function App() {
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>

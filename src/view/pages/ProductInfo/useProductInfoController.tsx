@@ -1,11 +1,10 @@
 import { useState } from "react";
-import image2 from '../../../assets/images/products/airmax/1.png';
-import image3 from '../../../assets/images/products/airmax/2.png';
-import image4 from '../../../assets/images/products/airmax/3.png';
-import image1 from '../../../assets/images/products/airmax/5.png';
+import { useProductId } from "../../../app/services/productService/getProduct";
 
-export function useProductInfoController(){
-  const [quantity, setQuantity] = useState(1)
+export function useProductInfoController(productId: number){
+  const {data} = useProductId(productId);
+  const [quantity, setQuantity] = useState(0)
+  const product = data?.product
 
   function handlePus(){
     setQuantity((prevState: number) => prevState + 1 )
@@ -17,12 +16,6 @@ export function useProductInfoController(){
     });
   }
 
-  const productId = {
-    image: [image2, image3, image4, image1],
-    name: "Nike Airmax 280",
-    price: 120,
-    description: "This is a brief description of the product. Highlight the key features and benefits here."
-  };
 
- return {handleMinus, handlePus, quantity, productId}
+ return {handleMinus, handlePus, quantity, product}
 }
