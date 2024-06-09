@@ -1,30 +1,39 @@
-# React + TypeScript + Vite
+# Front-end da Loja E-commerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é a interface front-end para uma loja de e-commerce desenvolvida em React, utilizando Vite como bundler e diversas bibliotecas para funcionalidades adicionais.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Navegação**: Utilização do React Router para navegação entre páginas.
+- **Componentes UI**: Componentes estilizados com Tailwind CSS para uma experiência responsiva e moderna.
+- **Carrosséis**: Implementação de carrosséis de imagens para exibição de produtos.
+- **Formulários**: Utilização do `react-hook-form` para gerenciamento de formulários com validação integrada.
+- **Requisições HTTP**: Integração com Axios para realizar chamadas à API backend.
 
-## Expanding the ESLint configuration
+## Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React**: Biblioteca para construção de interfaces de usuário.
+- **Vite**: Bundler e servidor de desenvolvimento rápido para aplicações web.
+- **Axios**: Cliente HTTP para fazer requisições à API.
+- **React Router DOM**: Roteamento declarativo para aplicações React.
+- **Tailwind CSS**: Framework CSS utilitário para estilização eficiente e responsiva.
+- **react-hook-form**: Biblioteca para criação de formulários React com suporte a validação.
+- **react-slick**: Componente de slider/carrossel para exibição de imagens.
+- **slick-carousel**: Biblioteca para carrossel de imagens utilizada pelo `react-slick`.
 
-- Configure the top-level `parserOptions` property like this:
+## Instalação
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Para executar o projeto localmente, siga os passos abaixo:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/e-commerce.git
+
+# Acesse o diretório do projeto
+cd e-commerce
+
+# Instale as dependências
+npm install
+
+# Inicie o servidor de desenvolvimento
+npm run dev
