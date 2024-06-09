@@ -5,6 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'md' : '862px'
+    },
+    fontFamily: {
+      'body' : ["Poppins"]
+    },
     extend: {
       colors: {
         gray: {

@@ -10,12 +10,10 @@ import { useProductInfoController } from './useProductInfoController';
 
 export function ProductInfo() {
   scrollTop()
-  const {id} = useParams()
+  const { id } = useParams()
   const productId = Number(id?.split(':').slice(1))
-  const { handleMinus, handlePus, quantity, product} = useProductInfoController(productId)
+  const { handleMinus, handlePus, quantity, product, addCart } = useProductInfoController(productId)
   const { valueDiscount, formattedValue } = useDiscount(product?.price || 0)
-
-  console.log(product?.size);
 
   return (
     <>
@@ -24,7 +22,7 @@ export function ProductInfo() {
         <div className="mt-20 w-full max-w-7xl flex flex-wrap gap-12 justify-center">
           <div className="flex-shrink-0">
             <div className="mb-16 flex justify-center">
-              {product?.image.slice(0,1).map((_, index) => (
+              {product?.image.slice(0, 1).map((_, index) => (
                 <img key={index} className="w-[600px] h-[400px] rounded-lg object-cover" src={imgGroup[product?.image[index]]} alt="" />
               ))}
             </div>
@@ -107,7 +105,9 @@ export function ProductInfo() {
               </div>
             </div>
             <div className="flex justify-between flex-col gap-4 pt-8 pb-8 border-b border-t border-gray-300">
-              <Link to="#" className="flex justify-center items-center gap-4 px-8 py-3 bg-red-500 text rounded transition-opacity hover:opacity-70">
+              <Link
+                onClick={addCart}
+                to="/carrinho" className="flex justify-center items-center gap-4 px-8 py-3 bg-red-500 text rounded transition-opacity hover:opacity-70">
                 <FiShoppingCart className='text-white' />
                 <span className="text-white font-bold">COMPRAR</span>
               </Link>

@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { useCart } from "../../../app/hooks/useCart";
 import { useProductId } from "../../../app/services/productService/getProduct";
 
-export function useProductInfoController(productId: number){
-  const {data} = useProductId(productId);
+
+export function useProductInfoController(productId: number) {
+  const { data } = useProductId(productId);
   const [quantity, setQuantity] = useState(0)
   const product = data?.product
 
-  function handlePus(){
-    setQuantity((prevState: number) => prevState + 1 )
+  function handlePus() {
+    setQuantity((prevState: number) => prevState + 1)
   }
 
   function handleMinus() {
@@ -16,6 +18,13 @@ export function useProductInfoController(productId: number){
     });
   }
 
+  const { handleProductCart } = useCart()
 
- return {handleMinus, handlePus, quantity, product}
+  const addCart = () => {
+    if (product) {
+      handleProductCart(product)
+    }
+  }
+
+  return { handleMinus, handlePus, quantity, product, addCart }
 }

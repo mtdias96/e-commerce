@@ -48,7 +48,7 @@ export function Menu() {
             <FaRegCircleUser className="w-6 h-6" />
           </Link>
 
-          <Link className="hover:opacity-65 transition-all" to="/">
+          <Link className="hover:opacity-65 transition-all" to="/carrinho">
             <FiShoppingCart className="w-6 h-6" />
           </Link>
 

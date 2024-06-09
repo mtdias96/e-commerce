@@ -25,12 +25,11 @@ export function Home() {
         <p className="text-center text-xs">Confira tudo que á de novo em nossa loja</p>
 
         <div className="flex flex-wrap  justify-center gap-12 mt-20 px-8">
-      {newCollection.map((product) => (
-        <CardProduct price={product.price} id={product.id} image={product.image} name={product.name} key={product.name} />
-      ))}
-    </div>
-
-        <button className="mt-10 w-full text-center text-lg text-blue-500 hover:opacity-75 transition-all">Carregar mais</button>
+          {newCollection.map((product) => (
+            <CardProduct price={product.price} id={product.id} image={product.image} name={product.name} key={product.name} />
+          ))}
+          <button className="mt-10 w-full text-center text-lg text-blue-500 hover:opacity-75 transition-all">Carregar mais</button>
+        </div>
       </section>
 
 
@@ -69,7 +68,7 @@ export function Home() {
         </div>
       </section>
 
-      <Footer/>
+      <Footer />
     </div>
   )
 

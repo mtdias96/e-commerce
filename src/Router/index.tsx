@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthLayout } from '../view/layouts/AuthLayout';
 import { Home } from '../view/pages/Home';
 import { Login } from '../view/pages/Login';
+import { ProductCart } from '../view/pages/ProductCart';
 import { ProductInfo } from '../view/pages/ProductInfo';
 import { ProductList } from '../view/pages/ProductList';
 import { Profile } from '../view/pages/Profile';
@@ -21,6 +22,7 @@ export function Router() {
 
         <Route element={<AuthGuard isPrivate />}>
           <Route path='/perfil' element={<Profile />} />
+          <Route path='/carrinho' element={<ProductCart/>} />
         </Route>
 
         <Route path='/' element={<Home/>} />
