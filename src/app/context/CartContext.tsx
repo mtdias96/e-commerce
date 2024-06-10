@@ -1,6 +1,7 @@
 import { createContext, useCallback, useState } from "react";
 
 export interface IProduct {
+  id: number
   name: string;
   price: number;
   size: string[];

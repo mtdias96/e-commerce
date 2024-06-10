@@ -1,5 +1,5 @@
-import { useProducts } from "./getProduct";
-import { useProductId } from "./getProductById";
+import { useProductId, useProducts } from "./getProduct";
+
 
 export const productService = {
   useProducts,
