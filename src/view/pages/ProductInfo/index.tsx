@@ -1,6 +1,6 @@
 import { FiShoppingCart } from 'react-icons/fi';
 import { Link, useParams } from 'react-router-dom';
-
+import Slider from 'react-slick';
 import { useDiscount } from '../../../app/hooks/useDiscount';
 import imgGroup from '../../../app/utils/imgGroup';
 import scrollTop from '../../../app/utils/scrollTop';
@@ -15,30 +15,39 @@ export function ProductInfo() {
   const { handleMinus, handlePus, quantity, product, addCart } = useProductInfoController(productId)
   const { valueDiscount, formattedValue } = useDiscount(product?.price || 0)
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <>
       <Menu />
       <section className="mt-20 w-full px-4 py-8 flex flex-col items-center font-roboto">
         <div className="mt-20 w-full max-w-7xl flex flex-wrap gap-12 justify-center">
-          <div className="flex-shrink-0">
-            <div className="mb-16 flex justify-center">
-              {product?.image.slice(0, 1).map((_, index) => (
-                <img key={index} className="w-[600px] h-[400px] rounded-lg object-cover" src={imgGroup[product?.image[index]]} alt="" />
-              ))}
-            </div>
-            <div className="flex justify-between">
-              {product?.image.slice(1).map((_, index) => (
-                <img key={index} className="w-[160px] h-[160px] ml-2 rounded-lg object-cover" src={imgGroup[product?.image[index]]} alt="" />
-              ))}
-            </div>
+          <div className="flex-shrink-0 w-full md:w-auto">
+            {product?.image && (
+              <div className="mb-16 flex justify-center w-full md:w-auto">
+                <Slider {...settings} className="w-full md:w-auto">
+                  {product.image.map((_, index) => (
+                    <div key={index}>
+                      <img className="w-full md:w-[600px] h-[400px] rounded-lg object-cover" src={imgGroup[product?.image[index]]} alt="" />
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+            )}
           </div>
 
-          <div className="w-full flex flex-col  gap-8 max-w-md">
+          <div className="w-full flex flex-col gap-8 max-w-md">
             <h2 className="text-2xl font-medium text-gray-900 font-sans uppercase">{product?.name}</h2>
 
             <div className='flex flex-col justify-between'>
               <div className="flex items-center justify-between mb-2">
-                <h3 className=" text-2xl text-gray-800 font-sans">R$ {formattedValue}</h3>
+                <h3 className="text-2xl text-gray-800 font-sans">R$ {formattedValue}</h3>
                 <h3 className="text-gray-500 text-lg line-through">R$ {product?.price}</h3>
                 <span className="bg-red-500 border rounded-md p-1 font-semibold">20% OFF</span>
               </div>
@@ -47,6 +56,7 @@ export function ProductInfo() {
                 <p className='text-gray-600 text-sm font-mono'>em 6X de R$ {valueDiscount}(Sem juros)</p>
               </div>
             </div>
+
             <div className="flex flex-col gap-8">
               <div className="flex justify-between">
                 <h4 className="text-sm text-gray-700">Disponibilidade</h4>
@@ -57,6 +67,7 @@ export function ProductInfo() {
                 <span className="text-sm text-gray-700">Tenis</span>
               </div>
             </div>
+
             <div className="flex flex-col">
               <label htmlFor="size" className="text-sm text-gray-800 mb-2">Selecione o tamanho:</label>
               <div className="flex gap-2 pb-4 border-b border-gray-300">
@@ -68,8 +79,8 @@ export function ProductInfo() {
                     {size}
                   </button>
                 ))}
-
               </div>
+
               <div className="flex flex-col gap-2 pt-4">
                 <p className='text-sm'>Quantidade:</p>
 
@@ -78,14 +89,14 @@ export function ProductInfo() {
                     onClick={handleMinus}
                     type="button"
                     id="decrement-button"
-                    className="bg-gray-500 hover:bg-gray-200 border border-gray-300 border-r-0 rounded-s-lg p-3 h-11 focus:outline-none">
-
+                    className="bg-gray-500 hover:bg-gray-200 border border-gray-300 border-r-0 rounded-s-lg p-3 h-11 focus:outline-none"
+                  >
                     <svg className="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h16" />
                     </svg>
                   </button>
 
-                  <span className="bg-gray-50 border border-gray-400 h-11 text-centertext-sm block w-full py-2.5 text-gray-700 p-8">
+                  <span className="bg-gray-50 border border-gray-400 h-11 text-center text-sm block w-full py-2.5 text-gray-700 p-8">
                     {quantity}
                   </span>
 
@@ -93,21 +104,22 @@ export function ProductInfo() {
                     onClick={handlePus}
                     type="button"
                     id="increment-button"
-                    className="bg-gray-500 hover:bg-gray-200 border border-l-0 border-gray-300 rounded-e-lg p-3 h-11 focus:outline-none">
-
+                    className="bg-gray-500 hover:bg-gray-200 border border-l-0 border-gray-300 rounded-e-lg p-3 h-11 focus:outline-none"
+                  >
                     <svg className="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16" />
                     </svg>
-
                   </button>
                 </div>
-
               </div>
             </div>
+
             <div className="flex justify-between flex-col gap-4 pt-8 pb-8 border-b border-t border-gray-300">
               <Link
                 onClick={addCart}
-                to="/carrinho" className="flex justify-center items-center gap-4 px-8 py-3 bg-red-500 text rounded transition-opacity hover:opacity-70">
+                to="/carrinho"
+                className="flex justify-center items-center gap-4 px-8 py-3 bg-red-500 text rounded transition-opacity hover:opacity-70"
+              >
                 <FiShoppingCart className='text-white' />
                 <span className="text-white font-bold">COMPRAR</span>
               </Link>
@@ -126,7 +138,6 @@ export function ProductInfo() {
             <p className="text-base text-gray-700">{product?.description}</p>
           </div>
         </div>
-
       </section>
       <Footer />
     </>
@@ -134,5 +145,3 @@ export function ProductInfo() {
 }
 
 export default ProductInfo;
-
-
