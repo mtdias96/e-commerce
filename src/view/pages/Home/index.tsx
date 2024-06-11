@@ -76,12 +76,15 @@ export function Home() {
       </section> */}
 
 
-      <section className="w-full h-[600px] mb-48 mt-24 flex flex-col items-center gap-10 ">
-        <p className="text-3xl text-center">O QUE VOCÊ
+
+      <section className="w-full h-[600px] mb-48 mt-24 flex flex-col items-center gap-10">
+        <p className="text-3xl text-center">
+          O QUE VOCÊ
           <span className="block text-center font-extrabold">ESTA BUSCANDO?</span>
         </p>
         <GalleryNav />
       </section>
+
 
       <section className="mt-24 mb-28 px-14">
         <h2 className="text-center text-4xl font-bold">OS MAIS COMPRADOS</h2>
