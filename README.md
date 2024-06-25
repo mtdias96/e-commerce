@@ -37,3 +37,10 @@ npm install
 
 # Inicie o servidor de desenvolvimento
 npm run dev
+
+
+
+## Vídeo do Projeto
+
+[![Assista ao vídeo](https://vimeo.com/967791848)
+
