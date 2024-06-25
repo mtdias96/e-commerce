@@ -39,8 +39,8 @@ npm install
 npm run dev
 
 
-
 ## Vídeo do Projeto
 
-[![Assista ao vídeo](https://vimeo.com/967791848)
+[![Assista ao vídeo](https://vumbnail.com/967791848.jpg)](https://vimeo.com/967791848)
+
 
