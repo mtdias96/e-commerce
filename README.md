@@ -41,6 +41,6 @@ npm run dev
 
 ## Vídeo do Projeto
 
-[![Assista ao vídeo](https://vumbnail.com/967791848.jpg)](https://vimeo.com/967791848)
+<iframe src="https://player.vimeo.com/video/967791848" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 
 
