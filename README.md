@@ -2,6 +2,12 @@
 
 Este projeto é a interface front-end para uma loja de e-commerce desenvolvida em React, utilizando Vite como bundler e diversas bibliotecas para funcionalidades adicionais.
 
+
+## Vídeo do Projeto
+
+https://github.com/mtdias96/e-commerce/assets/111136759/a3e40ba1-8b07-4ffd-8327-45db60b4eecf
+
+
 ## Funcionalidades
 
 - **Navegação**: Utilização do React Router para navegação entre páginas.
@@ -37,3 +43,10 @@ npm install
 
 # Inicie o servidor de desenvolvimento
 npm run dev
+
+
+
+
+
+
+
