@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { formatCurrency } from "../../app/utils/formatCurrency";
 import imgGroup from "../../app/utils/imgGroup";
 
-export interface CardProductProps {
+type CardProductProps = {
   id?: number;
   name: string;
   price: number;
@@ -21,12 +21,12 @@ export function CardProduct({ name, price, image, id = 0 }: CardProductProps) {
           <Link to='#' className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center border-2 border-gray-500 rounded-full bg-transparent hover:opacity-45 transition-all">
             <FaRegHeart className="text-blue-600 w-5 h-5 sm:w-6 sm:h-6" />
           </Link>
-          <Link to={`/shop/product/:${Number(id)}`} className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center border-2 border-gray-500 rounded-full bg-transparent hover:opacity-45 transition-all">
+          <Link to={`/produto/${id}`} className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center border-2 border-gray-500 rounded-full bg-transparent hover:opacity-45 transition-all">
             <IoCartOutline className="text-blue-600 w-5 h-5 sm:w-6 sm:h-6" />
           </Link>
         </div>
       </div>
-      <Link to="/shop/product/:productId" className='mt-3 flex flex-col justify-center items-center gap-2 pb-4 max-w-full text-center'>
+      <Link to={`/produto/${id}`} className='mt-3 flex flex-col justify-center items-center gap-2 pb-4 max-w-full text-center'>
         <h2 className='text-sm sm:text-base md:text-lg font-bold leading-6 md:leading-7 tracking-wider text-blue-950'>{name}</h2>
         <span className='font-bold text-xl tracking-wider max-w-full'>{formatCurrency(price)}</span>
         <p className='flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-center'>

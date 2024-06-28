@@ -1,8 +1,8 @@
-import { useProducts } from "../../../app/services/productService/getProduct";
-
-export function useProductListController(){
-  const { data: products} = useProducts();
+import { productService } from "../../../app/services/productService";
 
 
-  return {products}
+export function useProductListController() {
+  const { data: products } = productService.useProduct();
+
+  return { products }
 }

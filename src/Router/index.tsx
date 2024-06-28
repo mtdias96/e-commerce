@@ -14,7 +14,7 @@ export function Router() {
     <BrowserRouter>
       <Routes>
         <Route element={<AuthGuard isPrivate={false} />}>
-          <Route element={<AuthLayout/>}>
+          <Route element={<AuthLayout />}>
             <Route path='/entrar' element={<Login />} />
             <Route path='/cadastrar' element={<Register />} />
           </Route>
@@ -22,12 +22,12 @@ export function Router() {
 
         <Route element={<AuthGuard isPrivate />}>
           <Route path='/perfil' element={<Profile />} />
-          <Route path='/carrinho' element={<ProductCart/>} />
+          <Route path='/carrinho' element={<ProductCart />} />
         </Route>
 
-        <Route path='/' element={<Home/>} />
-        <Route path='/shop/product/:id' element={<ProductInfo/>} />
-        <Route path='/shop/product' element={<ProductList/>} />
+        <Route path='/' element={<Home />} />
+        <Route path='/produto/:id' element={<ProductInfo />} />
+        <Route path='/produtos' element={<ProductList />} />
       </Routes>
     </BrowserRouter>
   )

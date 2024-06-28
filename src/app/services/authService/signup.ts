@@ -2,7 +2,7 @@ import { sleep } from "../../utils/sleep";
 import httpClient from "../httpClient";
 
 export interface SignupParams{
-  fullname: string;
+  name: string;
   email: string;
   password: string
 }
@@ -13,7 +13,7 @@ interface SignupResponse {
 
 export async function signup(params: SignupParams){
   await sleep(1500)
- const { data } = await httpClient.post<SignupResponse>('/cadastrar', params)
 
+ const { data } = await httpClient.post<SignupResponse>('/cadastrar', params)
  return data
 }

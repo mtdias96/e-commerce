@@ -14,6 +14,12 @@ export default {
     extend: {
       colors: {
         gray: {
+          vermelho: '#ff0000',
+          azul: '#0000ff',
+          verde: '#00ff00',
+          amarelo: '#ffff00',
+          preto: '#000000',
+          branco: '#ffffff',
           50: '#F8F9FA',
           100: '#F1F3F5',
           200: '#E9ECEF',

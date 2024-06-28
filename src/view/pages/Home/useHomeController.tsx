@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { IProduct, useProducts } from "../../../app/services/productService/getProduct";
+import { IProduct } from "../../../app/interfaces/IProduct";
+import { useProduct } from "../../../app/services/productService/useProduct";
+
 
 export function useHomeController() {
-  const { data: products, error, isLoading } = useProducts();
+  const { data: products, error, isLoading } = useProduct();
   const [newCollection, setNewCollection] = useState<IProduct[]>([]);
 
   useEffect(() => {

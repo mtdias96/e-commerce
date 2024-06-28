@@ -31,52 +31,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* <section className="w-full h-auto mb-24 bg-gray-100/50">
-        <h2 className="text-white text-center text-4xl mb-8">Outfit Completo</h2>
-
-        <div className="mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:px-44  py-10 ">
-          <div className="bg-red-600 relative overflow-hidden w-full h-full">
-            <img
-              src={image1}
-              alt=""
-              className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
-            />
-          </div>
-          <div className="col-span-2 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative overflow-hidden bg-blue-300">
-              <img
-                src={image2}
-                alt=""
-                className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
-              />
-            </div>
-            <div className="relative overflow-hidden bg-yellow-400">
-              <img
-                src={image3}
-                alt=""
-                className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
-              />
-            </div>
-            <div className="relative overflow-hidden bg-black">
-              <img
-                src={image4}
-                alt=""
-                className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
-              />
-            </div>
-            <div className="relative overflow-hidden bg-purple-300">
-              <img
-                src={image5}
-                alt=""
-                className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
-              />
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-
-
       <section className="w-full h-[600px] mb-48 mt-24 flex flex-col items-center gap-10">
         <p className="text-3xl text-center">
           O QUE VOCÊ

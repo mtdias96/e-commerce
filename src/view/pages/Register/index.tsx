@@ -4,7 +4,7 @@ import { Input } from "../../components/Input";
 import { useRegisterController } from "./useRegisterController";
 
 export function Register() {
-  const {errors, handleSubmit, register, isLoading} = useRegisterController()
+  const { errors, handleSubmit, register, isPending } = useRegisterController()
   return (
     <div className="">
       <header className=" mt-20 flex flex-col items-center gap-2">
@@ -14,13 +14,13 @@ export function Register() {
       </header>
 
       <form
-      onSubmit={handleSubmit}
-      className="mt-16 flex flex-col gap-2 w-full ">
+        onSubmit={handleSubmit}
+        className="mt-16 flex flex-col gap-2 w-full ">
         <Input
           type="text"
           placeholder="Nome Completo"
-          error={errors.fullname?.message}
-          {...register("fullname")}
+          error={errors.name?.message}
+          {...register("name")}
         />
         <Input
           type="email"
@@ -34,15 +34,15 @@ export function Register() {
           error={errors.password?.message}
           {...register("password")}
         />
-        <Button type="submit" disabled={isLoading} className="mt-4">Entrar</Button>
+        <Button type="submit" disabled={isPending} className="mt-4">Entrar</Button>
       </form>
 
       <p className="mt-6 text-right">
-          <span className="font-bold text-gray-500 leading-[18px]
+        <span className="font-bold text-gray-500 leading-[18px]
           tracking-wide-[0.5px] mx-1">Já possui uma conta?</span>
-          <Link to='/entrar' className=" font-bold text-blue-300 leading-[18px]
+        <Link to='/entrar' className=" font-bold text-blue-300 leading-[18px]
           tracking-wide-[0.5px] hover:opacity-75">Entrar</Link>
-        </p>
+      </p>
 
     </div>
   )

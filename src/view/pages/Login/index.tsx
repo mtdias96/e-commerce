@@ -4,7 +4,7 @@ import { ButtonSocial } from "../../components/ButtonSocial";
 import { Input } from "../../components/Input";
 import { useLoginController } from "./useLoginController";
 export function Login() {
-  const { handleSubmit, register, errors, isLoading } = useLoginController()
+  const { handleSubmit, register, errors, isPending } = useLoginController()
   return (
     <>
       <header className="mt-40 flex flex-col items-center gap-2">
@@ -28,8 +28,8 @@ export function Login() {
 
         <Button
           type="submit"
-          disabled={isLoading}
-          isLoading={isLoading}
+          disabled={isPending}
+          isLoading={isPending}
           className="mt-2">
           Entrar
         </Button>

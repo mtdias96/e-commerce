@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useCart } from "../../../app/hooks/useCart";
-import { useProductId } from "../../../app/services/productService/getProduct";
+import { productService } from "../../../app/services/productService";
 
 
-export function useProductInfoController(productId: number) {
-  const { data } = useProductId(productId);
+export function useProductInfoController(id: string) {
+  const { data: product } = productService.useProductId(id);
   const [quantity, setQuantity] = useState(0)
-  const product = data?.product
+
 
   function handlePus() {
     setQuantity((prevState: number) => prevState + 1)
@@ -26,5 +26,5 @@ export function useProductInfoController(productId: number) {
     }
   }
 
-  return { handleMinus, handlePus, quantity, product, addCart }
+  return { handleMinus, handlePus, quantity, addCart, product }
 }

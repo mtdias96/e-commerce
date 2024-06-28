@@ -1,14 +1,6 @@
 import { createContext, useCallback, useState } from "react";
+import { IProduct } from "../interfaces/IProduct";
 
-export interface IProduct {
-  id: number
-  name: string;
-  price: number;
-  size: string[];
-  color: string[];
-  image: number[];
-  brand: string;
-}
 
 interface CartContextValue {
   handleProductCart(product: IProduct): void;
@@ -30,8 +22,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       prevProductCart.filter((product) => product.name !== name)
     );
   };
-
-  console.log(productCart);
 
   return (
     <CartContext.Provider

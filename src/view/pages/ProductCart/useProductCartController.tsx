@@ -5,7 +5,6 @@ import { useDiscount } from "../../../app/hooks/useDiscount";
 
 export function useProductCartController() {
   const [priceProducts, setPriceProducts] = useState(0)
-  // const [priceTotal, setPriceTotal] = useState(0)
   const { productCart } = useCart();
   const { valueDiscount, discountedValue } = useDiscount(priceProducts)
 
@@ -14,15 +13,7 @@ export function useProductCartController() {
     setPriceProducts(total)
   }, [productCart])
 
-  // useEffect(() => {
-  //   const value = Number(valueDiscount)
-  //   const totalWithDiscount = priceProducts - value;
-  //   setPriceTotal(totalWithDiscount);
-  // }, [priceProducts, valueDiscount]);
 
-  console.log(discountedValue);
-
-
-
+  console.log(productCart);
   return { productCart, priceProducts, valueDiscount, discountedValue };
 }
