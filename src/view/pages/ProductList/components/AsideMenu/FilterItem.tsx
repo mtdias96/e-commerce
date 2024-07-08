@@ -1,15 +1,23 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
+import { Input } from "../../../../components/Input";
 import { useAsideMenuController } from "./useAsideMenuController";
 
 type FilterItemProps = {
   title: string;
   options: string[];
-}
+};
 
 export function FilterItem({ title, options }: FilterItemProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const { filterSelected } = useAsideMenuController()
+  const { filterSelected, valueSelected } = useAsideMenuController();
+
+  const handleCheckboxChange = (option: string) => {
+    filterSelected({ title, option });
+  };
+
+  const selectedOption = valueSelected.find(item => item.title === title)?.option;
+
   return (
     <div className="mb-4">
       <div className="flex justify-between items-center cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
@@ -19,13 +27,15 @@ export function FilterItem({ title, options }: FilterItemProps) {
       {isOpen && (
         <div className="mt-2 pl-4">
           {options.map((option, index) => (
-            <div key={index} className="my-1">
-              <input
+            <div key={index} className="my-1 flex items-center">
+              <Input
                 type="checkbox"
                 id={option}
                 name={option}
-                onClick={() => filterSelected(option)}
-                className="mr-2" />
+                onChange={() => handleCheckboxChange(option)}
+                checked={selectedOption === option}
+                className="mr-2 w-4 h-4 flex"
+              />
               <label htmlFor={option}>{option}</label>
             </div>
           ))}

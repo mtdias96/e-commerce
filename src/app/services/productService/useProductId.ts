@@ -4,7 +4,6 @@ import { IProduct } from "../../interfaces/IProduct";
 import httpClient from "../httpClient";
 
 
-
 export function useProductId(productId: string){
   return useQuery<IProduct[]>({
     queryKey: ['product', productId],
