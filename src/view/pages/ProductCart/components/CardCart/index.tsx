@@ -3,7 +3,7 @@ import { IoIosAdd, IoIosCloseCircleOutline } from "react-icons/io";
 import imgGroup from "../../../../../app/utils/imgGroup";
 import { useCardCartController } from "./useCardCartController";
 
-export interface CardCartProps {
+type CardCartProps = {
   name: string;
   price: number;
   size: string;

@@ -14,7 +14,12 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [productCart, setProductCart] = useState<IProduct[]>([]);
 
   const handleProductCart = useCallback((product: IProduct) => {
-    setProductCart((prevProductCart) => [...prevProductCart, product]);
+    // setProductCart((prevProductCart) => [...prevProductCart, product]);
+    setProductCart((prevProductCart) => {
+      const updatedCart = [...prevProductCart, product];
+      console.log('Updated Cart:', updatedCart);
+      return updatedCart;
+    });
   }, []);
 
   const handleremoveProductList = (name: string) => {

@@ -6,13 +6,13 @@ import { formatCurrency } from "../../app/utils/formatCurrency";
 import imgGroup from "../../app/utils/imgGroup";
 
 type CardProductProps = {
-  id?: number;
+  id?: string;
   name: string;
   price: number;
   image: number[];
 }
 
-export function CardProduct({ name, price, image, id = 0 }: CardProductProps) {
+export function CardProduct({ name, price, image, id = '' }: CardProductProps) {
   return (
     <div className='border rounded-md border-blue-50 mb-8 transform transition-transform duration-300 hover:-translate-y-2 '>
       <div className="relative w-full overflow-hidden group">

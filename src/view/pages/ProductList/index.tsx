@@ -9,8 +9,6 @@ export function ProductList() {
   const { products } = useProductListController()
   const { productFilter } = useFilter()
 
-
-  console.log(productFilter.length);
   return (
     <>
       <Menu />
@@ -18,7 +16,6 @@ export function ProductList() {
         <AsideMenu />
 
         <div className="flex flex-wrap justify-center w-40 gap-12 flex-grow">
-
 
           {productFilter.length <= 0 && products?.map((product) => (
             <div className='w-[350px]' key={product.id}>

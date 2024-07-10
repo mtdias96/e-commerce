@@ -9,6 +9,9 @@ import { useProductCartController } from './useProductCartController';
 export function ProductCart() {
   const { productCart, priceProducts, valueDiscount, discountedValue } = useProductCartController()
 
+  productCart.map(product => console.log(product[0]))
+
+
   return (
     <>
       <Menu />
@@ -22,13 +25,10 @@ export function ProductCart() {
                 {productCart.length > 0 && (
                   productCart.map((product) => (
                     <CardCart
-                      name={product.name}
-                      price={product.price}
-                      image={product.image[0]}
-                      color={product.color}
-                      size={product.size[0]}
-                      brand={product.brand}
-                      key={product.name}
+                      name={product[0].name}
+                      price={product[0].price}
+                      image={product[0].image[0]}
+                      key={product[0].name}
                     />
                   ))
                 )}
@@ -45,19 +45,19 @@ export function ProductCart() {
 
                 <div className='flex items-center justify-between '>
                   <p className='text-xl text-black/60'>Desconto</p>
-                  <span className='text-right text-xl font-medium text-red-700'>R$ {valueDiscount}</span>
+                  <span className='text-right text-xl font-medium text-red-700'>R$ 00,00</span>
                 </div>
 
                 <div className='flex items-center justify-between pb-5 border-b border-gray-200 '>
                   <p className='text-xl text-black/60'>FRETE</p>
-                  <span className='text-right text-xl font-medium'>R$ 15,88</span>
+                  <span className='text-right text-xl font-medium'>R$ 0</span>
                 </div>
               </div>
 
               <div className='w-full flex flex-col gap-4'>
                 <div className='flex justify-between mt-4'>
                   <p className='text-xl'>Total</p>
-                  <span className='text-2xl font-medium'>R$ {parseFloat(discountedValue).toFixed(2)}</span>
+                  <span className='text-2xl font-medium'>R$ {priceProducts} </span>
                 </div>
                 <div className='flex justify-between gap-2 '>
                   <div className="flex items-center gap-3 bg-gray-200 max-xl:hidden px-2.5 rounded-xl">
