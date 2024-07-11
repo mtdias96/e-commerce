@@ -3,7 +3,7 @@ import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-i
 import Slider, { Settings } from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import { IProduct } from '../../app/context/CartContext';
+import { IProduct } from '../../app/interfaces/IProduct';
 import { productService } from '../../app/services/productService';
 import { CardProduct } from './CardProduct';
 

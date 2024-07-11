@@ -15,38 +15,50 @@ export function Brand() {
     autoplay: true,
     autoplaySpeed: 2500,
     speed: 1000,
-    slidesToShow: 1,
+    slidesToShow: 5,
     slidesToScroll: 1,
-    arrows: false
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 360,
+        settings: {
+          slidesToShow: 3,
+        }
+      }
+    ]
   };
 
-  return (
-    <div className="border  border-gray-400 rounded-xl slider-container overflow-hidden outline-none w-full  shadow-lg ">
-      <Slider {...settings}>
-        <div className="slide-item  text-white">
-          <div className="flex justify-evenly items-center">
-            <img className="w-24" src={vans} alt="" />
-            <img className="w-24" src={nike} alt="" />
-            <img className="w-24" src={mizuno} alt="" />
-            <img className="w-24" src={addidas} alt="" />
-            <img className="w-24" src={newb} alt="" />
-          </div>
-        </div>
-        <div className="slide-item  text-white">
-          <div className="flex justify-evenly ">
-            <img className="w-24" src={jordan} alt="" />
-            <img className="w-24" src={palace} alt="" />
-            <img className="w-24" src={mizuno} alt="" />
-            <img className="w-24" src={obey} alt="" />
-            <img className="w-24" src={addidas} alt="" />
+  const brands = [vans, nike, mizuno, addidas, newb, jordan, palace, obey];
 
+  return (
+    <div className="border border-gray-400 slider-container overflow-hidden outline-none w-full shadow-lg">
+      <Slider {...settings}>
+        {brands.map((brand, index) => (
+          <div key={index} className="flex justify-center items-center p-4 lg:ml-16 md:ml-36">
+            <img className="w-14 md:w-24 h-auto" src={brand} alt={`Brand ${index + 1}`} />
           </div>
-        </div>
+        ))}
       </Slider>
     </div>
   );
 }
 
 export default Brand;
-
-

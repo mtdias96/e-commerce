@@ -19,11 +19,11 @@ export function Menu() {
   };
 
   return (
-    <header className="w-full fixed top-0 left-0 right-0 z-10">
-      <div className="w-full bg-black flex gap-3 items-center justify-center h-10">
+    <header className="w-full fixed top-0 left-0 right-0 z-10 mb-80">
+      {/* <div className="w-full bg-black flex gap-3 items-center justify-center h-10">
         <p className="text-white text-sm">Cadastre-se e ganhe 10% de desconto no seu primeiro pedido.</p>
         <Link className="text-white border-b-2 border-white text-sm hover:opacity-75 transition-all" to='/cadastrar'>Inscreva-se agora</Link>
-      </div>
+      </div> */}
 
       <div className="w-full px-6 py-4 flex justify-between items-center bg-white shadow-md">
         <Link to="/" className="hover:opacity-75 transition-all flex items-center gap-3">

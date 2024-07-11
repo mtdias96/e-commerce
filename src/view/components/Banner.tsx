@@ -20,11 +20,11 @@ export function Banner() {
   };
 
   return (
-    <div className="mt-36 w-full">
+    <div className="w-full mt-20">
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index} className="slide-item">
-            <img className="w-full object-cover h-auto" src={image} alt={`Banner ${index + 1}`} />
+            <img className="w-full object-cover " src={image} alt={`Banner ${index + 1}`} />
           </div>
         ))}
       </Slider>
