@@ -19,24 +19,26 @@ export function FilterItem({ title, options }: FilterItemProps) {
   const selectedOption = valueSelected.find(item => item.title === title)?.option;
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 p-6 border-b border-gray-200">
       <div className="flex justify-between items-center cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
-        <h3 className="text-lg font-semibold">{title}</h3>
+        <h3 className="text-lg font-semibold ">{title}</h3>
         {isOpen ? <FaChevronUp /> : <FaChevronDown />}
       </div>
       {isOpen && (
-        <div className="mt-2 pl-4">
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 ">
           {options.map((option, index) => (
-            <div key={index} className="my-1 flex items-center">
+            <div key={index} className="flex items-center">
               <Input
                 type="checkbox"
                 id={option}
                 name={option}
                 onChange={() => handleCheckboxChange(option)}
                 checked={selectedOption === option}
-                className="mr-2 w-4 h-4 flex"
+                className="w-4 h-4 mr-2 flex"
               />
-              <label htmlFor={option}>{option}</label>
+              <label
+                className="text-xs font-medium"
+                htmlFor={option}>{option}</label>
             </div>
           ))}
         </div>
