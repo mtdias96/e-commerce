@@ -20,7 +20,7 @@ export function Banner() {
   };
 
   return (
-    <div className="w-full mt-20">
+    <div className="w-full pt-16 md:pt-28">
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index} className="slide-item">

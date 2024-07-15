@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useFilter } from "../../../app/hooks/useFilter";
 import { CardProduct } from "../../components/CardProduct";
 import Menu from "../../components/Menu";
-import { AsideMenu2 } from "./components/AsideMenu2";
+import { AsideMenu } from "./components/AsideMenu";
 import { useProductListController } from "./useProductListController";
 
 export function ProductList() {
@@ -21,13 +21,13 @@ export function ProductList() {
 
 
   return (
-    <div className='mt-32 relative'>
+    <div className='relative pt-16 md:pt-28'>
       <Menu />
-      <AsideMenu2 productQuantity={quantity} />
-      <section className="w-full flex px-8 mt-8">
-        <div className="flex flex-wrap justify-center w-40 gap-12 flex-grow">
+      <AsideMenu productQuantity={quantity} />
+      <section className="w-full flex mt-8">
+        <div className="flex flex-wrap justify-center w-40 gap-12 flex-grow px-8 flex-1">
           {productFilter.length <= 0 && products?.map((product) => (
-            <div className='w-[350px]' key={product.id}>
+            <div className='w-[300px]' key={product.id}>
               <CardProduct image={product.image} name={product.name} price={product.price} id={product.id} />
             </div>
           ))}

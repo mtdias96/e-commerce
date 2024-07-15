@@ -1,42 +1,66 @@
+import { useEffect, useState } from "react";
+import { LuListFilter } from "react-icons/lu";
+import MenuFilter from "../MenuFilter";
 
 type AsideMenuProps = {
-  toggleMenu: () => void
+  productQuantity: number
 }
 
-import { RiCloseLargeLine } from "react-icons/ri";
-import { FilterItem } from "./FilterItem";
+export function AsideMenu({ productQuantity }: AsideMenuProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-const AsideMenu = ({ toggleMenu }: AsideMenuProps) => {
+  function toggleMenu() {
+    setIsMenuOpen(!isMenuOpen);
+  }
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isMenuOpen]);
+
   return (
-    <div className="h-full shadow-lg z-50 w-full">
-      <div className="bg-white px-8 h-full overflow-auto">
-        <div className="flex justify-between border-b p-6">
-          <h1 className="font-bold">Filtrar</h1>
-          <button onClick={toggleMenu}>
-            <RiCloseLargeLine />
+    <div className="w-full flex justify-center items-center relative bg-black/90 p-4 ">
+      <div className="w-full flex justify-between items-center gap-10 mx-20">
+
+        {isMenuOpen && (
+          <div className="fixed inset-0 bg-gray-900 bg-opacity-50 z-40" onClick={toggleMenu}></div>
+        )}
+        <div className={`fixed inset-y-0 right-0 bg-white z-50 h-full w-2/3 md:w-1/3 transition-transform transform duration-500 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <MenuFilter toggleMenu={toggleMenu} />
+        </div>
+
+        <div className="flex gap-2 font-medium text-sm text-white">
+          <span>{productQuantity}</span>
+          <h2>
+            {productQuantity >= 1 ? 'produtos' : 'produto'}
+          </h2>
+        </div>
+
+        <div className="text-white">
+          <button
+            type="button"
+            className="font-bold flex items-center gap-2 hover:opacity-60 transition-all"
+            onClick={toggleMenu}
+          >
+            <LuListFilter />
+            Filtrar
           </button>
         </div>
-        <FilterItem
-          title="Marcas"
-          options={['Nike', 'Adidas', 'Mizuno', 'Vans', 'Jordan', 'Palace', 'Obey', 'New Balance', 'Oakley']}
-        />
-        <FilterItem
-          title="Tamanhos"
-          options={['34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46']} />
-        <FilterItem
-          title="Cores"
-          options={['Vermelho', 'Azul', 'Verde', 'Amarelo', 'Preto', 'Branco']} />
-        <FilterItem
-          title="Gêneros"
-          options={["Masculino", "Feminino", "Infantil"]}
-        />
-        <FilterItem
-          title="Preços"
-          options={['R$100 - R$300', 'R$300 - R$600', 'R$600 - R$900', 'R$900 - R$1200', 'R$1200 - R$1500', 'R$1500 - R$2000']}
-        />
+
+        <div className="hidden md:block text-white">
+          <span className="mr-2">Ordenar Por</span>
+          <select className="font-bold outline-none bg-black/90 ">
+            <option className="text-xs h-8" value="">Mais recentes</option>
+            <option className="text-sm" value="">Mais vendidos</option>
+            <option className="text-xs" value="">Descontos</option>
+            <option className="text-xs" value="">Maior preço</option>
+            <option className="text-xs" value="">Menor preço</option>
+          </select>
+        </div>
       </div>
     </div>
   );
-};
-
-export default AsideMenu;
+}

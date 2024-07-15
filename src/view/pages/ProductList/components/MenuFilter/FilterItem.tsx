@@ -37,7 +37,7 @@ export function FilterItem({ title, options }: FilterItemProps) {
                 className="w-4 h-4 mr-2 flex"
               />
               <label
-                className="text-xs font-medium"
+                className="text-xs font-medium flex flex-1"
                 htmlFor={option}>{option}</label>
             </div>
           ))}

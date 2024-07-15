@@ -66,7 +66,7 @@ export function CarouselProduct() {
 
   return (
     <>
-      <div className="mt-10 w-full">
+      <div className=" w-full">
         <Slider ref={sliderRef} {...settings}>
           {newCollection.map((product) => (
             <div key={product.name} className="slide-item p-1">

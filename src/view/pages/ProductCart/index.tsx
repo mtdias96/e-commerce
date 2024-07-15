@@ -7,11 +7,9 @@ import { CardCart } from './components/CardCart';
 import { useProductCartController } from './useProductCartController';
 
 export function ProductCart() {
-  const { productCart, priceProducts, valueDiscount, discountedValue } = useProductCartController()
+  const { productCart, priceProducts, } = useProductCartController()
 
-  productCart.map(product => console.log(product[0]))
-
-
+  console.log(...productCart);
   return (
     <>
       <Menu />
