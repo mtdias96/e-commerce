@@ -25,10 +25,10 @@ export function ProductCart() {
                       brand={product.brand.name}
                       color={product.color}
                       name={product.name}
-                      size='38'
+                      size={product.size}
                       price={product.price}
                       image={product.image[0]}
-                      key={product.name}
+                      key={product.id}
                     />
                   ))
                 )}

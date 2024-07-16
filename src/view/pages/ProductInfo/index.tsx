@@ -1,8 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
-
 import { FiShoppingCart } from 'react-icons/fi';
 import { useMediaQuery } from 'react-responsive';
+import { Link, useParams } from 'react-router-dom';
 import Slider from 'react-slick';
+
 import { formatCurrency } from '../../../app/utils/formatCurrency';
 import imgGroup from '../../../app/utils/imgGroup';
 import scrollTop from '../../../app/utils/scrollTop';
@@ -19,6 +19,7 @@ export function ProductInfo() {
 
   const settings = {
     dots: true,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -29,7 +30,7 @@ export function ProductInfo() {
     <>
       <Menu />
       {product &&
-        <section className="mt-20 w-full px-4 py-8 flex flex-col items-center font-roboto">
+        <section className=" mt-4 w-full px-4 py-8 flex flex-col items-center font-roboto">
           <div className="mt-10 md:mt-20 w-full max-w-7xl flex flex-wrap gap-12 justify-center">
 
             {!isMobile ? (
@@ -134,6 +135,9 @@ export function ProductInfo() {
                 </div>
               </div>
               <div className="flex justify-between flex-col gap-4 pt-8 pb-8 border-b border-t border-gray-300">
+                <button>
+
+                </button>
                 <Link
                   onClick={addCart}
                   to="/carrinho" className="flex justify-center items-center gap-4 px-8 py-3 bg-red-500 text rounded transition-opacity hover:opacity-70">
