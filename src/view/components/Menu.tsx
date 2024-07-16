@@ -64,9 +64,9 @@ export function Menu() {
               <RxExit onClick={signout} className="w-6 h-6 hover:opacity-65 transition-all" />
             </Link>
           )} */}
-
+          {/* ${isMobile && 'hidden'} */}
           <button
-            className={`xl:hidden flex items-center justify-center w-8 h-8 ${!isMobile && 'hidden'}`}
+            className={`xl:hidden flex items-center justify-center w-8 h-8`}
             onClick={toggleMenu}
           >
 
@@ -75,7 +75,7 @@ export function Menu() {
         </div>
       </div>
 
-      <nav className={`xl:hidden bg-white shadow-lg transition-all duration-300 ease-in-out  ${!isMobile && 'hidden'} ${isMenuOpen ? "max-h-screen" : "max-h-0"}  overflow-hidden`}>
+      <nav className={`xl:hidden bg-white shadow-lg transition-all duration-300 ease-in-out  ${isMenuOpen ? "max-h-screen" : "max-h-0"}  overflow-hidden`}>
         <ul className="flex flex-col items-center gap-4 p-4">
           <li><Link to="#" className="hover:opacity-65 transition-all">Categorias</Link></li>
           <li><Link to="/produtos" className="hover:opacity-65 transition-all">Tênis</Link></li>

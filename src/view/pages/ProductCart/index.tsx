@@ -9,7 +9,6 @@ import { useProductCartController } from './useProductCartController';
 export function ProductCart() {
   const { productCart, priceProducts, } = useProductCartController()
 
-  console.log(...productCart);
   return (
     <>
       <Menu />
@@ -23,10 +22,13 @@ export function ProductCart() {
                 {productCart.length > 0 && (
                   productCart.map((product) => (
                     <CardCart
-                      name={product[0].name}
-                      price={product[0].price}
-                      image={product[0].image[0]}
-                      key={product[0].name}
+                      brand={product.brand.name}
+                      color={product.color}
+                      name={product.name}
+                      size='38'
+                      price={product.price}
+                      image={product.image[0]}
+                      key={product.name}
                     />
                   ))
                 )}

@@ -8,12 +8,13 @@ import imgGroup from '../../../app/utils/imgGroup';
 import scrollTop from '../../../app/utils/scrollTop';
 import Footer from '../../components/Footer';
 import Menu from '../../components/Menu';
+import { SizeSelector } from '../../components/SizeSelector';
 import { useProductInfoController } from './useProductInfoController';
 
 export function ProductInfo() {
   scrollTop()
   const { id } = useParams()
-  const { handleMinus, handlePus, quantity, product, addCart } = useProductInfoController(id || '')
+  const { handleMinus, handlePus, quantity, product, addCart, handleSelectSize } = useProductInfoController(id || '')
   const isMobile = useMediaQuery({ maxWidth: 727 });
 
   const settings = {
@@ -23,7 +24,6 @@ export function ProductInfo() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-
 
   return (
     <>
@@ -35,24 +35,24 @@ export function ProductInfo() {
             {!isMobile ? (
               <div className="flex-shrink-0">
                 <div className="mb-16 flex justify-center">
-                  {product[0]?.image.slice(0, 1)?.map((_, index) => (
-                    <img key={index} className="w-[600px] h-[400px] rounded-lg object-cover" src={imgGroup[product[0]?.image[index]]} alt="" />
+                  {product.image.slice(0, 1)?.map((_, index) => (
+                    <img key={index} className="w-[600px] h-[400px] rounded-lg object-cover" src={imgGroup[product?.image[index]]} alt="" />
                   ))}
                 </div>
                 <div className="flex justify-between">
-                  {product[0]?.image.slice(1)?.map((_, index) => (
-                    <img key={index} className="w-[160px] h-[160px] ml-2 rounded-lg object-cover" src={imgGroup[product[0]?.image[index]]} alt="" />
+                  {product?.image.slice(1).map((_, index) => (
+                    <img key={index} className="w-[160px] h-[160px] ml-2 rounded-lg object-cover" src={imgGroup[product.image[index]]} alt="" />
                   ))}
                 </div>
               </div>
             ) : (
               <div className="flex-shrink-0 w-full md:w-auto">
-                {product[0]?.image && (
+                {product?.image && (
                   <div className="mb-16 flex justify-center w-full md:w-auto">
                     <Slider {...settings} className="w-full md:w-auto">
-                      {product[0].image?.map((_, index) => (
+                      {product.image?.map((_, index) => (
                         <div key={index}>
-                          <img className="w-full md:w-[600px] h-[400px] rounded-lg object-cover" src={imgGroup[product[0]?.image[index]]} alt="" />
+                          <img className="w-full md:w-[600px] h-[400px] rounded-lg object-cover" src={imgGroup[product?.image[index]]} alt="" />
                         </div>
                       ))}
                     </Slider>
@@ -62,17 +62,17 @@ export function ProductInfo() {
             )}
 
             <div className="w-full flex flex-col  gap-8 max-w-md">
-              <h2 className="text-2xl font-medium text-gray-900 font-sans uppercase">{product[0]?.name}</h2>
+              <h2 className="text-2xl font-medium text-gray-900 font-sans uppercase">{product.name}</h2>
 
               <div className='flex flex-col justify-between'>
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className=" text-2xl text-gray-800 font-sans">{formatCurrency(product[0]?.price)}</h3>
-                  {/* <h3 className="text-gray-500 text-lg line-through">R$ {product[0]?.price}</h3>
-                  <span className="bg-red-500 border rounded-md p-1 font-semibold">20% OFF</span> */}
+                  <h3 className=" text-2xl text-gray-800 font-sans">{formatCurrency(product.price)}</h3>
+                  <h3 className="text-gray-500 text-lg line-through">R$ {product.price}</h3>
+                  <span className="bg-red-500 border rounded-md p-1 font-semibold">20% OFF</span>
                 </div>
 
                 <div>
-                  <p className='text-gray-600 text-sm font-mono'>em 6X de {formatCurrency(product[0].price / 6)}(Sem juros)</p>
+                  <p className='text-gray-600 text-sm font-mono'>em 6X de {formatCurrency(product.price / 6)}(Sem juros)</p>
                 </div>
               </div>
               <div className="flex flex-col gap-8">
@@ -82,19 +82,20 @@ export function ProductInfo() {
                 </div>
                 <div className="flex justify-between">
                   <h4 className="text-sm text-gray-700">Categoria</h4>
-                  <span className="text-sm text-gray-700">{product[0].category.name}</span>
+                  <span className="text-sm text-gray-700">{product.category.name}</span>
                 </div>
               </div>
               <div className="flex flex-col">
                 <label htmlFor="size" className="text-sm text-gray-800 mb-2">Selecione o tamanho:</label>
                 <div className="flex gap-2 pb-4 border-b flex-wrap border-gray-300">
-                  {product[0]?.variations?.map((variation) => (
-                    <button
+                  {product.variations.map((variation) => (
+                    <SizeSelector
+                      quantity={variation.quantity}
+                      size={variation.size}
                       key={variation.size}
-                      className="w-10 h-10 border border-gray-400 rounded flex justify-center items-center text-gray-800 hover:opacity-75 focus:border-black transition-all"
-                    >
-                      {variation.size}
-                    </button>
+                      onSelectSize={handleSelectSize}
+
+                    />
                   ))}
 
                 </div>
@@ -151,11 +152,11 @@ export function ProductInfo() {
               <h3 className="text-lg">Detalhes do produto</h3>
             </div>
             <div className="pt-8">
-              <p className="text-base text-gray-700">{product[0]?.description}</p>
+              <p className="text-base text-gray-700">{product.description}</p>
             </div>
           </div>
 
-        </section>
+        </section >
       }
       <Footer />
     </>
