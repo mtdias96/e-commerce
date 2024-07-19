@@ -69,11 +69,11 @@ export function ProductInfo() {
                 <div className="flex items-center justify-between mb-2">
                   <h3 className=" text-2xl text-gray-800 font-sans">{formatCurrency(product.price)}</h3>
                   <h3 className="text-gray-500 text-lg line-through">R$ {product.price}</h3>
-                  <span className="bg-red-500 border rounded-md p-1 font-semibold">20% OFF</span>
+                  {/* <span className="bg-red-500 border rounded-md p-1 font-semibold">20% OFF</span> */}
                 </div>
 
                 <div>
-                  <p className='text-gray-600 text-sm font-mono'>em 6X de {formatCurrency(product.price / 6)}(Sem juros)</p>
+                  <p className='text-gray-600 text-sm font-mono'>em 6X de {formatCurrency(product.price / 6)} (Sem juros)</p>
                 </div>
               </div>
               <div className="flex flex-col gap-8">
@@ -83,7 +83,7 @@ export function ProductInfo() {
                 </div>
                 <div className="flex justify-between">
                   <h4 className="text-sm text-gray-700">Categoria</h4>
-                  <span className="text-sm text-gray-700">{product.category.name}</span>
+                  <span className="text-sm text-gray-700">{product.category?.name}</span>
                 </div>
               </div>
               <div className="flex flex-col">
@@ -135,14 +135,14 @@ export function ProductInfo() {
                 </div>
               </div>
               <div className="flex justify-between flex-col gap-4 pt-8 pb-8 border-b border-t border-gray-300">
-                <button>
-
-                </button>
                 <Link
                   onClick={addCart}
-                  to="/carrinho" className="flex justify-center items-center gap-4 px-8 py-3 bg-red-500 text rounded transition-opacity hover:opacity-70">
-                  <FiShoppingCart className='text-white' />
-                  <span className="text-white font-bold">COMPRAR</span>
+                  to="/carrinho" className="flex justify-center items-center gap-4  bg-red-500 text rounded transition-opacity hover:opacity-70 disabled:cursor-not-allowed">
+                  {/* <span className="text-white font-bold">COMPRAR</span> */}
+                  <button disabled={false} className='flex justify-center items-center gap-4 px-8 py-4 flex-1 bg-red-500 text rounded transition-opacity hover:opacity-70 disabled:cursor-not-allowed  disabled:bg-gray-100 disabled:text-black '>
+                    <FiShoppingCart className='font-bold' />
+                    COMPRAR
+                  </button>
                 </Link>
                 <button className='border border-black rounded bg-transparent px-8 py-3 flex justify-center items-center bg-gray-900 hover:bg-gray-50 hover:opacity-70 transition-all'>
                   <span>ADICIONAR AO CARRINHO</span>
@@ -160,11 +160,12 @@ export function ProductInfo() {
             </div>
           </div>
 
-        </section >
+        </section>
       }
       <Footer />
     </>
   );
+
 }
 
 export default ProductInfo;

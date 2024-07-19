@@ -22,4 +22,4 @@ export function Button({ className, isLoading, children, disabled, ...props }: B
   )
 }
 
-/*active:bg-slate-900  hover:bg-gray-800*/
+
