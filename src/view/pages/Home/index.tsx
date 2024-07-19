@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import Banner from "../../components/Banner";
 import Menu from "../../components/Menu";
 
+import bannerImage from '../../../assets/images/banner/banner6.jpg';
 import Brand from "../../components/Brand";
 import { CarouselProduct } from "../../components/CarouselProduct";
 import Footer from "../../components/Footer";
 import { GalleryNav } from "./components/GalleryNav";
-
 
 export function Home() {
   return (
@@ -23,7 +23,9 @@ export function Home() {
         <CarouselProduct />
       </section>
 
-      <section className=" mt-28 flex items-center justify-end bg-banner bg-cover bg-center w-full h-[604px]">
+      <section className=" mt-28 md:flex items-center justify-end bg-cover bg-center w-full h-[604px] hidden"
+        style={{ backgroundImage: `url(${bannerImage})` }}
+      >
         <div className="w-[400px] flex flex-col justify-center flex-wrap gap-6 px-6 pr-20 pb-12">
           <h2 className="text-gray-50 text-[55px] font-medium">Melhores Sneakers</h2>3
           <p className="text-gray-500 text-[24px] w-80">Desempenho e design. Levado direto ao limite.</p>

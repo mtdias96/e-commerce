@@ -187,9 +187,6 @@ export default {
           900: '#D9480F',
         },
       },
-      backgroundImage: {
-        'banner' : "url('./src/assets/images/banner/banner6.jpg')"
-      }
     },
   },
   plugins: [],
