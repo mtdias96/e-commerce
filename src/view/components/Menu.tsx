@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { FaRegCircleUser } from "react-icons/fa6";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
@@ -19,7 +20,7 @@ export function Menu() {
   };
 
   return (
-    <header className="w-full top-0 fixed left-0 right-0 z-10">
+    <header className="w-full top-0 fixed left-0 right-0 z-50">
       <div className="w-full bg-black hidden md:flex gap-3 items-center justify-center h-10">
         <TbTruckDelivery className="text-white w-6 h-6 -scale-x-100" />
         <p className="text-white text-sm">Frete grátis para sudeste a partir de R$ 299</p>
@@ -50,9 +51,9 @@ export function Menu() {
         </div>
 
         <div className="flex gap-6 items-center">
-          {/* <Link to='/perfil'>
+          <Link to='/perfil'>
             <FaRegCircleUser className="w-6 h-6" />
-          </Link> */}
+          </Link>
           <button className={`block md:hidden ${isMobile ? 'flex' : 'hidden'}`}>
             <IoSearch className="w-6 h-6" />
           </button>
