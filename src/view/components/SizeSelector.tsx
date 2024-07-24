@@ -1,9 +1,9 @@
-import { Button } from "./Button"
+import { Button } from "./Button";
 
 interface SizeSelectorProps {
   onSelectSize(size: string): void
   size: string
-  quantity: number
+  quantity: number;
 }
 
 export function SizeSelector({ size, quantity, onSelectSize }: SizeSelectorProps) {
