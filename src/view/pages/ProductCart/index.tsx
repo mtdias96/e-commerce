@@ -3,6 +3,7 @@ import Footer from "../../components/Footer";
 import Menu from "../../components/Menu";
 
 import { IoTicketOutline } from "react-icons/io5";
+import { formatCurrency } from '../../../app/utils/formatCurrency';
 import { CardCart } from './components/CardCart';
 import { useProductCartController } from './useProductCartController';
 
@@ -40,7 +41,7 @@ export function ProductCart() {
               <div className='flex flex-col gap-5'>
                 <div className='flex items-center justify-between '>
                   <p className='text-xl text-black/60'>Subtotal</p>
-                  <span className='text-right text-xl font-medium'>R$ {priceProducts}</span>
+                  <span className='text-right text-xl font-medium'>{formatCurrency(priceProducts)}</span>
                 </div>
 
                 <div className='flex items-center justify-between '>
@@ -57,7 +58,7 @@ export function ProductCart() {
               <div className='w-full flex flex-col gap-4'>
                 <div className='flex justify-between mt-4'>
                   <p className='text-xl'>Total</p>
-                  <span className='text-2xl font-medium'>R$ {priceProducts} </span>
+                  <span className='text-2xl font-medium'>{formatCurrency(priceProducts)} </span>
                 </div>
                 <div className='flex justify-between gap-2 '>
                   <div className="flex items-center gap-3 bg-gray-200 max-xl:hidden px-2.5 rounded-xl">

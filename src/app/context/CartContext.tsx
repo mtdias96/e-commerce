@@ -25,6 +25,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       prevProductCart.filter((product) => product.name !== name)
     );
   };
+
   return (
     <CartContext.Provider
       value={{ handleProductCart, productCart, handleremoveProductList }}
