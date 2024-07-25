@@ -4,7 +4,7 @@ import { useProduct } from "../../../app/services/productService/useProduct";
 
 
 export function useHomeController() {
-  const { data: products, error, isLoading } = useProduct();
+  const { data: products, isPending } = useProduct();
   const [newCollection, setNewCollection] = useState<IProduct[]>([]);
 
   useEffect(() => {
@@ -13,5 +13,5 @@ export function useHomeController() {
     }
   }, [products]);
 
-  return { products, error, isLoading, newCollection };
+  return { products, newCollection, isPending };
 }

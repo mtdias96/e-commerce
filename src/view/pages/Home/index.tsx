@@ -7,6 +7,7 @@ import bannerImage from '../../../assets/images/banner/banner6.jpg';
 import Brand from "../../components/Brand";
 import { CarouselProduct } from "../../components/CarouselProduct";
 import Footer from "../../components/Footer";
+import { Newsletter } from "../../components/Newsletter";
 import { GalleryNav } from "./components/GalleryNav";
 
 export function Home() {
@@ -46,7 +47,7 @@ export function Home() {
         <p className="text-center text-xs mb-4">CONFIRA OS QUERIDINHOS DA GALERA</p>
         <CarouselProduct />
       </section>
-
+      <Newsletter />
       <Footer />
     </div>
   )

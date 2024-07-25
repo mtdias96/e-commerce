@@ -13,7 +13,7 @@ export function Button({ className, isLoading, children, disabled, ...props }: B
     <button
       {...props}
       disabled={disabled || isLoading}
-      className={cn("bg-slate-800 disabled:bg-gray-100 disabled:cursor-not-allowed px-6 h-12 rounded-xl font-medium text-white disabled:text-gray-400  transition-all  flex items-center justify-center",
+      className={cn("bg-slate-800 disabled:bg-gray-100 disabled:cursor-not-allowed px-6 h-12 rounded-xl font-medium text-white disabled:text-gray-400  transition-all flex items-center justify-center",
         className)}
     >
       {!isLoading && children}

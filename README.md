@@ -8,6 +8,10 @@ Este projeto é a interface front-end para uma loja de e-commerce desenvolvida e
 https://github.com/mtdias96/e-commerce/assets/111136759/a3e40ba1-8b07-4ffd-8327-45db60b4eecf
 
 
+##Link para o site (Em construção MVP)
+- O back-end está hospedado na plataform render pelo plano gratuito, por conta disso a primeira request pode demorar 50s.
+https://newboot.netlify.app/
+
 ## Funcionalidades
 
 - **Navegação**: Utilização do React Router para navegação entre páginas.

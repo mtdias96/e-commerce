@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     screens: {
-      'md' : '862px'
+      'md' : '862px',
     },
     fontFamily: {
       'body' : ["Poppins"]

@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { FaRegCircleUser } from "react-icons/fa6";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
@@ -51,21 +50,15 @@ export function Menu() {
         </div>
 
         <div className="flex gap-6 items-center">
-          <Link to='/perfil'>
+          {/* <Link to='/perfil'>
             <FaRegCircleUser className="w-6 h-6" />
-          </Link>
-          <button className={`block md:hidden ${isMobile ? 'flex' : 'hidden'}`}>
+          </Link> */}
+          {/* <button className={`block md:hidden ${isMobile ? 'flex' : 'hidden'}`}>
             <IoSearch className="w-6 h-6" />
-          </button>
+          </button> */}
           <Link to="/carrinho" className="hover:opacity-65 transition-all">
             <FiShoppingCart className="w-6 h-6" />
           </Link>
-          {/* {signedIn && (
-            <Link to='/'>
-              <RxExit onClick={signout} className="w-6 h-6 hover:opacity-65 transition-all" />
-            </Link>
-          )} */}
-          {/* ${isMobile && 'hidden'} */}
           <button
             className={`xl:hidden flex items-center justify-center w-8 h-8`}
             onClick={toggleMenu}
@@ -77,13 +70,15 @@ export function Menu() {
       </div>
 
       <nav className={`xl:hidden bg-white shadow-lg transition-all duration-300 ease-in-out  ${isMenuOpen ? "max-h-screen" : "max-h-0"}  overflow-hidden`}>
-        <ul className="flex flex-col items-center gap-4 p-4">
-          <li><Link to="adicionarProduto" className="hover:opacity-65 transition-all">Adicionar Produtos</Link></li>
+        <ul className="flex justify-center flex-col items-center gap-4 p-4">
           <li><Link to="/produtos" className="hover:opacity-65 transition-all">Tênis</Link></li>
           <li><Link to="#" className="hover:opacity-65 transition-all">Masculino</Link></li>
-          <li><Link to="#" className="hover:opacity-65 transition-all">Feminino</Link></li>
+          <li ><Link to="#" className="hover:opacity-65 transition-all">Feminino</Link></li>
           {signedIn && (
             <li><Link to="#" onClick={signout} className="hover:opacity-65 transition-all">Sair</Link></li>
+          )}
+          {!signedIn && (
+            <li><Link to="/entrar" className="hover:opacity-65 transition-all">Entrar</Link></li>
           )}
 
         </ul>

@@ -1,5 +1,4 @@
 import { FiShoppingCart } from 'react-icons/fi';
-import { useMediaQuery } from 'react-responsive';
 import { Link, useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 
@@ -12,19 +11,11 @@ import { SizeSelector } from '../../components/SizeSelector';
 import { useProductInfoController } from './useProductInfoController';
 
 export function ProductInfo() {
-  scrollTop()
   const { id } = useParams()
-  const { handleMinus, handlePus, quantity, product, addCart, handleSelectSize } = useProductInfoController(id || '')
-  const isMobile = useMediaQuery({ maxWidth: 727 });
+  const { handleMinus, handlePus, quantity, product, addCart, handleSelectSize, settings, isMobile, selectedSize } = useProductInfoController(id || '')
+  scrollTop()
 
-  const settings = {
-    dots: true,
-    arrows: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+
 
   return (
     <>
@@ -95,7 +86,6 @@ export function ProductInfo() {
                       size={variation.size}
                       key={variation.size}
                       onSelectSize={handleSelectSize}
-
                     />
                   ))}
 
@@ -138,8 +128,7 @@ export function ProductInfo() {
                 <Link
                   onClick={addCart}
                   to="/carrinho" className="flex justify-center items-center gap-4  bg-red-500 text rounded transition-opacity hover:opacity-70 disabled:cursor-not-allowed">
-                  {/* <span className="text-white font-bold">COMPRAR</span> */}
-                  <button disabled={false} className='flex justify-center items-center gap-4 px-8 py-4 flex-1 bg-red-500 text rounded transition-opacity hover:opacity-70 disabled:cursor-not-allowed  disabled:bg-gray-100 disabled:text-black '>
+                  <button disabled={!selectedSize} className='flex justify-center items-center gap-4 px-8 py-4 flex-1 bg-red-500 text rounded transition-opacity enabled:hover:opacity-70 disabled:cursor-not-allowed  disabled:bg-gray-100 disabled:text-black '>
                     <FiShoppingCart className='font-bold' />
                     COMPRAR
                   </button>
