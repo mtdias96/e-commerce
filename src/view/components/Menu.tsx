@@ -7,6 +7,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../app/hooks/useAuth";
+import { useCart } from "../../app/hooks/useCart";
 import { Logo } from "./Logo";
 
 export function Menu() {
@@ -17,6 +18,8 @@ export function Menu() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const { productCart } = useCart()
 
   return (
     <header className="w-full top-0 fixed left-0 right-0 z-50">
@@ -56,8 +59,12 @@ export function Menu() {
           {/* <button className={`block md:hidden ${isMobile ? 'flex' : 'hidden'}`}>
             <IoSearch className="w-6 h-6" />
           </button> */}
-          <Link to="/carrinho" className="hover:opacity-65 transition-all">
+          <Link to="/carrinho" className="hover:opacity-65 transition-all relative">
             <FiShoppingCart className="w-6 h-6" />
+
+            <div className="bg-red-500 w-5 h-5 rounded-full flex justify-center items-center absolute bottom-3 left-3.5">
+              <span className="text-center text-white text-xs">{productCart.length}</span>
+            </div>
           </Link>
           <button
             className={`xl:hidden flex items-center justify-center w-8 h-8`}

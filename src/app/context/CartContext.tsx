@@ -16,7 +16,6 @@ export const CartContext = createContext({} as CartContextValue);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [productCart, setProductCart] = useState<IProductWithSize[]>([]);
-
   const handleProductCart = useCallback((product: IProductWithSize) => {
     setProductCart((prevProductCart) => [...prevProductCart, product]);
   }, []);
