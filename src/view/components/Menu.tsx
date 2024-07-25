@@ -11,15 +11,15 @@ import { useCart } from "../../app/hooks/useCart";
 import { Logo } from "./Logo";
 
 export function Menu() {
+  const { productCart } = useCart()
   const { signedIn, signout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 1228 });
-
+  const productsCounter = productCart.length;
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const { productCart } = useCart()
 
   return (
     <header className="w-full top-0 fixed left-0 right-0 z-50">
@@ -62,9 +62,11 @@ export function Menu() {
           <Link to="/carrinho" className="hover:opacity-65 transition-all relative">
             <FiShoppingCart className="w-6 h-6" />
 
-            <div className="bg-red-500 w-5 h-5 rounded-full flex justify-center items-center absolute bottom-3 left-3.5">
-              <span className="text-center text-white text-xs">{productCart.length}</span>
-            </div>
+            {productsCounter > 0 &&
+              <div className="bg-red-500 w-5 h-5 rounded-full flex justify-center items-center absolute bottom-3 left-3.5">
+                <span className="text-center text-white text-xs">{productCart.length}</span>
+              </div>
+            }
           </Link>
           <button
             className={`xl:hidden flex items-center justify-center w-8 h-8`}
