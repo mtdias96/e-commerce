@@ -15,8 +15,6 @@ export function ProductInfo() {
   const { handleMinus, handlePus, quantity, product, addCart, handleSelectSize, settings, isMobile, selectedSize } = useProductInfoController(id || '')
   scrollTop()
 
-
-
   return (
     <>
       <Menu />

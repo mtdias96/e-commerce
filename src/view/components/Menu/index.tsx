@@ -1,25 +1,21 @@
 
 import { useState } from "react";
-import { FiShoppingCart } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import { TbTruckDelivery } from "react-icons/tb";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../app/hooks/useAuth";
-import { useCart } from "../../app/hooks/useCart";
-import { Logo } from "./Logo";
+import { useAuth } from "../../../app/hooks/useAuth";
+import { Logo } from "../Logo";
+import { ToggleCartMenu } from "./ToggleCartMenu";
 
 export function Menu() {
-  const { productCart } = useCart()
   const { signedIn, signout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 1228 });
-  const productsCounter = productCart.length;
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
 
   return (
     <header className="w-full top-0 fixed left-0 right-0 z-50">
@@ -53,21 +49,7 @@ export function Menu() {
         </div>
 
         <div className="flex gap-6 items-center">
-          {/* <Link to='/perfil'>
-            <FaRegCircleUser className="w-6 h-6" />
-          </Link> */}
-          {/* <button className={`block md:hidden ${isMobile ? 'flex' : 'hidden'}`}>
-            <IoSearch className="w-6 h-6" />
-          </button> */}
-          <Link to="/carrinho" className="hover:opacity-65 transition-all relative">
-            <FiShoppingCart className="w-6 h-6" />
-
-            {productsCounter > 0 &&
-              <div className="bg-red-500 w-5 h-5 rounded-full flex justify-center items-center absolute bottom-3 left-3.5">
-                <span className="text-center text-white text-xs">{productCart.length}</span>
-              </div>
-            }
-          </Link>
+          <ToggleCartMenu />
           <button
             className={`xl:hidden flex items-center justify-center w-8 h-8`}
             onClick={toggleMenu}
