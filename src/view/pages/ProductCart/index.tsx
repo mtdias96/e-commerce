@@ -1,9 +1,8 @@
-import { Button } from '../../components/Button';
-import Footer from "../../components/Footer";
-import Menu from "../../components/Menu";
-
 import { IoTicketOutline } from "react-icons/io5";
 import { formatCurrency } from '../../../app/utils/formatCurrency';
+import { Button } from '../../components/Button';
+import Footer from "../../components/Footer";
+import Menu from '../../components/Menu';
 import { CardCart } from './components/CardCart';
 import { useProductCartController } from './useProductCartController';
 
@@ -18,13 +17,11 @@ export function ProductCart() {
 
         {productCart.length > 0 && (
           <div className='flex flex-col md:flex-row w-full justify-center gap-6 mt-8'>
-            <div className={`bg-white shadow-md rounded-lg p-4 md:p-6 mb-4 flex flex-col overflow-y-auto md:h-[420px] ${productCart.length > 3 ? 'md:grid-cols-3' : 'md:grid-cols-' + productCart.length}`}>
+            <div className={`bg-white shadow-md rounded-lg p-4 md:p-6 mb-4 flex flex-col overflow-y-auto md:h-[420px] ${productCart.length > 3 ? 'md:grid-cols-3' : 'md:grid-cols' + productCart.length}`}>
               <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
                 {productCart.length > 0 && (
                   productCart.map((product) => (
                     <CardCart
-                      brand={product.brand.name}
-                      color={product.color}
                       name={product.name}
                       size={product.size}
                       price={product.price}
