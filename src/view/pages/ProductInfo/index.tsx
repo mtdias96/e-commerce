@@ -131,8 +131,11 @@ export function ProductInfo() {
                     COMPRAR
                   </button>
                 </Link>
-                <button className='border border-black rounded bg-transparent px-8 py-3 flex justify-center items-center bg-gray-900 hover:bg-gray-50 hover:opacity-70 transition-all'>
-                  <span>ADICIONAR AO CARRINHO</span>
+                <button
+                  className='border border-black rounded bg-transparent px-8 py-3 flex justify-center items-center bg-gray-900 hover:bg-gray-50 hover:opacity-70 transition-all'
+                  onClick={addCart}
+                >
+                  ADICIONAR AO CARRINHO
                 </button>
               </div>
             </div>
