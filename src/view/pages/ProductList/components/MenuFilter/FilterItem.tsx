@@ -1,3 +1,5 @@
+// FilterItem.tsx
+
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import { Input } from "../../../../components/Input";
@@ -46,3 +48,4 @@ export function FilterItem({ title, options }: FilterItemProps) {
     </div>
   );
 }
+
