@@ -34,10 +34,12 @@ export function ToggleCartMenu() {
             <span className=" mt-4 block text-base md:text-lg font-semibold tracking-[-0.5px]">{productsCounter} Itens adicionados</span>
             {productCart.length > 0 && (
               productCart.map((product) => (
+                console.log(product),
                 <div
                   className="border-b border-gray-200 py-8 overflow-y-auto"
                   key={product.id}>
                   <CardCart
+                    id={product.id}
                     name={product.name}
                     size={product.size}
                     price={product.price}

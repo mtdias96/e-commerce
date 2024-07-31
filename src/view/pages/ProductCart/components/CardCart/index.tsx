@@ -5,13 +5,14 @@ import imgGroup from "../../../../../app/utils/imgGroup";
 import { useCardCartController } from "./useCardCartController";
 
 type CardCartProps = {
+  id?: string;
   name: string;
   price: number;
   size: string;
   image: number;
 }
 
-export function CardCart({ image, name, price, size, }: CardCartProps) {
+export function CardCart({ image, price, size, id, name }: CardCartProps) {
   const { handleMinus, handlePus, quantity, handleCLoseProduct } = useCardCartController()
   return (
     <div className="flex flex-col md:items-center md:justify-between">
@@ -47,7 +48,7 @@ export function CardCart({ image, name, price, size, }: CardCartProps) {
         <div>
           <button className="ml-4  focus:outline-none">
             <FiTrash
-              onClick={() => handleCLoseProduct(name)}
+              onClick={() => handleCLoseProduct(id ?? '')}
               className="w-6 h-6" />
           </button>
         </div>

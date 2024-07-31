@@ -22,6 +22,7 @@ export function ProductCart() {
                 {productCart.length > 0 && (
                   productCart.map((product) => (
                     <CardCart
+                      id={product.id}
                       name={product.name}
                       size={product.size}
                       price={product.price}

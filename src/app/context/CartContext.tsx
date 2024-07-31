@@ -16,14 +16,16 @@ export const CartContext = createContext({} as CartContextValue);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [productCart, setProductCart] = useState<IProductWithSize[]>([]);
+
   const handleProductCart = useCallback((product: IProductWithSize) => {
     setProductCart((prevProductCart) => [...prevProductCart, product]);
   }, []);
 
-  const handleremoveProductList = (name: string) => {
+  const handleremoveProductList = (id: string) => {
     setProductCart((prevProductCart) =>
-      prevProductCart.filter((product) => product.name !== name)
+      prevProductCart.filter((product) => product.id !== id)
     );
+    console.log(id);
   };
 
   return (
