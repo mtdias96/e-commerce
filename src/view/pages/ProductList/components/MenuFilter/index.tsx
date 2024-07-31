@@ -1,10 +1,9 @@
+import { RiCloseLargeLine } from "react-icons/ri";
+import { FilterItem } from "./FilterItem";
 
 type AsideMenuProps = {
   toggleMenu: () => void
 }
-
-import { RiCloseLargeLine } from "react-icons/ri";
-import { FilterItem } from "./FilterItem";
 
 function MenuFilter({ toggleMenu }: AsideMenuProps) {
   return (

@@ -1,3 +1,5 @@
+// useAsideMenuController.ts
+
 import { useEffect, useState } from "react";
 import { useFilter } from "../../../../../app/hooks/useFilter";
 import httpClient from "../../../../../app/services/httpClient";
@@ -47,9 +49,7 @@ export function useAsideMenuController() {
           console.error("Error ao enviar filtros:", error);
         });
     }
-  }, [valueSelected]);
-
-
+  }, [valueSelected, handleProductFilter]);
 
   return { valueSelected, filterSelected };
 }
