@@ -28,7 +28,7 @@ export function AsideMenu({ productQuantity }: AsideMenuProps) {
         {isMenuOpen && (
           <div className="fixed inset-0 bg-gray-900 bg-opacity-50 z-40" onClick={toggleMenu}></div>
         )}
-        <div className={`fixed inset-y-0 right-0 bg-white z-50 h-full w-2/3 md:w-1/3 transition-transform transform duration-500 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`fixed inset-y-0 right-0 bg-white z-50 h-full w-full md:w-full  transition-transform transform duration-500 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <MenuFilter toggleMenu={toggleMenu} />
         </div>
 

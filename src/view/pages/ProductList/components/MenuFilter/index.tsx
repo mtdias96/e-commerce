@@ -1,5 +1,6 @@
 import { RiCloseLargeLine } from "react-icons/ri";
 import { FilterItem } from "./FilterItem";
+import TagFilter from "./TagFilter";
 
 type AsideMenuProps = {
   toggleMenu: () => void
@@ -15,6 +16,9 @@ function MenuFilter({ toggleMenu }: AsideMenuProps) {
             <RiCloseLargeLine />
           </button>
         </div>
+
+        <TagFilter />
+
         <FilterItem
           title="Marcas"
           options={['Nike', 'Adidas', 'Mizuno', 'Vans', 'Jordan', 'Palace', 'Obey', 'New Balance', 'Oakley']}
