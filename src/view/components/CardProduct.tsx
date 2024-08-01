@@ -2,6 +2,8 @@ import { FaRegHeart } from "react-icons/fa6";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
+import { useQueryClient } from "@tanstack/react-query";
+import httpClient from "../../app/services/httpClient";
 import { formatCurrency } from "../../app/utils/formatCurrency";
 import imgGroup from "../../app/utils/imgGroup";
 
@@ -13,8 +15,22 @@ type CardProductProps = {
 }
 
 export function CardProduct({ name, price, image, id = '' }: CardProductProps) {
+  const queryClient = useQueryClient()
+
+  function handleMouseEnter() {
+    queryClient.prefetchQuery({
+      queryKey: ['product', id],
+      queryFn: async () => {
+        const response = await httpClient.get(`/produto/:${id}`);
+        return response.data.product;
+      },
+    })
+  }
+
   return (
-    <div className='border rounded-md border-blue-50 mb-8 transform transition-transform duration-300 hover:-translate-y-2 '>
+    <div
+      onMouseEnter={handleMouseEnter}
+      className='border rounded-md border-blue-50 mb-8 transform transition-transform duration-300 hover:-translate-y-2 '>
       <div className="relative w-full overflow-hidden group">
         <img className="w-full h-auto object-cover" src={imgGroup[image[0]]} alt="tenis" />
         <div className="absolute inset-0 bg-gray-800 bg-opacity-45 flex items-center justify-center gap-4 sm:gap-6 lg:gap-9 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
