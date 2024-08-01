@@ -5,7 +5,15 @@ import { AuthProvider } from "./app/context/AuthContext"
 import { CartProvider } from "./app/context/CartContext"
 import { FilterProvider } from "./app/context/FilterContext"
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 10 * 60 * 1000, //10 minutes
+      retry: false,
+      refetchOnWindowFocus: false,
+    }
+  }
+})
 function App() {
 
   return (
