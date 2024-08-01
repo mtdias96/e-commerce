@@ -1,5 +1,5 @@
 import { FiShoppingCart } from 'react-icons/fi';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import { formatCurrency } from '../../../app/utils/formatCurrency';
@@ -12,10 +12,8 @@ import { useProductInfoController } from './useProductInfoController';
 
 export function ProductInfo() {
   const { id } = useParams()
-  const { handleMinus, handlePus, quantity, product, addCart, handleSelectSize, settings, isMobile, selectedSize } = useProductInfoController(id || '')
+  const { handleMinus, handlePus, quantity, product, addCart, handleSelectSize, settings, isMobile } = useProductInfoController(id || '')
   scrollTop()
-
-
 
   return (
     <>
@@ -125,14 +123,12 @@ export function ProductInfo() {
                 </div>
               </div>
               <div className="flex justify-between flex-col gap-4 pt-8 pb-8 border-b border-t border-gray-300">
-                <Link
-                  onClick={addCart}
-                  to="/carrinho" className="flex justify-center items-center gap-4  bg-red-500 text rounded transition-opacity hover:opacity-70 disabled:cursor-not-allowed">
-                  <button disabled={!selectedSize} className='flex justify-center items-center gap-4 px-8 py-4 flex-1 bg-red-500 text rounded transition-opacity enabled:hover:opacity-70 disabled:cursor-not-allowed  disabled:bg-gray-100 disabled:text-black '>
-                    <FiShoppingCart className='font-bold' />
-                    COMPRAR
-                  </button>
-                </Link>
+                <button
+                  onClick={() => addCart('/carrinho')}
+                  className='flex justify-center items-center gap-4 px-8 py-4 flex-1 bg-red-500 text rounded transition-opacity enabled:hover:opacity-70 disabled:cursor-not-allowed  disabled:bg-gray-100 disabled:text-black '>
+                  <FiShoppingCart className='font-bold' />
+                  COMPRAR
+                </button>
                 <button className='border border-black rounded bg-transparent px-8 py-3 flex justify-center items-center bg-gray-900 hover:bg-gray-50 hover:opacity-70 transition-all'>
                   <span>ADICIONAR AO CARRINHO</span>
                 </button>
