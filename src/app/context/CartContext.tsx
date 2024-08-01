@@ -21,11 +21,13 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setProductCart((prevProductCart) => [...prevProductCart, product]);
   }, []);
 
-  const handleremoveProductList = (name: string) => {
+  const handleremoveProductList = (id: string) => {
     setProductCart((prevProductCart) =>
-      prevProductCart.filter((product) => product.name !== name)
+      prevProductCart.filter((product) => product.id !== id)
     );
+    console.log(id);
   };
+
   return (
     <CartContext.Provider
       value={{ handleProductCart, productCart, handleremoveProductList }}

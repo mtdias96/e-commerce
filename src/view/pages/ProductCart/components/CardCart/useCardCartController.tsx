@@ -9,8 +9,8 @@ export function useCardCartController() {
     setQuantity((prevState: number) => prevState + 1)
   }
 
-  function handleCLoseProduct(name: string) {
-    handleremoveProductList(name)
+  function handleCLoseProduct(id: string) {
+    handleremoveProductList(id)
   }
 
   function handleMinus() {

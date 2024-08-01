@@ -1,19 +1,18 @@
 
 import { useState } from "react";
-import { FiShoppingCart } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import { TbTruckDelivery } from "react-icons/tb";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../app/hooks/useAuth";
-import { Logo } from "./Logo";
+import { useAuth } from "../../../app/hooks/useAuth";
+import { Logo } from "../Logo";
+import { ToggleCartMenu } from "./ToggleCartMenu";
 
 export function Menu() {
   const { signedIn, signout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 1228 });
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -50,15 +49,7 @@ export function Menu() {
         </div>
 
         <div className="flex gap-6 items-center">
-          {/* <Link to='/perfil'>
-            <FaRegCircleUser className="w-6 h-6" />
-          </Link> */}
-          {/* <button className={`block md:hidden ${isMobile ? 'flex' : 'hidden'}`}>
-            <IoSearch className="w-6 h-6" />
-          </button> */}
-          <Link to="/carrinho" className="hover:opacity-65 transition-all">
-            <FiShoppingCart className="w-6 h-6" />
-          </Link>
+          <ToggleCartMenu />
           <button
             className={`xl:hidden flex items-center justify-center w-8 h-8`}
             onClick={toggleMenu}
