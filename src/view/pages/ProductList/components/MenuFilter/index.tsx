@@ -9,7 +9,7 @@ type AsideMenuProps = {
 function MenuFilter({ toggleMenu }: AsideMenuProps) {
   return (
     <div className="h-full shadow-lg z-50 w-full">
-      <div className="bg-white px-4 h-full overflow-auto">
+      <div className="bg-white px-8 h-full overflow-auto">
         <div className="flex justify-between border-b py-6">
           <h1 className="font-bold text-xl">Filtrar</h1>
           <button onClick={toggleMenu}>
@@ -26,10 +26,8 @@ function MenuFilter({ toggleMenu }: AsideMenuProps) {
         />
         <FilterItem
           title="Tamanhos"
-          options={['34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46']} />
-        <FilterItem
-          title="Cores"
-          options={['Vermelho', 'Azul', 'Verde', 'Amarelo', 'Preto', 'Branco']} />
+          sizes={['34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46']} />
+
         <FilterItem
           title="Gêneros"
           options={["Masculino", "Feminino", "Infantil"]}
