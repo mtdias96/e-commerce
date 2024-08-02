@@ -1,10 +1,9 @@
-// FilterItem.tsx
-
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
-import { Button } from "../../../../components/Button";
-import { Input } from "../../../../components/Input";
-import { useAsideMenuController } from "./useAsideMenuController";
+import { Button } from "../../../../../../components/Button";
+import { Input } from "../../../../../../components/Input";
+import { useItemController } from "./useItemController";
+
 
 type FilterItemProps = {
   title: string;
@@ -14,13 +13,7 @@ type FilterItemProps = {
 
 export function FilterItem({ title, options, sizes }: FilterItemProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const { filterSelected, valueSelected } = useAsideMenuController();
-
-  const handleCheckboxChange = (option: string) => {
-    filterSelected({ title, option });
-  };
-
-  const selectedOption = valueSelected.find(item => item.title === title)?.option;
+  const { selectedOption, handleCheckboxChange } = useItemController(title);
 
   return (
     <div className="mb-4 py-6 pr-2  border-b border-gray-200 ">
@@ -33,6 +26,7 @@ export function FilterItem({ title, options, sizes }: FilterItemProps) {
           {sizes.map((size) => (
             <Button
               key={size}
+              onClick={() => handleCheckboxChange(size)}
               className="w-14 h-6 py-4 px-10 border border-gray-400 rounded flex justify-center items-center text-gray-800 hover:opacity-75 focus:bg-black focus:text-white text-xs transition-all bg-transparent "
             >
               {size}

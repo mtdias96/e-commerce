@@ -1,12 +1,11 @@
-// useAsideMenuController.ts
-
 import { useEffect, useState } from "react";
-import { useFilter } from "../../../../../app/hooks/useFilter";
-import httpClient from "../../../../../app/services/httpClient";
+import { useFilter } from "../../../../../../../app/hooks/useFilter";
+import httpClient from "../../../../../../../app/services/httpClient";
+
 
 type FilterOption = {
-  title: string;
-  option: string;
+  title?: string;
+  option?: string;
 };
 
 type Filters = {
@@ -15,8 +14,10 @@ type Filters = {
   size?: string;
 };
 
-export function useAsideMenuController() {
+export function useItemController(title: string) {
   const [valueSelected, setValueSelected] = useState<FilterOption[]>([]);
+  const { handleProductFilter } = useFilter()
+  const {handleTagFilter, tagFilter} = useFilter();
 
   function filterSelected(option: FilterOption) {
     const existingItemIndex = valueSelected.findIndex(item => item.title === option.title);
@@ -30,16 +31,21 @@ export function useAsideMenuController() {
     }
   }
 
-  const { handleProductFilter } = useFilter()
+  const selectedOption = valueSelected.find(item => item.title === title)?.option;
+
+  const handleCheckboxChange = (option: string) => {
+    filterSelected({ title, option });
+    handleTagFilter(option);
+  };
 
   useEffect(() => {
     const filters: Filters = valueSelected.reduce((acc, { title, option }) => {
       if (title === "Marcas") acc.brand = option;
       if (title === "Cores") acc.color = option;
       if (title === "Tamanhos") acc.size = option;
+      console.log(option);
       return acc;
     }, {} as Filters);
-
     if (Object.keys(filters).length > 0) {
       httpClient.post("/produto/filtro", filters)
         .then(response => {
@@ -50,6 +56,6 @@ export function useAsideMenuController() {
         });
     }
   }, [valueSelected, handleProductFilter]);
-
-  return { valueSelected, filterSelected };
+  console.log(tagFilter);
+  return { valueSelected, filterSelected, selectedOption, handleCheckboxChange };
 }
