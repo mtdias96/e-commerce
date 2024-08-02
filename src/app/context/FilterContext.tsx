@@ -5,6 +5,7 @@ interface FilterContextValue {
   handleTagFilter(tags: string): void
   handleTagRemove(tagRemove: string): void
   handleProductFilter(products: IProduct[]): void;
+  clearAllFilters(): void
   productFilter: IProduct[];
   tagFilter: string[]
 }
@@ -30,10 +31,13 @@ export const FilterProvider = ({ children }: { children: React.ReactNode }) => {
     setTagFilter((prevState) => prevState.filter(tag => tag !== tagRemove))
   }, [])
 
-
+  const clearAllFilters = useCallback(() => {
+    setProductFilter([]);
+    setTagFilter([]);
+  }, []);
 
   return (
-    <FilterContext.Provider value={{ productFilter, handleProductFilter, tagFilter, handleTagFilter, handleTagRemove }}>
+    <FilterContext.Provider value={{ productFilter, handleProductFilter, tagFilter, handleTagFilter, handleTagRemove, clearAllFilters }}>
       {children}
     </FilterContext.Provider>
   )

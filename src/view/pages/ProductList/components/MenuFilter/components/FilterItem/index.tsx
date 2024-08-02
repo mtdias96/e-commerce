@@ -35,7 +35,7 @@ export function FilterItem({ title, options, sizes, className }: FilterItemProps
       </div>
       <div
         ref={contentRef}
-        className={`overflow-hidden transition-all duration-500 ease-out`}
+        className={cn`overflow-hidden transition-all duration-500 ease-out`}
         style={{ height: isOpen ? contentHeight : '0px' }}
       >
         {isOpen && sizes && (

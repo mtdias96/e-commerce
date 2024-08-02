@@ -2,7 +2,7 @@ import { FiTrash } from "react-icons/fi";
 import { RiCloseLargeLine } from "react-icons/ri";
 import { useFilter } from "../../../../../../app/hooks/useFilter";
 export default function TagFilter() {
-  const { handleTagRemove, tagFilter } = useFilter()
+  const { handleTagRemove, tagFilter, clearAllFilters } = useFilter()
 
   return (
     <>
@@ -12,7 +12,9 @@ export default function TagFilter() {
             <h3 className="font-semibold text-lg">Filtros atuais</h3>
             <div className="flex items-center gap-1 text-zinc-400 text-xs font-bold">
               <FiTrash className="text-zinc-500" />
-              <button className="underline uppercase border-b ">Limpar filtros</button>
+              <button
+                onClick={clearAllFilters}
+                className="underline uppercase border-b ">Limpar filtros</button>
             </div>
           </div>
 
