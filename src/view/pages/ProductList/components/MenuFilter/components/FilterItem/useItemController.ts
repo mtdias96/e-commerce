@@ -17,7 +17,7 @@ type Filters = {
 export function useItemController(title: string) {
   const [valueSelected, setValueSelected] = useState<FilterOption[]>([]);
   const { handleProductFilter } = useFilter()
-  const {handleTagFilter, tagFilter} = useFilter();
+  const {handleTagFilter} = useFilter();
 
   function filterSelected(option: FilterOption) {
     const existingItemIndex = valueSelected.findIndex(item => item.title === option.title);
@@ -43,7 +43,6 @@ export function useItemController(title: string) {
       if (title === "Marcas") acc.brand = option;
       if (title === "Cores") acc.color = option;
       if (title === "Tamanhos") acc.size = option;
-      console.log(option);
       return acc;
     }, {} as Filters);
     if (Object.keys(filters).length > 0) {
@@ -56,6 +55,6 @@ export function useItemController(title: string) {
         });
     }
   }, [valueSelected, handleProductFilter]);
-  console.log(tagFilter);
+
   return { valueSelected, filterSelected, selectedOption, handleCheckboxChange };
 }

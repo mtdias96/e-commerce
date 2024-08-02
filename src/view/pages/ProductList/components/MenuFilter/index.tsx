@@ -24,9 +24,16 @@ function MenuFilter({ toggleMenu }: AsideMenuProps) {
           title="Marcas"
           options={['Nike', 'Adidas', 'Mizuno', 'Vans', 'Jordan', 'Palace', 'Obey', 'New Balance', 'Oakley']}
         />
+
         <FilterItem
           title="Tamanhos"
-          sizes={['34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46']} />
+          sizes={['34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46']}
+        />
+
+        <FilterItem
+          title="Cores"
+          options={['Vermelho', 'Azul', 'Verde', 'Amarelo', 'Preto', 'Branco']}
+        />
 
         <FilterItem
           title="Gêneros"

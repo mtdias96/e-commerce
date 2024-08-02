@@ -9,7 +9,7 @@ export default function TagFilter() {
       {
         tagFilter.length > 0 && <div className=" py-5 border-b border-gray-200">
           <div className="flex justify-between items-center mb-2">
-            <h3 className="font-semibold">Filtros atuais</h3>
+            <h3 className="font-semibold text-lg">Filtros atuais</h3>
             <div className="flex items-center gap-1 text-zinc-400 text-xs font-bold">
               <FiTrash className="text-zinc-500" />
               <button className="underline uppercase border-b ">Limpar filtros</button>
@@ -24,7 +24,7 @@ export default function TagFilter() {
                 onClick={() =>
                   handleTagRemove(tag)}
               >
-                <span className="text-sm tracking-[0.5px] ">{tag}</span>
+                <span className=" tracking-[0.5px] ">{tag}</span>
                 <RiCloseLargeLine
                   className="w-3.5 h-3.5 text-black"
                 />
