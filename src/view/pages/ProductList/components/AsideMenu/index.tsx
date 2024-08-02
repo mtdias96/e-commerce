@@ -22,7 +22,7 @@ export function AsideMenu({ productQuantity }: AsideMenuProps) {
   }, [isMenuOpen]);
 
   return (
-    <div className="w-full flex justify-center items-center relative bg-black/90 p-4 ">
+    <div className="w-full flex justify-center items-center relative bg-black/90 p-4">
       <div className="w-full flex justify-between items-center gap-10 mx-20">
 
         {isMenuOpen && (

@@ -21,7 +21,7 @@ export function FilterItem({ title, options }: FilterItemProps) {
   const selectedOption = valueSelected.find(item => item.title === title)?.option;
 
   return (
-    <div className="mb-4 p-6 border-b border-gray-200">
+    <div className="mb-4 py-6 pr-2  border-b border-gray-200 ">
       <div className="flex justify-between items-center cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
         <h3 className="text-lg font-semibold ">{title}</h3>
         {isOpen ? <FaChevronUp /> : <FaChevronDown />}
