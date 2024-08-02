@@ -1,4 +1,4 @@
-import { IoTicketOutline } from "react-icons/io5";
+import { useMediaQuery } from 'react-responsive';
 import { formatCurrency } from '../../../app/utils/formatCurrency';
 import { Button } from '../../components/Button';
 import Footer from "../../components/Footer";
@@ -8,6 +8,11 @@ import { useProductCartController } from './useProductCartController';
 
 export function ProductCart() {
   const { productCart, priceProducts, } = useProductCartController()
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(max-width: 1224px)'
+  })
+
+  console.log(isDesktopOrLaptop);
 
   return (
     <>
@@ -59,16 +64,20 @@ export function ProductCart() {
                   <span className='text-2xl font-medium'>{formatCurrency(priceProducts)} </span>
                 </div>
                 <div className='flex justify-between gap-2 '>
-                  <div className="flex items-center gap-3 bg-gray-200 max-xl:hidden px-2.5 rounded-xl">
-                    <IoTicketOutline className="w-6 h-6 text-gray-500 cursor-pointer hover:opacity-75 transition-all" />
-                    <input
-                      type="text"
-                      placeholder="CODIGO PROMOCIONAL"
-                      className="outline-none bg-transparent placeholder:text-slate-400"
-                    />
-                  </div>
 
-                  <Button className='w-20 text-xs bg-transparent text-black border border-gray-600 hover:opacity'>APLICAR</Button>
+                  <div className="w-full">
+                    <div className='flex items-center relative w-full justify-between'>
+                      <input
+                        name='promotional'
+                        type="text"
+                        placeholder="CODIGO PROMOCIONAL"
+                        className="outline-none px-8 bg-zinc-100 border border-black rounded-lg rounded-e-none flex-grow placeholder:px-8 w-full h-[52px] placeholder:text-zinc-400 placeholder:text-sm"
+                      />
+                      <Button className='w-20 h-[52px] text-xs bg-transparent bg-black border border-gray-600 rounded-lg hover:opacity rounded-s-none'>
+                        APLICAR
+                      </Button>
+                    </div>
+                  </div>
                 </div>
                 <Button className='w-full bg-red-500 hover:opacity-80 '>COMPRAR</Button>
               </div>
