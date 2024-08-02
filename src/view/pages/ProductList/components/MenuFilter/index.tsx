@@ -36,6 +36,7 @@ function MenuFilter({ toggleMenu }: AsideMenuProps) {
         />
 
         <FilterItem
+          className="flex flex-col"
           title="Gêneros"
           options={["Masculino", "Feminino", "Infantil"]}
         />
