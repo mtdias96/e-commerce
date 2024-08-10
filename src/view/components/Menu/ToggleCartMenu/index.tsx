@@ -14,18 +14,16 @@ import { Button } from "../../Button";
 import { UseToggleCartMenu } from "./useToggleCartMenu";
 
 export function ToggleCartMenu() {
-  const { toggleMenuCart, productsCounter, isMenuCartOpen, productCart } =
-    UseToggleCartMenu();
-  const { handleSubmit: submit, register } = useForm()
+  const { toggleMenuCart, productsCounter, isMenuCartOpen, productCart } = UseToggleCartMenu();
+  const { handleSubmit: submit, register, watch } = useForm();
   const [cep, setCep] = useState<cepState[]>([]);
+  const [price, setPrice] = useState<number>(0);
 
   const { mutateAsync, data } = useMutation({
     mutationFn: async (cepData: ICepDate) => {
       return cepService.cepCalculator(cepData);
     },
   });
-
-  console.log(productCart);
 
   useEffect(() => {
     if (data) {
@@ -41,6 +39,15 @@ export function ToggleCartMenu() {
     }
   }, [data]);
 
+  const selectedShipping = Number(watch("shippingOption"))
+
+  useEffect(() => {
+    const totalProductPrice = productCart.reduce((acc, product) => acc + product.price, 0);
+    const totalPrice = selectedShipping ? totalProductPrice + selectedShipping : totalProductPrice;
+
+    setPrice(totalPrice);
+  }, [productCart, selectedShipping]);
+
   useEffect(() => {
     document.body.style.overflow = isMenuCartOpen ? "hidden" : "";
     return () => {
@@ -53,9 +60,9 @@ export function ToggleCartMenu() {
       fromCep: "11015230",
       toCep: String(data.cep),
       quantity: productCart.length,
-    }
+    };
     mutateAsync(cepData);
-  })
+  });
 
   return (
     <>
@@ -98,116 +105,126 @@ export function ToggleCartMenu() {
             />
           </div>
 
-          <div className="overflow-y-auto flex-grow">
-            <span className="mt-4 block text-base md:text-lg font-semibold tracking-[-0.5px]">
-              {productsCounter} Itens adicionados
-            </span>
-            {productCart.length > 0 &&
-              productCart.map(
-                (product) => (
-                  <div
-                    className="border-b border-gray-200 py-8"
-                    key={product.id}
-                  >
-                    <CardCart
-                      id={product.id}
-                      name={product.name}
-                      size={product.size}
-                      price={product.price}
-                      image={product.image[0]}
+          {productCart.length > 0 ?
+            <div>
+              <div className="overflow-y-auto flex-grow">
+                <span className="mt-4 block text-base md:text-lg font-semibold tracking-[-0.5px]">
+                  {productsCounter} Itens adicionados
+                </span>
+                {productCart.length > 0 &&
+                  productCart.map(
+                    (product) => (
+                      <div
+                        className="border-b border-gray-200 py-8"
+                        key={product.id}
+                      >
+                        <CardCart
+                          id={product.id}
+                          name={product.name}
+                          size={product.size}
+                          price={product.price}
+                          image={product.image[0]}
+                        />
+                      </div>
+                    )
+                  )}
+              </div>
+
+              <div className="w-full mt-8">
+                <div className="flex justify-end items-center gap-2">
+                  <span className="uppercase text-sm text-zinc-400">
+                    Calcular o frete
+                  </span>
+                  <form onSubmit={handleSubmits} className="flex relative">
+                    <input
+                      type="text"
+                      placeholder="0000-000"
+                      className="h-10 w-32 p-4 py-6 border border-zinc-700/10 rounded-lg outline-black/60"
+                      {...register('cep', {
+                        required: 'Este campo é obrigatório',
+                        minLength: {
+                          value: 8,
+                          message: 'O CEP deve ter 8 dígitos',
+                        },
+                        onChange: (e) => {
+                          let value = e.target.value.replace(/\D/g, '');
+
+                          if (value.length > 8) {
+                            value = value.slice(0, 8);
+                          }
+
+                          const formattedValue = value.length > 4 ? `${value.slice(0, 4)}-${value.slice(4)}` : value;
+                          e.target.value = formattedValue;
+                        },
+                        setValueAs: (value) => value.replace('-', ''),
+                      })}
                     />
+
+                    <button
+                      type="submit"
+                      className="h-8 absolute left-[94px] bottom-2 p-2"
+                    >
+                      <IoIosArrowForward className="hover:opacity-45" />
+                    </button>
+                  </form>
+                </div>
+
+                {cep?.map((result) => (
+                  <div
+                    key={result.name}
+                    className="flex items-center ps-4 h-16 gap-4 border border-gray-200 rounded  mt-4 "
+                  >
+                    <input
+                      id={`bordered-radio-${result.name}`}
+                      type="radio"
+                      value={result.price}
+                      {...register("shippingOption")}
+                      name="shippingOption"
+                      className="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+                    />
+
+                    <div className="flex flex-col items-start">
+                      <div className="flex items-center gap-1">
+                        <span className="w-full text-sm font-medium text-zinc-700/70">
+                          {result.name} -
+                        </span>
+                        <span className="text-sm font-semibold">{formatCurrency(Number(result.price))}</span>
+                      </div>
+
+                      <span className="text-xs mt-1 text-zinc-700/80">Previsão: {result.deliveryTime.max} dias úteis</span>
+                    </div>
                   </div>
-                )
-              )}
-          </div>
+                ))}
+              </div>
 
-          <div className="w-full mt-8">
-            <div className="flex justify-end items-center gap-2">
-              <span className="uppercase text-sm text-zinc-400">
-                Calcular o frete
-              </span>
-              <form onSubmit={handleSubmits} className="flex relative">
-                <input
-                  type="text"
-                  placeholder="0000-000"
-                  className="h-10 w-32 p-4 py-6 border border-zinc-700/10 rounded-lg outline-black/60"
-                  {...register('cep', {
-                    required: 'Este campo é obrigatório',
-                    minLength: {
-                      value: 8,
-                      message: 'O CEP deve ter 8 dígitos',
-                    },
-                    onChange: (e) => {
-                      let value = e.target.value.replace(/\D/g, '');
+              <div className="mt-8 flex items-center justify-end gap-1">
+                <p className="text-right text-xs md:text-lg font-semibold tracking-[-0.5px]">Total a pagar: </p>
+                <span className="text-sm md:text-lg font-semibold inline-block">{formatCurrency(price)}</span>
+              </div>
 
-                      if (value.length > 8) {
-                        value = value.slice(0, 8);
-                      }
-
-                      const formattedValue = value.length > 4 ? `${value.slice(0, 4)}-${value.slice(4)}` : value;
-                      e.target.value = formattedValue;
-                    },
-                    setValueAs: (value) => value.replace('-', ''),
-                  })}
-                />
-
-
-                <button
-                  type="submit"
-                  className="h-8 absolute left-[94px] bottom-2 p-2"
+              <div className="w-full flex flex-col gap-4 mt-4 sticky bottom-0 bg-white py-4">
+                <Link
+                  to="/carrinho"
+                  className="w-full uppercase border rounded-md bg-zinc-800 hover:bg-red-900/90 px-6 h-[49px] flex justify-center items-center text-white font-bold transition-all "
                 >
-                  <IoIosArrowForward className="hover:opacity-45" />
-                </button>
-              </form>
+                  Ir Para o Checkout
+                </Link>
+
+                <Button
+                  className="w-full uppercase bg-transparent text-black border border-cyan-950 hover:opacity-80 rounded-md h-[49px] "
+                  onClick={toggleMenuCart}
+                >
+                  continuar comprando
+                </Button>
+              </div>
             </div>
 
-            {cep?.map((result) => (
-              <div
-                key={result.name}
-                className="flex items-center ps-4 h-16 gap-4 border border-gray-200 rounded  mt-4 "
-              >
-                <input
-                  id="bordered-radio-2"
-                  type="radio"
-                  value=""
-                  name="bordered-radio"
-                  className="w-4 h-4 0 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
-                />
+            : <div className="flex flex-col justify-center mt-8">
+              <span className="tracking-[1px] text-lg text-center">Seu Carrinho está vazio</span>
+              <p className="tracking-[-0.1px]  text-center mt-2">Volte a loja e aproveite nossas ofertas!</p>
+            </div>
+          }
 
-                <div className="flex flex-col items-start">
-                  <div className="flex items-center gap-1">
-                    <span className="w-full text-sm font-medium text-zinc-700/70">
-                      {result.name} -
-                    </span>
-                    <span className="text-sm font-semibold">{formatCurrency(Number(result.price))}</span>
-                  </div>
-
-                  <span className="text-xs mt-1 text-zinc-700/80 text-r">Previsão: {result.deliveryTime.max} dias útil</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 flex items-center justify-end gap-1">
-            <p className="text-right text-xs md:text-lg font-semibold tracking-[-0.5px]">Total a pagar: </p>
-            <span className="text-sm md:text-lg font-semibold inline-block">{formatCurrency(1800.44)}</span>
-          </div>
-
-          <div className="w-full flex flex-col gap-4 mt-4 sticky bottom-0 bg-white py-4">
-            <Link
-              to="/carrinho"
-              className="w-full uppercase border rounded-md   bg-zinc-800  hover:bg-red-900/90 px-6 h-[49px] flex justify-center items-center text-white font-bold transition-all "
-            >
-              Ir Para o Chekout
-            </Link>
-
-            <Button
-              className="w-full uppercase bg-transparent text-black border border-cyan-950 hover:opacity-80 rounded-md h-[49px] "
-              onClick={toggleMenuCart}
-            >
-              continuar comprando
-            </Button>
-          </div>
         </div>
       </div>
     </>

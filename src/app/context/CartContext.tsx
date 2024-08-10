@@ -25,7 +25,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setProductCart((prevProductCart) =>
       prevProductCart.filter((product) => product.id !== id)
     );
-    console.log(id);
   };
 
   return (

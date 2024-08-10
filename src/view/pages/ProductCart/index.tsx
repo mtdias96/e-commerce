@@ -1,4 +1,3 @@
-import { useMediaQuery } from 'react-responsive';
 import { formatCurrency } from '../../../app/utils/formatCurrency';
 import { Button } from '../../components/Button';
 import Footer from "../../components/Footer";
@@ -8,11 +7,6 @@ import { useProductCartController } from './useProductCartController';
 
 export function ProductCart() {
   const { productCart, priceProducts, } = useProductCartController()
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(max-width: 1224px)'
-  })
-
-  console.log(isDesktopOrLaptop);
 
   return (
     <>
