@@ -20,10 +20,8 @@ export function ToggleCartMenu() {
   const [cep, setCep] = useState<cepState[]>([]);
   const [price, setPrice] = useState<number>(0);
   const buttonMobile = useMediaQuery({
-    query: '(max-height: 667px)'
+    query: '(max-height: 867px)'
   })
-
-
 
   console.log(buttonMobile);
 
