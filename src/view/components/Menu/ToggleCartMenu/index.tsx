@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
+import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import { cepState, ICepDate } from "../../../../app/interfaces/ICep";
 import { cepService } from "../../../../app/services/CepService";
@@ -18,6 +19,13 @@ export function ToggleCartMenu() {
   const { handleSubmit: submit, register, watch } = useForm();
   const [cep, setCep] = useState<cepState[]>([]);
   const [price, setPrice] = useState<number>(0);
+  const buttonMobile = useMediaQuery({
+    query: '(max-height: 667px)'
+  })
+
+
+
+  console.log(buttonMobile);
 
   const { mutateAsync, data } = useMutation({
     mutationFn: async (cepData: ICepDate) => {
@@ -130,7 +138,7 @@ export function ToggleCartMenu() {
                   )}
               </div>
 
-              <div className="w-full mt-8">
+              <div className="w-full mt-4">
                 <div className="flex justify-end items-center gap-2">
                   <span className="uppercase text-sm text-zinc-400">
                     Calcular o frete
@@ -172,7 +180,7 @@ export function ToggleCartMenu() {
                 {cep?.map((result) => (
                   <div
                     key={result.name}
-                    className="flex items-center ps-4 h-16 gap-4 border border-gray-200 rounded  mt-4 "
+                    className="flex items-center ps-4 h-16 gap-4 border border-gray-200 rounded mt-4 "
                   >
                     <input
                       id={`bordered-radio-${result.name}`}
@@ -197,12 +205,12 @@ export function ToggleCartMenu() {
                 ))}
               </div>
 
-              <div className="mt-8 flex items-center justify-end gap-1">
-                <p className="text-right text-xs md:text-lg font-semibold tracking-[-0.5px]">Total a pagar: </p>
+              <div className="mt-3 flex items-center justify-end gap-1">
+                <p className="text-right text-sm md:text-lg font-semibold tracking-[-0.5px]">Total a pagar: </p>
                 <span className="text-sm md:text-lg font-semibold inline-block">{formatCurrency(price)}</span>
               </div>
 
-              <div className="w-full flex flex-col gap-4 mt-4 sticky bottom-0 bg-white py-4">
+              <div className="w-full flex flex-col gap-4 sticky mt-6 sm:mt-48 bottom-0 bg-white py-4">
                 <Link
                   to="/carrinho"
                   className="w-full uppercase border rounded-md bg-zinc-800 hover:bg-red-900/90 px-6 h-[49px] flex justify-center items-center text-white font-bold transition-all "
@@ -210,12 +218,12 @@ export function ToggleCartMenu() {
                   Ir Para o Checkout
                 </Link>
 
-                <Button
+                {!buttonMobile && <Button
                   className="w-full uppercase bg-transparent text-black border border-cyan-950 hover:opacity-80 rounded-md h-[49px] "
                   onClick={toggleMenuCart}
                 >
                   continuar comprando
-                </Button>
+                </Button>}
               </div>
             </div>
 
