@@ -12,6 +12,7 @@ import { cn } from "../../../../app/utils/cn";
 import { formatCurrency } from "../../../../app/utils/formatCurrency";
 import { CardCart } from "../../../pages/ProductCart/components/CardCart";
 import { Button } from "../../Button";
+import { Spinner } from "../../Spinner";
 import { UseToggleCartMenu } from "./useToggleCartMenu";
 
 export function ToggleCartMenu() {
@@ -23,7 +24,7 @@ export function ToggleCartMenu() {
     query: '(max-height: 867px)'
   })
 
-  const { mutateAsync, data } = useMutation({
+  const { mutateAsync, data, isPending } = useMutation({
     mutationFn: async (cepData: ICepDate) => {
       return cepService.cepCalculator(cepData);
     },
@@ -132,7 +133,7 @@ export function ToggleCartMenu() {
                 ))}
               </div>
 
-              <div className="w-full mt-4">
+              <div className="w-full md:mt-4 ">
                 <div className="flex justify-end items-center gap-2">
                   <span className="uppercase text-sm text-zinc-400">
                     Calcular o frete
@@ -171,35 +172,39 @@ export function ToggleCartMenu() {
                   </form>
                 </div>
 
-                {cep?.map((result) => (
-                  <div
-                    key={result.name}
-                    className="flex items-center ps-4 h-16 gap-4 border border-gray-200 rounded mt-4 "
-                  >
-                    <input
-                      id={`bordered-radio-${result.name}`}
-                      type="radio"
-                      value={result.price}
-                      {...register("shippingOption")}
-                      name="shippingOption"
-                      className="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
-                    />
+                {isPending ? <div className="flex  w-full justify-center items-center h-20  mt-8">
+                  <Spinner className="w-10 h-10" />
+                </div>
+                  :
+                  cep?.map((result) => (
+                    <div
+                      key={result.name}
+                      className="flex items-center ps-4 h-16 gap-4 border border-gray-200 rounded mt-4 "
+                    >
+                      <input
+                        id={`bordered-radio-${result.name}`}
+                        type="radio"
+                        value={result.price}
+                        {...register("shippingOption")}
+                        name="shippingOption"
+                        className="w-4 h-4 bg-gray-100 border-gray-300 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+                      />
 
-                    <div className="flex flex-col items-start">
-                      <div className="flex items-center gap-1">
-                        <span className="w-full text-sm font-medium text-zinc-700/70">
-                          {result.name} -
-                        </span>
-                        <span className="text-sm font-semibold">{formatCurrency(Number(result.price))}</span>
+                      <div className="flex flex-col items-start">
+                        <div className="flex items-center gap-1">
+                          <span className="w-full text-sm font-medium text-zinc-700/70">
+                            {result.name} -
+                          </span>
+                          <span className="text-sm font-semibold">{formatCurrency(Number(result.price))}</span>
+                        </div>
+
+                        <span className="text-xs mt-1 text-zinc-700/80">Previsão: {result.deliveryTime.max} dias úteis</span>
                       </div>
-
-                      <span className="text-xs mt-1 text-zinc-700/80">Previsão: {result.deliveryTime.max} dias úteis</span>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
 
-              <div className="mt-3 flex items-center justify-end gap-1">
+              <div className="mt-12 flex items-center justify-end gap-1">
                 <p className="text-right text-sm md:text-lg font-semibold tracking-[-0.5px]">Total a pagar: </p>
                 <span className="text-sm md:text-lg font-semibold inline-block">{formatCurrency(price)}</span>
               </div>
