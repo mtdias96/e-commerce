@@ -27,8 +27,8 @@ export function CardCart({ image, price, size, id, name }: CardCartProps) {
               </p>
               <span className="text-base md:text-lg">{formatCurrency(price)}</span>
             </div>
-            <div className="flex md:mt-0">
-              <div className="flex items-center justify-between">
+            <div className="flex md:mt-0 ">
+              <div className="flex items-center justify-between ">
                 <button className="text-lg md:text-xl text-gray-500 focus:outline-none">
                   <FaMinus
                     onClick={handleMinus}

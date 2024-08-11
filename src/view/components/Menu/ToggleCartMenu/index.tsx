@@ -23,8 +23,6 @@ export function ToggleCartMenu() {
     query: '(max-height: 867px)'
   })
 
-  console.log(buttonMobile);
-
   const { mutateAsync, data } = useMutation({
     mutationFn: async (cepData: ICepDate) => {
       return cepService.cepCalculator(cepData);
@@ -50,6 +48,7 @@ export function ToggleCartMenu() {
   useEffect(() => {
     const totalProductPrice = productCart.reduce((acc, product) => acc + product.price, 0);
     const totalPrice = selectedShipping ? totalProductPrice + selectedShipping : totalProductPrice;
+
 
     setPrice(totalPrice);
   }, [productCart, selectedShipping]);
@@ -111,29 +110,26 @@ export function ToggleCartMenu() {
             />
           </div>
 
-          {productCart.length > 0 ?
-            <div>
-              <div className="overflow-y-auto flex-grow">
+          {productCart.length > 0 ? (
+            <div className="flex flex-col h-[100vh] ">
+              <div className="overflow-y-auto flex-grow max-h-[35vh]">
                 <span className="mt-4 block text-base md:text-lg font-semibold tracking-[-0.5px]">
                   {productsCounter} Itens adicionados
                 </span>
-                {productCart.length > 0 &&
-                  productCart.map(
-                    (product) => (
-                      <div
-                        className="border-b border-gray-200 py-8"
-                        key={product.id}
-                      >
-                        <CardCart
-                          id={product.id}
-                          name={product.name}
-                          size={product.size}
-                          price={product.price}
-                          image={product.image[0]}
-                        />
-                      </div>
-                    )
-                  )}
+                {productCart.map((product) => (
+                  <div
+                    className="border-b mt-1 border-gray-200 py-4 md:h-[200px]  "
+                    key={product.id}
+                  >
+                    <CardCart
+                      id={product.id}
+                      name={product.name}
+                      size={product.size}
+                      price={product.price}
+                      image={product.image[0]}
+                    />
+                  </div>
+                ))}
               </div>
 
               <div className="w-full mt-4">
@@ -216,21 +212,22 @@ export function ToggleCartMenu() {
                   Ir Para o Checkout
                 </Link>
 
-                {!buttonMobile && <Button
-                  className="w-full uppercase bg-transparent text-black border border-cyan-950 hover:opacity-80 rounded-md h-[49px] "
-                  onClick={toggleMenuCart}
-                >
-                  continuar comprando
-                </Button>}
+                {!buttonMobile && (
+                  <Button
+                    className="w-full uppercase bg-transparent text-black border border-cyan-950 hover:opacity-80 rounded-md h-[49px] "
+                    onClick={toggleMenuCart}
+                  >
+                    continuar comprando
+                  </Button>
+                )}
               </div>
             </div>
-
-            : <div className="flex flex-col justify-center mt-8">
+          ) : (
+            <div className="flex flex-col justify-center mt-8">
               <span className="tracking-[1px] text-lg text-center">Seu Carrinho está vazio</span>
               <p className="tracking-[-0.1px]  text-center mt-2">Volte a loja e aproveite nossas ofertas!</p>
             </div>
-          }
-
+          )}
         </div>
       </div>
     </>
