@@ -17,7 +17,7 @@ export function CardCart({ image, price, size, id, name }: CardCartProps) {
   const { handleMinus, handlePus, quantity, handleCLoseProduct } =
     useCardCartController();
   return (
-    <div className="flex flex-col md:items-center md:justify-between bg-red-500">
+    <div className="flex flex-col md:items-center md:justify-between">
       <div className="flex justify-between w-full">
         <div className="flex gap-4">
           <img
