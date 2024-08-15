@@ -10,19 +10,21 @@ import { cepState, ICepDate } from "../../../../app/interfaces/ICep";
 import { cepService } from "../../../../app/services/CepService";
 import { cn } from "../../../../app/utils/cn";
 import { formatCurrency } from "../../../../app/utils/formatCurrency";
-import { CardCart } from "../../../pages/ProductCart/components/CardCart";
+
 import { Button } from "../../Button";
 import { Spinner } from "../../Spinner";
+import { CardCart } from "./components/CardCart";
 import { UseToggleCartMenu } from "./useToggleCartMenu";
 
 export function ToggleCartMenu() {
-  const { toggleMenuCart, productsCounter, isMenuCartOpen, productCart } = UseToggleCartMenu();
+  const { toggleMenuCart, productsCounter, isMenuCartOpen, productCart } =
+    UseToggleCartMenu();
   const { handleSubmit: submit, register, watch } = useForm();
   const [cep, setCep] = useState<cepState[]>([]);
   const [price, setPrice] = useState<number>(0);
   const buttonMobile = useMediaQuery({
-    query: '(max-height: 867px)'
-  })
+    query: "(max-height: 867px)",
+  });
 
   const { mutateAsync, data, isPending } = useMutation({
     mutationFn: async (cepData: ICepDate) => {
@@ -33,7 +35,9 @@ export function ToggleCartMenu() {
   useEffect(() => {
     if (data) {
       const filteredCep = data
-        .filter((result) => result.name === "SEDEX" || result.name === "Express")
+        .filter(
+          (result) => result.name === "SEDEX" || result.name === "Express"
+        )
         .map((result) => ({
           name: result.name,
           price: result.price || "",
@@ -44,12 +48,16 @@ export function ToggleCartMenu() {
     }
   }, [data]);
 
-  const selectedShipping = Number(watch("shippingOption"))
+  const selectedShipping = Number(watch("shippingOption"));
 
   useEffect(() => {
-    const totalProductPrice = productCart.reduce((acc, product) => acc + product.price, 0);
-    const totalPrice = selectedShipping ? totalProductPrice + selectedShipping : totalProductPrice;
-
+    const totalProductPrice = productCart.reduce(
+      (acc, product) => acc + product.price,
+      0
+    );
+    const totalPrice = selectedShipping
+      ? totalProductPrice + selectedShipping
+      : totalProductPrice;
 
     setPrice(totalPrice);
   }, [productCart, selectedShipping]);
@@ -96,7 +104,8 @@ export function ToggleCartMenu() {
 
       <div
         className={cn(
-          `fixed inset-y-0 right-0 bg-white z-50 h-screen w-full sm:w-[540px] transition-transform transform duration-500 ${isMenuCartOpen ? "translate-x-0" : "translate-x-full"
+          `fixed inset-y-0 right-0 bg-white z-50 h-screen w-full sm:w-[540px] transition-transform transform duration-500 ${
+            isMenuCartOpen ? "translate-x-0" : "translate-x-full"
           }`
         )}
       >
@@ -143,23 +152,26 @@ export function ToggleCartMenu() {
                       type="text"
                       placeholder="0000-000"
                       className="h-10 w-32 p-4 py-6 border border-zinc-700/10 rounded-lg outline-black/60"
-                      {...register('cep', {
-                        required: 'Este campo é obrigatório',
+                      {...register("cep", {
+                        required: "Este campo é obrigatório",
                         minLength: {
                           value: 8,
-                          message: 'O CEP deve ter 8 dígitos',
+                          message: "O CEP deve ter 8 dígitos",
                         },
                         onChange: (e) => {
-                          let value = e.target.value.replace(/\D/g, '');
+                          let value = e.target.value.replace(/\D/g, "");
 
                           if (value.length > 8) {
                             value = value.slice(0, 8);
                           }
 
-                          const formattedValue = value.length > 4 ? `${value.slice(0, 4)}-${value.slice(4)}` : value;
+                          const formattedValue =
+                            value.length > 4
+                              ? `${value.slice(0, 4)}-${value.slice(4)}`
+                              : value;
                           e.target.value = formattedValue;
                         },
-                        setValueAs: (value) => value.replace('-', ''),
+                        setValueAs: (value) => value.replace("-", ""),
                       })}
                     />
 
@@ -172,10 +184,11 @@ export function ToggleCartMenu() {
                   </form>
                 </div>
 
-                {isPending ? <div className="flex  w-full justify-center items-center h-20  mt-8">
-                  <Spinner className="w-10 h-10" />
-                </div>
-                  :
+                {isPending ? (
+                  <div className="flex  w-full justify-center items-center h-20  mt-8">
+                    <Spinner className="w-10 h-10" />
+                  </div>
+                ) : (
                   cep?.map((result) => (
                     <div
                       key={result.name}
@@ -195,18 +208,27 @@ export function ToggleCartMenu() {
                           <span className="w-full text-sm font-medium text-zinc-700/70">
                             {result.name} -
                           </span>
-                          <span className="text-sm font-semibold">{formatCurrency(Number(result.price))}</span>
+                          <span className="text-sm font-semibold">
+                            {formatCurrency(Number(result.price))}
+                          </span>
                         </div>
 
-                        <span className="text-xs mt-1 text-zinc-700/80">Previsão: {result.deliveryTime.max} dias úteis</span>
+                        <span className="text-xs mt-1 text-zinc-700/80">
+                          Previsão: {result.deliveryTime.max} dias úteis
+                        </span>
                       </div>
                     </div>
-                  ))}
+                  ))
+                )}
               </div>
 
               <div className="mt-12 flex items-center justify-end gap-1">
-                <p className="text-right text-sm md:text-lg font-semibold tracking-[-0.5px]">Total a pagar: </p>
-                <span className="text-sm md:text-lg font-semibold inline-block">{formatCurrency(price)}</span>
+                <p className="text-right text-sm md:text-lg font-semibold tracking-[-0.5px]">
+                  Total a pagar:{" "}
+                </p>
+                <span className="text-sm md:text-lg font-semibold inline-block">
+                  {formatCurrency(price)}
+                </span>
               </div>
 
               <div className="w-full flex flex-col gap-4 sticky mt-6 sm:mt-48 bottom-0 bg-white py-4">
@@ -229,8 +251,12 @@ export function ToggleCartMenu() {
             </div>
           ) : (
             <div className="flex flex-col justify-center mt-8">
-              <span className="tracking-[1px] text-lg text-center">Seu Carrinho está vazio</span>
-              <p className="tracking-[-0.1px]  text-center mt-2">Volte a loja e aproveite nossas ofertas!</p>
+              <span className="tracking-[1px] text-lg text-center">
+                Seu Carrinho está vazio
+              </span>
+              <p className="tracking-[-0.1px]  text-center mt-2">
+                Volte a loja e aproveite nossas ofertas!
+              </p>
             </div>
           )}
         </div>
