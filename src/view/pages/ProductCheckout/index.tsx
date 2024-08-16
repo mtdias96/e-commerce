@@ -9,11 +9,11 @@ import { PaymentStep } from "./components/steps/PaymentStep";
 
 export function ProductCheckout() {
   return (
-    <>
-      <header className="flex items-center justify-between gap-2 py-8 px-2 ">
+    <div className="lg:mx-10">
+      <header className="flex items-center justify-between gap-2 py-8 px-4 ">
         <div className="flex items-center gap-2">
-          <Logo className="w-8 h-8" />
-          <span className="font-bold text-2xl italic">NEWBOOT</span>
+          <Logo className="w-7 h-7 lg:w-9 lg:h-9" />
+          <span className="font-bold text-1xl lg:text-2xl italic">NEWBOOT</span>
         </div>
 
         <div className="flex items-center gap-1">
@@ -23,7 +23,8 @@ export function ProductCheckout() {
           </span>
         </div>
       </header>
-      <section className="w-full bg-white min-h-screen">
+
+      <section className="w-full bg-white min-h-screen mt-4">
         <Stepper
           initialStep={1}
           steps={[
@@ -48,6 +49,6 @@ export function ProductCheckout() {
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 }

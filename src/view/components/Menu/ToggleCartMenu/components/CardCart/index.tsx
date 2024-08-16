@@ -11,6 +11,7 @@ type CardCartProps = {
   price: number;
   size: string;
   image: number;
+  className?: string;
 };
 
 export function CardCart({ image, price, size, id, name }: CardCartProps) {
