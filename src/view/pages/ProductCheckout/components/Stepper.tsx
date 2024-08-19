@@ -13,7 +13,6 @@ interface IStepperProps {
 export function Stepper({ steps, initialStep = 0 }: IStepperProps) {
   const [currentStep, setCurrentStep] = useState(initialStep);
 
-  console.log(currentStep);
   return (
     <div className="flex flex-col w-full px-4 ">
       <div className="flex justify-center lg:justify-end  h-auto gap-4">
@@ -46,7 +45,7 @@ export function Stepper({ steps, initialStep = 0 }: IStepperProps) {
         </ul>
       </div>
 
-      <div className="mt-10 flex items-center gap-2 hover:text-orange-500">
+      <div className="mt-10 flex items-center gap-2 hover:text-orange-500 lg:mx-10">
         <IoArrowBackOutline className="w-5 h-5" />
         <Link
           to="/"
