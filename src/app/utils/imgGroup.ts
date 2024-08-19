@@ -33,6 +33,9 @@ import airmax38 from '../../assets/images/products/38.png'
 import airmax39 from '../../assets/images/products/39.png'
 import airmax4 from '../../assets/images/products/4.png'
 import airmax40 from '../../assets/images/products/40.png'
+import airmax45 from '../../assets/images/products/45.png'
+import airmax46 from '../../assets/images/products/46.png'
+import airmax47 from '../../assets/images/products/47.png'
 import airmax48 from '../../assets/images/products/48.png'
 import airmax49 from '../../assets/images/products/49.png'
 import airmax5 from '../../assets/images/products/5.png'
@@ -91,6 +94,9 @@ const imgGroup: Record<number, string> = {
   38: airmax38,
   39: airmax39,
   40: airmax40,
+  45: airmax45,
+  46: airmax46,
+  47: airmax47,
   48: airmax48,
   49: airmax49,
   50: airmax50,
