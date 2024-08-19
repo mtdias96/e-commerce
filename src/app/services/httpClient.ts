@@ -1,8 +1,7 @@
 import axios from "axios";
 
 export const httpClient = axios.create({
-  // baseURL: 'https://ecommerce-api-jo6k.onrender.com'
-  baseURL: 'http://localhost:3001'
+  baseURL: '  https://43f1-187-21-199-40.ngrok-free.app'
 
 
 })
