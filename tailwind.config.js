@@ -8,6 +8,7 @@ export default {
     screens: {
       'sm' : '628px',
       'md' : '862px',
+      "lg" : '1121px',
     },
     fontFamily: {
       'body' : ["Poppins"]

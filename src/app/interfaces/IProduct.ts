@@ -27,16 +27,16 @@
 // }
 
 
-interface IVariation {
+export interface IVariation {
   size: string;
   quantity: number;
 }
 
-interface ICategory {
+export interface ICategory {
   name: string;
 }
 
-interface IBrand {
+export interface IBrand {
   name: string;
 }
 

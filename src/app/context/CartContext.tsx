@@ -1,7 +1,7 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import { IProduct } from "../interfaces/IProduct";
 
-interface IProductWithSize extends IProduct {
+export interface IProductWithSize extends IProduct {
   size: string;
   quantity: number;
 }
@@ -10,12 +10,22 @@ interface CartContextValue {
   handleProductCart(product: IProductWithSize): void;
   productCart: IProductWithSize[];
   handleremoveProductList(name: string): void;
+  totalPrice: number;
 }
 
 export const CartContext = createContext({} as CartContextValue);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [productCart, setProductCart] = useState<IProductWithSize[]>([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    const total: number = productCart.reduce(
+      (sum, product) => sum + product.price,
+      0
+    );
+    setTotalPrice(total);
+  }, [productCart]);
 
   const handleProductCart = useCallback((product: IProductWithSize) => {
     setProductCart((prevProductCart) => [...prevProductCart, product]);
@@ -29,7 +39,12 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <CartContext.Provider
-      value={{ handleProductCart, productCart, handleremoveProductList }}
+      value={{
+        handleProductCart,
+        productCart,
+        handleremoveProductList,
+        totalPrice,
+      }}
     >
       {children}
     </CartContext.Provider>
