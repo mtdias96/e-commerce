@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export function useCartCardSteps(price: number) {
   const [counterProduct, setCounterProduct] = useState(1);
-  const [totalPriceQuantity, setTotalPriceQuantity] = useState<number>(0);
+  const [totalPriceQuantity] = useState<number>(0);
   const [teste, setTeste] = useState<number[]>([])
 
   function handlePlus() {
