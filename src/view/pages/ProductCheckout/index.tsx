@@ -26,7 +26,7 @@ export function ProductCheckout() {
 
       <section className="w-full bg-white min-h-screen mt-4">
         <Stepper
-          initialStep={1}
+          initialStep={0}
           steps={[
             {
               label: "Carrinho",

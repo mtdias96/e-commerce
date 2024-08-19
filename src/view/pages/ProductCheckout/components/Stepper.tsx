@@ -10,11 +10,10 @@ interface IStepperProps {
   }[];
 }
 
-//1121
-
 export function Stepper({ steps, initialStep = 0 }: IStepperProps) {
   const [currentStep, setCurrentStep] = useState(initialStep);
 
+  console.log(currentStep);
   return (
     <div className="flex flex-col w-full px-4 ">
       <div className="flex justify-center lg:justify-end  h-auto gap-4">
