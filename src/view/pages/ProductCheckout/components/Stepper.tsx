@@ -46,7 +46,7 @@ export function Stepper({ steps, initialStep = 0 }: IStepperProps) {
         </ul>
       </div>
 
-      <div className="mt-10 flex items-center gap-2 hover:text-orange-500">
+      <div className="mt-10 flex items-center gap-2 hover:text-orange-500 md:ml-8">
         <IoArrowBackOutline className="w-5 h-5" />
         <Link
           to="/"

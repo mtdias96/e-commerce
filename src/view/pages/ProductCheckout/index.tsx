@@ -9,7 +9,7 @@ import { PaymentStep } from "./components/steps/PaymentStep";
 
 export function ProductCheckout() {
   return (
-    <div className="lg:mx-10">
+    <div className="">
       <header className="flex items-center justify-between gap-2 py-8 px-4 ">
         <div className="flex items-center gap-2">
           <Logo className="w-7 h-7 lg:w-9 lg:h-9" />
