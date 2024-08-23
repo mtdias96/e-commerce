@@ -11,7 +11,7 @@ export function EmailStep() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full flex flex-col md:flex-row justify-center gap-8 lg:gap-16 mt-10 "
+      className="w-full flex flex-col md:flex-row justify-center gap-8 lg:gap-16 md:mt-10 "
     >
       <div className="flex flex-col gap-8 w-full lg:w-[600px]">
         <h3 className="font-bold text-2xl flex gap-4 items-start tracking-[-1px]">
@@ -56,25 +56,31 @@ export function EmailStep() {
               Usamos seu e-mail de forma 100% segura para:
             </h3>
 
-            <ul className="mx-8 mt-2 text-sm flex-1 flex flex-col items-start justify-center">
+            <ul className="mx-8 mt-2 text-sm flex flex-col items-start justify-center flex-1 space-y-2">
               <li className="flex items-center">
-                <IoIosCheckmark className="w-6 h-6 text-orange-700" />
-                Identificar seu perfil
+                <IoIosCheckmark className="w-6 h-6 text-orange-700 mr-2 flex-shrink-0" />
+                <span className="flex-1">Identificar seu perfil</span>
               </li>
 
               <li className="flex items-center">
-                <IoIosCheckmark className="w-6 h-6 text-orange-700" />
-                Notificar sobre o andamento do seu pedido
+                <IoIosCheckmark className="w-6 h-6 text-orange-700 mr-2 flex-shrink-0" />
+                <span className="flex-1">
+                  Notificar sobre o andamento do seu pedido
+                </span>
               </li>
 
               <li className="flex items-center">
-                <IoIosCheckmark className="w-6 h-6 text-orange-700" />
-                Gerenciar seu historico de compras
+                <IoIosCheckmark className="w-6 h-6 text-orange-700 mr-2 flex-shrink-0" />
+                <span className="flex-1">
+                  Gerenciar seu histórico de compras
+                </span>
               </li>
 
-              <li className="flex items-center ">
-                <IoIosCheckmark className="w-6 h-6 text-orange-700" />
-                Acelerar o preenchimento da suas informações
+              <li className="flex items-center">
+                <IoIosCheckmark className="w-6 h-6 text-orange-700 mr-2 flex-shrink-0" />
+                <span className="flex-1">
+                  Acelerar o preenchimento das suas informações
+                </span>
               </li>
             </ul>
           </div>
