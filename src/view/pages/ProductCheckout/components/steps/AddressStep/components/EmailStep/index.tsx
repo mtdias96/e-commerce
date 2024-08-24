@@ -1,7 +1,7 @@
 import { IoIosCheckmark } from "react-icons/io";
 import { MdLockOutline } from "react-icons/md";
-import { cn } from "../../../../../../../app/utils/cn";
-import { Button } from "../../../../../../components/Button";
+import { Button } from "../../../../../../../components/Button";
+import { InputStep } from "../InputStep";
 import { useEmailStepController } from "./useEmailStepController";
 
 export function EmailStep() {
@@ -21,33 +21,21 @@ export function EmailStep() {
         </h3>
 
         <div>
-          <div>
-            <label className="uppercase text-xs text-zinc-500">
-              digite seu email
-            </label>
-            <input
-              className={cn(
-                " w-full h-12 border px-3.5",
-                errors.email
-                  ? "outline-none border-red-900"
-                  : "border-zinc-700 outline-none"
-              )}
-              placeholder="seu@email.com"
-              {...register("email", {
-                required: "Campo obrigatório.",
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Informe um email válido.",
-                },
-                validate: () => true,
-              })}
-            />
-            {errors.email && (
-              <small className="text-red-900 block text-xs tracking-[-0.5px] mt-2">
-                {errors.email.message}
-              </small>
-            )}
-          </div>
+          <InputStep
+            type="email"
+            label="digite seu email"
+            placeholder="seu@email.com"
+            className="text-xs"
+            {...register("email", {
+              required: "Campo obrigatório.",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Informe um email válido.",
+              },
+              validate: () => true,
+            })}
+            error={errors.email?.message}
+          />
 
           <div className="bg-orange-500/5 py-4 mt-4 px-2 rounded-lg border-transparent">
             <h3 className="flex items-center gap-2 font-bold text-sm">
