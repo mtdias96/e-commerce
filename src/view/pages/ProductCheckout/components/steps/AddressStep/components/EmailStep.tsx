@@ -2,7 +2,6 @@ import { IoIosCheckmark } from "react-icons/io";
 import { MdLockOutline } from "react-icons/md";
 import { cn } from "../../../../../../../app/utils/cn";
 import { Button } from "../../../../../../components/Button";
-import { TotalCart } from "../../CartStep/TotalCart";
 import { useEmailStepController } from "./useEmailStepController";
 
 export function EmailStep() {
@@ -11,9 +10,9 @@ export function EmailStep() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full flex flex-col md:flex-row justify-center gap-8 lg:gap-16 md:mt-10 "
+      className="w-full flex flex-col md:flex-row gap-8 lg:gap-16 md:mt-10 "
     >
-      <div className="flex flex-col gap-8 w-full lg:w-[600px]">
+      <div className="flex flex-col gap-8 w-full">
         <h3 className="font-bold text-2xl flex gap-4 items-start tracking-[-1px]">
           <span className="text-red-600 inline-block text-xl font-black">
             1
@@ -89,10 +88,6 @@ export function EmailStep() {
             Continuar
           </Button>
         </div>
-      </div>
-
-      <div className="w-full lg:w-[500px]">
-        <TotalCart />
       </div>
     </form>
   );
