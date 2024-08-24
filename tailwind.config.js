@@ -9,6 +9,7 @@ export default {
       'sm' : '628px',
       'md' : '862px',
       "lg" : '1121px',
+      "lg2" : "1042px",
     },
     fontFamily: {
       'body' : ["Poppins"]
