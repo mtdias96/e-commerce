@@ -24,7 +24,7 @@ export function ProductCheckout() {
         </div>
       </header>
 
-      <section className="w-full bg-white min-h-screen mt-4 md:px-8">
+      <section className="w-full bg-white min-h-screen mt-4 md:px-8 flex justify-center">
         <Stepper
           initialStep={0}
           steps={[

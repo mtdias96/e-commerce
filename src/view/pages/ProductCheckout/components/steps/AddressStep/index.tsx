@@ -1,17 +1,33 @@
 import { TotalCart } from "../CartStep/TotalCart";
+import { EmailStep } from "./components/EmailStep";
 import { PersonalData } from "./components/PersonalData";
+import { StepperAddress } from "./components/StepperAddress";
 
 export function AddressStep() {
   return (
-    <section className="flex justify-center gap-8  md:flex-row flex-col">
-      {/* <div className="w-full lg:max-w-[900px]">
-        <EmailStep />
-      </div> */}
-      <div className="w-full lg:max-w-[900px]">
-        <PersonalData />
+    <section className=" flex flex-col lg:flex-row justify-center  gap-14 ">
+      <div className="flex max-w-[700px] gap-16">
+        <StepperAddress
+          initialStep={0}
+          steps={[
+            {
+              label: "E-mail",
+              content: <EmailStep />,
+            },
+            {
+              label: "Dados pessoais",
+              content: <PersonalData />,
+            },
+            {
+              label: "Entrega",
+            },
+            {
+              label: "Pagamento",
+            },
+          ]}
+        />
       </div>
-
-      <div className="w-full lg:w-[500px]">
+      <div className="max-w-[500px] lg:w-[600px]">
         <TotalCart />
       </div>
     </section>

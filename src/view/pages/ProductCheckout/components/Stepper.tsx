@@ -14,7 +14,7 @@ export function Stepper({ steps, initialStep = 0 }: IStepperProps) {
   const [currentStep, setCurrentStep] = useState(initialStep);
 
   return (
-    <div className="flex flex-col w-full px-4 ">
+    <div className="flex flex-col w-full px-4">
       <div className="flex justify-center lg:justify-end  h-auto gap-4">
         <ul className="flex gap-2 max-w-prose ">
           {steps.map((step, index) => (
@@ -45,7 +45,7 @@ export function Stepper({ steps, initialStep = 0 }: IStepperProps) {
         </ul>
       </div>
 
-
+      {/*Depois mover para outro lugar e deixar apenas o component stepper*/}
       <div className="mt-10 flex items-center gap-2 hover:text-orange-500 md:ml-8">
         <IoArrowBackOutline className="w-5 h-5" />
         <Link

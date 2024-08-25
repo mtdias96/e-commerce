@@ -2,6 +2,7 @@ import { useCart } from "../../../../../../app/hooks/useCart";
 import { formatCurrency } from "../../../../../../app/utils/formatCurrency";
 import { Button } from "../../../../../components/Button";
 
+/*Mover para components productchekout*/
 export function TotalCart() {
   const { totalPrice } = useCart();
 

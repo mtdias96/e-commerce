@@ -1,25 +1,18 @@
 import { IoIosCheckmark } from "react-icons/io";
 import { MdLockOutline } from "react-icons/md";
-import { Button } from "../../../../../../../components/Button";
 import { InputStep } from "../InputStep";
+import { StepperNextStepButton } from "../StepperAddress";
 import { useEmailStepController } from "./useEmailStepController";
 
 export function EmailStep() {
-  const { errors, handleSubmit, register } = useEmailStepController();
-
+  const { errors, handleSubmit, register, isSubmitting } =
+    useEmailStepController();
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full flex flex-col md:flex-row gap-8 lg:gap-16 md:mt-10 "
+      className="w-full flex flex-col md:flex-row gap-8 lg:gap-16"
     >
       <div className="flex flex-col gap-8 w-full">
-        <h3 className="font-bold text-2xl flex gap-4 items-start tracking-[-1px]">
-          <span className="text-red-600 inline-block text-xl font-black">
-            1
-          </span>
-          E-mail
-        </h3>
-
         <div>
           <InputStep
             type="email"
@@ -72,9 +65,15 @@ export function EmailStep() {
             </ul>
           </div>
 
-          <Button className="mt-4 h-10 bg-orange-700 rounded-none">
+          <StepperNextStepButton
+            className="mt-4 mb-10 h-12 bg-orange-700 uppercase w-40 rounded-sm"
+            type="submit"
+            preventDefault
+            isLoading={isSubmitting}
+            disabled={isSubmitting}
+          >
             Continuar
-          </Button>
+          </StepperNextStepButton>
         </div>
       </div>
     </form>

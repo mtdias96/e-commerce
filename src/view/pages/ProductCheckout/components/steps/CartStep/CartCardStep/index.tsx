@@ -59,9 +59,11 @@ export function CartCardStep({
                       className="h-3 w-3 text-zinc-800"
                     />
                   </button>
+
                   <span className="text-sm  mx-4 text-zinc-800 font-bold">
                     {counterProduct}
                   </span>
+
                   <button className="text-lg md:text-xl text-gray-500 focus:outline-none">
                     <FaPlus
                       onClick={handlePlus}
