@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 export const TermsUse = () => {
   const [acceptedTerms, setAcceptedTerms] = useState({
@@ -9,7 +9,7 @@ export const TermsUse = () => {
     marketingConsent: false,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     setAcceptedTerms((prev) => ({
       ...prev,
