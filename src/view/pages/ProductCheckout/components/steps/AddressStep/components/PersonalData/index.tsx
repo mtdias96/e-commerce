@@ -1,5 +1,5 @@
-import { Button } from "../../../../../../../components/Button";
 import { InputStep } from "../InputStep";
+import { StepperNextStepButton } from "../StepperAddress";
 import { TermsUse } from "./components/TermsUse";
 import { usePersonalDataController } from "./usePersonalDataController";
 
@@ -7,23 +7,18 @@ export function PersonalData() {
   const { register, errors, handleSubmit } = usePersonalDataController();
 
   return (
-    <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
-      <h3 className="font-bold text-2xl flex gap-4 items-start tracking-[0.5px] line">
-        <span className="text-red-600 inline-block text-2xl font-black">2</span>
-        Dados pessoais
-      </h3>
-
+    <form className="flex flex-col gap-8 max-w-[550px]" onSubmit={handleSubmit}>
       <p className="text-sm tracking-[1px] text-zinc-700">
         Solicitamos apenas informações essenciais para realização da compra
       </p>
 
-      <div className="flex flex-col gap-4 mr-16">
-        <div className="flex flex-col lg2:flex-row lg2:gap-0 w-full gap-4 flex-1 ">
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col justify-center lg2:flex-row lg2:gap-5 w-full">
           <InputStep
             type="email"
             label="E-mail"
             placeholder="seu@email.com"
-            className="text-xs h-10 w-[300px]"
+            className="text-xs h-10  w-full"
             {...register("email", {
               required: "Campo obrigatório.",
               pattern: {
@@ -38,7 +33,7 @@ export function PersonalData() {
             type="text"
             label="Primeiro nome"
             placeholder="Nome"
-            className="text-xs h-10 w-[300px]"
+            className="text-xs h-10  w-full"
             {...register("firstname", {
               required: "Campo obrigatório.",
               pattern: {
@@ -55,7 +50,7 @@ export function PersonalData() {
             type="text"
             label="Último nome"
             placeholder="Sobrenome"
-            className="text-xs h-10  w-[300px]"
+            className="text-xs h-10 w-full"
             {...register("lastName", {
               required: "Campo obrigatório.",
               pattern: {
@@ -70,7 +65,7 @@ export function PersonalData() {
             type="text"
             label="CPF"
             placeholder="999.999.999-99"
-            className="text-xs h-10  w-[300px]"
+            className="text-xs h-10 w-full"
             {...register("cpf", {
               required: "Campo obrigatório.",
               pattern: {
@@ -86,7 +81,7 @@ export function PersonalData() {
           type="text"
           label="Telefone"
           placeholder="13 99999-99999"
-          className="text-xs h-10  w-[300px]"
+          className="text-xs h-10  w-full"
           {...register("phone", {
             required: "Campo obrigatório.",
             pattern: {
@@ -97,13 +92,14 @@ export function PersonalData() {
           error={errors.phone?.message}
         />
       </div>
+
       <div className="mt-2">
         <TermsUse />
       </div>
 
-      <Button className="mt-4 h-10 mb-8 bg-orange-700 rounded-none uppercase">
+      <StepperNextStepButton className="mt-4 h-10 mb-8 bg-orange-700 rounded-none uppercase">
         ir para entrega
-      </Button>
+      </StepperNextStepButton>
     </form>
   );
 }
