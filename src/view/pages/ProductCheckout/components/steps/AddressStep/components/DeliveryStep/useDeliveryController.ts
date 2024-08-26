@@ -2,8 +2,6 @@ import { useForm } from "react-hook-form";
 import { sleep } from "../../../../../../../../app/utils/sleep";
 import { useStepper } from "../StepperAddress/useStepperAddress";
 
-
-
 export function useDeliveryController(){
 
 interface IPersonalData {
