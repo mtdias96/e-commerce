@@ -47,7 +47,7 @@ export function CartStep() {
             ))}
           </section>
 
-          <section className=" mt-10 w-full lg:w-[400px] pb-10 flex justify-end items-end">
+          <section className=" mt-10 w-full lg:w-[500px] pb-10 flex justify-center items-end">
             <TotalCart />
           </section>
         </>

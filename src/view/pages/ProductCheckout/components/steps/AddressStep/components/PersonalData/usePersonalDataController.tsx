@@ -24,9 +24,9 @@ export function usePersonalDataController() {
       await sleep(1000);
 
       getPersonalDataSelected(
-        data.email,
         data.firstname + " " + data.lastName,
-        data.phone
+        data.phone,
+        data.email
       );
       nextStep();
     },
