@@ -2,32 +2,33 @@ import { useForm } from "react-hook-form";
 import { sleep } from "../../../../../../../../app/utils/sleep";
 import { useStepper } from "../StepperAddress/useStepperAddress";
 
+
+
+export function useDeliveryController(){
+
 interface IPersonalData {
-  email: string;
-  firstname: string;
-  lastName: string;
-  cpf: string;
-  phone: string;
+  cep: string;
+  address: string;
+  number: string;
+  complement: string;
+  zone: string;
+  city: string;
+  state: string;
+  recipient: string;
 }
 
-export function usePersonalDataController() {
   const {
     register,
     handleSubmit: submit,
     formState: { errors, isSubmitting },
   } = useForm<IPersonalData>({ shouldFocusError: true, mode: "onChange" });
 
-  const { nextStep, getPersonalDataSelected } = useStepper();
+  const { nextStep } = useStepper();
 
   const handleSubmit = submit(
     async (data) => {
       await sleep(1000);
-
-      getPersonalDataSelected(
-        data.email,
-        data.firstname + " " + data.lastName,
-        data.phone
-      );
+      console.log({data});
       nextStep();
     },
     (errors) => {
@@ -37,3 +38,4 @@ export function usePersonalDataController() {
 
   return { handleSubmit, errors, isSubmitting, register, nextStep };
 }
+

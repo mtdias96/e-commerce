@@ -7,7 +7,7 @@ export function TotalCart() {
   const { totalPrice } = useCart();
 
   return (
-    <section className="border px-4 py-6 flex-1">
+    <section className="border px-4 py-6">
       <div className="flex flex-col gap-8">
         <h2 className="uppercase font-bold">resumo do pedido</h2>
 
