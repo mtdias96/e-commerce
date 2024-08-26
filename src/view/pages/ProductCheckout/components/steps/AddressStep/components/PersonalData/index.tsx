@@ -4,21 +4,22 @@ import { TermsUse } from "./components/TermsUse";
 import { usePersonalDataController } from "./usePersonalDataController";
 
 export function PersonalData() {
-  const { register, errors, handleSubmit } = usePersonalDataController();
+  const { register, errors, handleSubmit, isSubmitting } =
+    usePersonalDataController();
 
   return (
-    <form className="flex flex-col gap-8 max-w-[550px]" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-8 w-full" onSubmit={handleSubmit}>
       <p className="text-sm tracking-[1px] text-zinc-700">
         Solicitamos apenas informações essenciais para realização da compra
       </p>
 
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col justify-center lg2:flex-row lg2:gap-5 w-full">
+        <div className="flex flex-col justify-center gap-2 lg2:flex-row lg2:gap-5">
           <InputStep
             type="email"
             label="E-mail"
             placeholder="seu@email.com"
-            className="text-xs h-10  w-full"
+            className="text-xs h-10 w-full"
             {...register("email", {
               required: "Campo obrigatório.",
               pattern: {
@@ -33,7 +34,7 @@ export function PersonalData() {
             type="text"
             label="Primeiro nome"
             placeholder="Nome"
-            className="text-xs h-10  w-full"
+            className="text-xs h-10 w-full"
             {...register("firstname", {
               required: "Campo obrigatório.",
               pattern: {
@@ -45,7 +46,7 @@ export function PersonalData() {
           />
         </div>
 
-        <div className="flex flex-col gap-4 lg2:flex-row lg2:gap-0">
+        <div className="flex flex-col justify-center gap-2 lg2:flex-row lg2:gap-5 w-full">
           <InputStep
             type="text"
             label="Último nome"
@@ -80,13 +81,16 @@ export function PersonalData() {
         <InputStep
           type="text"
           label="Telefone"
-          placeholder="13 99999-99999"
-          className="text-xs h-10  w-full"
+          placeholder="(13) 99999-9999"
+          className="text-xs h-10 w-full"
           {...register("phone", {
             required: "Campo obrigatório.",
-            pattern: {
-              value: /^\d{2} \d{5}-\d{4}$/,
-              message: "Informe um telefone válido.",
+            onChange: (e) => {
+              const value = e.target.value.replace(/\D/g, "");
+              const formattedValue = value
+                .replace(/^(\d{2})(\d{5})(\d{0,4})$/, "($1) $2-$3")
+                .replace(/-$/, "");
+              e.target.value = formattedValue;
             },
           })}
           error={errors.phone?.message}
@@ -97,7 +101,13 @@ export function PersonalData() {
         <TermsUse />
       </div>
 
-      <StepperNextStepButton className="mt-4 h-10 mb-8 bg-orange-700 rounded-none uppercase">
+      <StepperNextStepButton
+        className="mt-4 h-10 mb-8 bg-orange-700 rounded-none uppercase"
+        type="submit"
+        preventDefault
+        isLoading={isSubmitting}
+        disabled={isSubmitting}
+      >
         ir para entrega
       </StepperNextStepButton>
     </form>
