@@ -1,3 +1,4 @@
+import ScrollTop from "../../../../../../../../app/utils/scrollTop";
 import { InputStep } from "../InputStep";
 import { StepperNextStepButton } from "../StepperAddress";
 import { TermsUse } from "./components/TermsUse";
@@ -6,7 +7,7 @@ import { usePersonalDataController } from "./usePersonalDataController";
 export function PersonalData() {
   const { register, errors, handleSubmit, isSubmitting } =
     usePersonalDataController();
-
+  ScrollTop();
   return (
     <form className="flex flex-col gap-8 w-full" onSubmit={handleSubmit}>
       <p className="text-sm tracking-[1px] text-zinc-700">
