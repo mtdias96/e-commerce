@@ -28,6 +28,7 @@ export function usePersonalDataController() {
         data.phone,
         data.email
       );
+
       nextStep();
     },
     (errors) => {

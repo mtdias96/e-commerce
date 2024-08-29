@@ -1,48 +1,42 @@
+import { IoIosArrowForward } from "react-icons/io";
 import { InputStep } from "../InputStep";
 import { useDeliveryController } from "./useDeliveryController";
 
 export function DeliveryStep() {
-  const { register } = useDeliveryController();
+  const { register, handleSubmit } = useDeliveryController();
   return (
-    <form action="" className="flex flex-col gap-8 w-full">
-      <div className="w-full flex flex-col gap-4">
-        <InputStep label="CEP" {...register("cep")} className="h-10 w-full " />
+    <form onSubmit={handleSubmit} className="flex relative">
+      <InputStep
+        type="text"
+        label="CEP"
+        placeholder="0000-000"
+        className="h-10"
+        {...register("cep", {
+          required: "Este campo é obrigatório",
+          minLength: {
+            value: 8,
+            message: "O CEP deve ter 8 dígitos",
+          },
+          onChange: (e) => {
+            let value = e.target.value.replace(/\D/g, "");
 
-        <InputStep
-          label="endereço"
-          {...register("address")}
-          className="h-10 w-full "
-        />
+            if (value.length > 8) {
+              value = value.slice(0, 8);
+            }
 
-        <InputStep
-          label="número"
-          {...register("number")}
-          className="h-10 w-full "
-        />
+            const formattedValue =
+              value.length > 4
+                ? `${value.slice(0, 4)}-${value.slice(4)}`
+                : value;
+            e.target.value = formattedValue;
+          },
+          setValueAs: (value) => value.replace("-", ""),
+        })}
+      />
 
-        <InputStep
-          label="complemento e referência"
-          {...register("complement")}
-          className="h-10 w-full "
-        />
-
-        <InputStep
-          label="bairro"
-          {...register("zone")}
-          className="h-10 w-full "
-        />
-
-        <InputStep
-          label="estado"
-          {...register("state")}
-          className="h-10 w-full "
-        />
-        <InputStep
-          label="destinatário"
-          {...register("recipient")}
-          className="h-10 w-full "
-        />
-      </div>
+      <button type="submit" className="h-8 absolute right-0 bottom-1 p-2">
+        <IoIosArrowForward className="hover:opacity-45" />
+      </button>
     </form>
   );
 }

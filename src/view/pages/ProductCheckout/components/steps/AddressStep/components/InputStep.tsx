@@ -10,7 +10,6 @@ interface InputProps extends ComponentProps<"input"> {
 export const InputStep = forwardRef<HTMLInputElement, InputProps>(
   ({ placeholder, id, name, error, className, label, ...props }, ref) => {
     const inputId = id ?? name;
-    console.log(error);
     return (
       <div className="flex flex-col flex-1 gap-1">
         <label className="uppercase text-xs text-zinc-500">{label}</label>

@@ -30,8 +30,6 @@ export function StepperAddress({ steps, initialStep = 0 }: IStepperProps) {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
 
-  console.log(name, fullName, phone);
-
   const nextStep = useCallback(() => {
     setCurrentStep((prevState) => Math.min(steps.length - 1, prevState + 1));
   }, [steps.length]);
