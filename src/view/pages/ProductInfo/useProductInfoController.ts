@@ -19,6 +19,7 @@ export function useProductInfoController(id: string) {
     slidesToScroll: 1,
   };
   const navigate = useNavigate();
+  const { toggleMenuCart } = useCart();
 
   function handlePus() {
     setQuantity((prevState: number) => prevState + 1);
@@ -36,7 +37,7 @@ export function useProductInfoController(id: string) {
 
   const { handleProductCart } = useCart();
 
-  const addCart = (to: To) => {
+  const handleProductAction = (action: () => void) => {
     if (!selectedSize) {
       toast.error('Escolha um tamanho');
       return;
@@ -51,11 +52,18 @@ export function useProductInfoController(id: string) {
           quantity
         };
         handleProductCart(productWithSelectedVariation);
-          navigate(to);
+        action();
       }
     }
   };
 
+  const addChekout = (to: To) => {
+    handleProductAction(() => navigate(to));
+  };
 
-  return { handleMinus, handlePus, quantity, addCart, product, handleSelectSize, settings, isMobile, selectedSize };
+  const addCart = () => {
+    handleProductAction(toggleMenuCart);
+  };
+
+  return { handleMinus, handlePus, quantity,  addChekout, product, handleSelectSize, settings, isMobile, selectedSize, addCart };
 }

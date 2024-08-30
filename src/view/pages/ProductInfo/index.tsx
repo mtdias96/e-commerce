@@ -1,37 +1,56 @@
-import { FiShoppingCart } from 'react-icons/fi';
-import { useParams } from 'react-router-dom';
-import Slider from 'react-slick';
+import { FiShoppingCart } from "react-icons/fi";
+import { useParams } from "react-router-dom";
+import Slider from "react-slick";
 
-import { formatCurrency } from '../../../app/utils/formatCurrency';
-import imgGroup from '../../../app/utils/imgGroup';
-import scrollTop from '../../../app/utils/scrollTop';
-import Footer from '../../components/Footer';
-import Menu from '../../components/Menu';
-import { SizeSelector } from '../../components/SizeSelector';
-import { useProductInfoController } from './useProductInfoController';
+import { formatCurrency } from "../../../app/utils/formatCurrency";
+import imgGroup from "../../../app/utils/imgGroup";
+import scrollTop from "../../../app/utils/scrollTop";
+import Footer from "../../components/Footer";
+import Menu from "../../components/Menu";
+import { SizeSelector } from "../../components/SizeSelector";
+import { useProductInfoController } from "./useProductInfoController";
 
 export function ProductInfo() {
-  const { id } = useParams()
-  const { handleMinus, handlePus, quantity, product, addCart, handleSelectSize, settings, isMobile } = useProductInfoController(id || '')
-  scrollTop()
+  const { id } = useParams();
+  const {
+    handleMinus,
+    handlePus,
+    quantity,
+    product,
+    addCart,
+    addChekout,
+    handleSelectSize,
+    settings,
+    isMobile,
+  } = useProductInfoController(id || "");
+  scrollTop();
 
   return (
     <>
       <Menu />
-      {product &&
+      {product && (
         <section className=" mt-4 w-full px-4 py-8 flex flex-col items-center font-roboto">
           <div className="mt-10 md:mt-20 w-full max-w-7xl flex flex-wrap gap-12 justify-center">
-
             {!isMobile ? (
               <div className="flex-shrink-0">
                 <div className="mb-16 flex justify-center">
                   {product.image.slice(0, 1)?.map((_, index) => (
-                    <img key={index} className="w-[600px] h-[400px] rounded-lg object-cover" src={imgGroup[product?.image[index]]} alt="" />
+                    <img
+                      key={index}
+                      className="w-[600px] h-[400px] rounded-lg object-cover"
+                      src={imgGroup[product?.image[index]]}
+                      alt=""
+                    />
                   ))}
                 </div>
                 <div className="flex justify-between">
                   {product?.image.slice(1).map((_, index) => (
-                    <img key={index} className="w-[160px] h-[160px] ml-2 rounded-lg object-cover" src={imgGroup[product.image[index]]} alt="" />
+                    <img
+                      key={index}
+                      className="w-[160px] h-[160px] ml-2 rounded-lg object-cover"
+                      src={imgGroup[product.image[index]]}
+                      alt=""
+                    />
                   ))}
                 </div>
               </div>
@@ -42,7 +61,11 @@ export function ProductInfo() {
                     <Slider {...settings} className="w-full md:w-auto">
                       {product.image?.map((_, index) => (
                         <div key={index}>
-                          <img className="w-full md:w-[600px] h-[400px] rounded-lg object-cover" src={imgGroup[product?.image[index]]} alt="" />
+                          <img
+                            className="w-full md:w-[600px] h-[400px] rounded-lg object-cover"
+                            src={imgGroup[product?.image[index]]}
+                            alt=""
+                          />
                         </div>
                       ))}
                     </Slider>
@@ -52,17 +75,24 @@ export function ProductInfo() {
             )}
 
             <div className="w-full flex flex-col  gap-8 max-w-md">
-              <h2 className="text-2xl font-medium text-gray-900 font-sans uppercase">{product.name}</h2>
+              <h2 className="text-2xl font-medium text-gray-900 font-sans uppercase">
+                {product.name}
+              </h2>
 
-              <div className='flex flex-col justify-between'>
+              <div className="flex flex-col justify-between">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className=" text-2xl text-gray-800 font-sans">{formatCurrency(product.price)}</h3>
-                  <h3 className="text-gray-500 text-lg line-through">R$ {product.price}</h3>
-                  {/* <span className="bg-red-500 border rounded-md p-1 font-semibold">20% OFF</span> */}
+                  <h3 className=" text-2xl text-gray-800 font-sans">
+                    {formatCurrency(product.price)}
+                  </h3>
+                  <h3 className="text-gray-500 text-lg line-through">
+                    R$ {product.price}
+                  </h3>
                 </div>
 
                 <div>
-                  <p className='text-gray-600 text-sm font-mono'>em 6X de {formatCurrency(product.price / 6)} (Sem juros)</p>
+                  <p className="text-gray-600 text-sm font-mono">
+                    em 6X de {formatCurrency(product.price / 6)} (Sem juros)
+                  </p>
                 </div>
               </div>
               <div className="flex flex-col gap-8">
@@ -72,11 +102,15 @@ export function ProductInfo() {
                 </div>
                 <div className="flex justify-between">
                   <h4 className="text-sm text-gray-700">Categoria</h4>
-                  <span className="text-sm text-gray-700">{product.category?.name}</span>
+                  <span className="text-sm text-gray-700">
+                    {product.category?.name}
+                  </span>
                 </div>
               </div>
               <div className="flex flex-col">
-                <label htmlFor="size" className="text-sm text-gray-800 mb-2">Selecione o tamanho:</label>
+                <label htmlFor="size" className="text-sm text-gray-800 mb-2">
+                  Selecione o tamanho:
+                </label>
                 <div className="flex gap-2 pb-4 border-b flex-wrap border-gray-300">
                   {product.variations.map((variation) => (
                     <SizeSelector
@@ -86,20 +120,31 @@ export function ProductInfo() {
                       onSelectSize={handleSelectSize}
                     />
                   ))}
-
                 </div>
                 <div className="flex flex-col gap-2 pt-4">
-                  <p className='text-sm'>Quantidade:</p>
+                  <p className="text-sm">Quantidade:</p>
 
-                  <div className='relative flex items-center max-w-[8rem]'>
+                  <div className="relative flex items-center max-w-[8rem]">
                     <button
                       onClick={handleMinus}
                       type="button"
                       id="decrement-button"
-                      className="bg-gray-500 hover:bg-gray-200 border border-gray-300 border-r-0 rounded-s-lg p-3 h-11 focus:outline-none">
-
-                      <svg className="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h16" />
+                      className="bg-gray-500 hover:bg-gray-200 border border-gray-300 border-r-0 rounded-s-lg p-3 h-11 focus:outline-none"
+                    >
+                      <svg
+                        className="w-3 h-3 text-gray-900 dark:text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 18 2"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M1 1h16"
+                        />
                       </svg>
                     </button>
 
@@ -111,25 +156,39 @@ export function ProductInfo() {
                       onClick={handlePus}
                       type="button"
                       id="increment-button"
-                      className="bg-gray-500 hover:bg-gray-200 border border-l-0 border-gray-300 rounded-e-lg p-3 h-11 focus:outline-none">
-
-                      <svg className="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16" />
+                      className="bg-gray-500 hover:bg-gray-200 border border-l-0 border-gray-300 rounded-e-lg p-3 h-11 focus:outline-none"
+                    >
+                      <svg
+                        className="w-3 h-3 text-gray-900 dark:text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 18 18"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M9 1v16M1 9h16"
+                        />
                       </svg>
-
                     </button>
                   </div>
-
                 </div>
               </div>
               <div className="flex justify-between flex-col gap-4 pt-8 pb-8 border-b border-t border-gray-300">
                 <button
-                  onClick={() => addCart('/carrinho')}
-                  className='flex justify-center items-center gap-4 px-8 py-4 flex-1 bg-red-500 text rounded transition-opacity enabled:hover:opacity-70 disabled:cursor-not-allowed  disabled:bg-gray-100 disabled:text-black '>
-                  <FiShoppingCart className='font-bold' />
+                  onClick={() => addChekout("/carrinho")}
+                  className="flex justify-center items-center gap-4 px-8 py-4 flex-1 bg-red-500 text rounded transition-opacity enabled:hover:opacity-70 disabled:cursor-not-allowed  disabled:bg-gray-100 disabled:text-black "
+                >
+                  <FiShoppingCart className="font-bold" />
                   COMPRAR
                 </button>
-                <button className='border border-black rounded bg-transparent px-8 py-3 flex justify-center items-center bg-gray-900 hover:bg-gray-50 hover:opacity-70 transition-all'>
+                <button
+                  onClick={addCart}
+                  className="border border-black rounded bg-transparent px-8 py-3 flex justify-center items-center bg-gray-900 hover:bg-gray-50 hover:opacity-70 transition-all"
+                >
                   <span>ADICIONAR AO CARRINHO</span>
                 </button>
               </div>
@@ -144,13 +203,11 @@ export function ProductInfo() {
               <p className="text-base text-gray-700">{product.description}</p>
             </div>
           </div>
-
         </section>
-      }
+      )}
       <Footer />
     </>
   );
-
 }
 
 export default ProductInfo;
