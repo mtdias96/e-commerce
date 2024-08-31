@@ -1,13 +1,11 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export function useCartCardSteps(price: number) {
+export function useCartCardSteps() {
   const [counterProduct, setCounterProduct] = useState(1);
   const [totalPriceQuantity] = useState<number>(0);
-  const [teste, setTeste] = useState<number[]>([])
 
   function handlePlus() {
-    setTeste((prevState) => [...prevState, price]);
     setCounterProduct((prevState) => prevState + 1);
   }
 
@@ -19,13 +17,6 @@ export function useCartCardSteps(price: number) {
       return prevState;
     });
   }
-
-  useEffect(() => {
-    setTeste((prevState) => [...prevState, price]);
-
-  }, [price]);
-
-  console.log(teste);
 
   return { counterProduct, handleMinus, handlePlus, totalPriceQuantity };
 }
