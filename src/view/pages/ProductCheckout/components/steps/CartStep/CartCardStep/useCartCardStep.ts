@@ -25,7 +25,7 @@ export function useCartCardSteps(price: number) {
 
   }, [price]);
 
-console.log(teste);
+  console.log(teste);
 
   return { counterProduct, handleMinus, handlePlus, totalPriceQuantity };
 }

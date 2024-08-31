@@ -2,8 +2,12 @@ import { useCart } from "../../../../../../app/hooks/useCart";
 import { formatCurrency } from "../../../../../../app/utils/formatCurrency";
 import { Button } from "../../../../../components/Button";
 
-/*Mover para components productchekout*/
-export function TotalCart() {
+interface ITotalCart {
+  nextStep?: () => void;
+}
+
+/*Mover para components productcheckout*/
+export function TotalCart({ nextStep }: ITotalCart) {
   const { totalPrice } = useCart();
 
   return (
@@ -13,13 +17,13 @@ export function TotalCart() {
 
         <div className="border-t border-b py-4">
           <span className="font-bold inline-block">Desconto</span>
-          <div className="relative w-full mt-2 ">
+          <div className="relative w-full mt-2">
             <input
               name="codigo"
               placeholder="Código"
-              className=" border-black placeholder:text-xs bg-white w-full rounded-md border px-3 h-[48px]"
+              className="border-black placeholder:text-xs bg-white w-full rounded-md border px-3 h-[48px]"
             />
-            <button className="absolute top-[18px] right-2  text-zinc-400 text-xs uppercase decoration-1 h-4 flex justify-center items-center">
+            <button className="absolute top-[18px] right-2 text-zinc-400 text-xs uppercase decoration-1 h-4 flex justify-center items-center">
               aplicar
             </button>
           </div>
@@ -41,7 +45,12 @@ export function TotalCart() {
           <span>{formatCurrency(totalPrice)}</span>
         </div>
 
-        <Button className="w-full rounded-none bg-orange-700">FINALIZAR</Button>
+        <Button
+          onClick={nextStep}
+          className="w-full rounded-none bg-orange-700"
+        >
+          FINALIZAR
+        </Button>
       </div>
     </section>
   );

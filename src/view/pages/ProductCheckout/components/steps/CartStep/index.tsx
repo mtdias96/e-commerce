@@ -1,5 +1,6 @@
 import { useMediaQuery } from "react-responsive";
 import { useCart } from "../../../../../../app/hooks/useCart";
+import { useStepperCart } from "../../Stepper/useStepperCart";
 import { CartCardStep } from "./CartCardStep";
 import { TotalCart } from "./TotalCart";
 
@@ -7,6 +8,7 @@ export function CartStep() {
   const isDesktop = useMediaQuery({
     query: "(min-width: 850px)",
   });
+  const { nextStep } = useStepperCart();
   const { productCart, handleremoveProductList } = useCart();
 
   return (
@@ -48,7 +50,7 @@ export function CartStep() {
           </section>
 
           <section className=" mt-10 w-full lg:w-[500px] pb-10 flex justify-center items-end">
-            <TotalCart />
+            <TotalCart nextStep={nextStep} />
           </section>
         </>
       ) : (
