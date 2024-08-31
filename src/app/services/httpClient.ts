@@ -5,8 +5,6 @@ export const httpClient = axios.create({
   headers: {
     'ngrok-skip-browser-warning': 'true'
   }
-
-
 })
 
 export default httpClient

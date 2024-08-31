@@ -47,7 +47,6 @@ export function ProductCheckout() {
           ]}
         />
       </section>
-
       <Footer />
     </div>
   );
