@@ -22,8 +22,7 @@ export function Stepper({ steps, initialStep = 0 }: IStepperProps) {
 
   const nextStep = useCallback(() => {
     setCurrentStep((prevState) => Math.min(steps.length - 1, prevState + 1));
-    console.log(currentStep);
-  }, [steps.length, currentStep]);
+  }, [steps.length]);
 
   return (
     <StepperCartContext.Provider

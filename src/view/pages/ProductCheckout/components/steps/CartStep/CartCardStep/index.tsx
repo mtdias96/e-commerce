@@ -23,7 +23,7 @@ export function CartCardStep({
   id,
   handleremoveProductList,
 }: CardCartProps) {
-  const { counterProduct, handleMinus, handlePlus } = useCartCardSteps(price);
+  const { counterProduct, handleMinus, handlePlus } = useCartCardSteps();
 
   const isDesktop = useMediaQuery({
     query: "(min-width: 850px)",
