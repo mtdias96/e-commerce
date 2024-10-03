@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
+import { useState } from "react";
 import { cepAddress } from "../../../../../../../../app/services/CepService/cepAddress";
 import { sleep } from "../../../../../../../../app/utils/sleep";
 import { useStepper } from "../StepperAddress/useStepperAddress";
@@ -14,9 +15,11 @@ interface IPersonalData {
   city: string;
   state: string;
   recipient: string;
+  name: string;
 }
 
 export function useDeliveryController() {
+  const [addressData, setAddressData] = useState<Partial<IPersonalData>>({});
   const {
     register,
     handleSubmit: submit,
@@ -35,13 +38,19 @@ export function useDeliveryController() {
   const handleSubmit = submit(
     async (data) => {
       try {
+        console.log(data);
         const { bairro, logradouro, localidade, uf } = await mutateAsync(data.cep);
         setValue('address', logradouro);
         setValue('zone', bairro);
         setValue('city', localidade);
         setValue('state', uf);
 
-
+        setAddressData({
+          address: logradouro,
+          zone: bairro,
+          city: localidade,
+          state: uf,
+        });
 
       } catch (error) {
         console.error('Erro ao buscar o endereço:', error);
@@ -52,6 +61,7 @@ export function useDeliveryController() {
     }
   );
 
+
   return {
     handleSubmit,
     errors,
@@ -59,6 +69,7 @@ export function useDeliveryController() {
     register,
     nextStep,
     isPending,
-    isSuccess
+    isSuccess,
+    addressData,
   };
 }

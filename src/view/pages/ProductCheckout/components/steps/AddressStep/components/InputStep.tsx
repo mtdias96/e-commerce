@@ -12,7 +12,7 @@ export const InputStep = forwardRef<HTMLInputElement, InputProps>(
     const inputId = id ?? name;
     return (
       <div className="flex flex-col flex-1 gap-1">
-        <label className="uppercase text-xs text-zinc-500">{label}</label>
+        <label className="uppercase text-xs text-zinc-700">{label}</label>
 
         <input
           {...props}
@@ -20,7 +20,7 @@ export const InputStep = forwardRef<HTMLInputElement, InputProps>(
           name={name}
           id={inputId}
           className={cn(
-            " w-full h-12 border px-3.5",
+            " w-full h-10 border px-3.5 placeholder:text-sm placeholder:text-gray-600",
             error
               ? "outline-none border-red-900"
               : "border-zinc-700 outline-none",
@@ -30,7 +30,7 @@ export const InputStep = forwardRef<HTMLInputElement, InputProps>(
         />
 
         {error && (
-          <small className="text-red-900 block text-xs tracking-[-0.5px] mt-2">
+          <small className="text-red-800 block text-xs tracking-[-0.5px] mt-1">
             {error}
           </small>
         )}
