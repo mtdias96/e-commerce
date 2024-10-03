@@ -2,10 +2,11 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Spinner } from "../../../../../../../components/Spinner";
 import { InputStep } from "../InputStep";
 import { StepperNextStepButton } from "../StepperAddress";
+import { BoxAdress } from "./boxAddress";
 import { useDeliveryController } from "./useDeliveryController";
 
 export function DeliveryStep() {
-  const { register, handleSubmit, isPending, isSuccess } =
+  const { register, handleSubmit, isPending, isSuccess, errors, addressData } =
     useDeliveryController();
 
   return (
@@ -51,6 +52,55 @@ export function DeliveryStep() {
       )}
 
       {isSuccess && (
+        <BoxAdress
+          addess={addressData.address}
+          city={addressData.city}
+          zone={addressData.zone}
+          state={addressData.state}
+        />
+      )}
+
+      {isSuccess && (
+        <div>
+          <form className="w-full flex gap-2.5 flex-col uppercase space-y-3 mt-7">
+            <InputStep
+              className="w-full"
+              label="Número"
+              {...register("number", {
+                required: "Campo obrigatório",
+              })}
+              error={errors.number?.message}
+            />
+            <InputStep
+              className="w-full"
+              label="Complemento e referência"
+              placeholder="Complemento"
+              {...register("complement", {
+                required: "Campo obrigatório",
+              })}
+              error={errors.complement?.message}
+            />
+            <InputStep
+              className="w-full"
+              label="Destinatário"
+              {...register("name", {
+                required: "Campo obrigatório",
+              })}
+              error={errors.name?.message}
+            />
+          </form>
+
+          <StepperNextStepButton
+            className="mt-4 mb-10 h-12 bg-orange-700 uppercase w-full rounded-sm"
+            type="submit"
+            preventDefault
+          >
+            Ir para pagamento
+          </StepperNextStepButton>
+        </div>
+      )}
+
+      {/* {isSuccess && (
         <div>
           <form className="w-full flex flex-col uppercase space-y-3 mt-4">
             <InputStep
@@ -93,7 +143,7 @@ export function DeliveryStep() {
             Ir para pagamento
           </StepperNextStepButton>
         </div>
-      )}
+      )} */}
     </>
   );
 }
