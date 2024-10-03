@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { Spinner } from "../../../../../../../components/Spinner";
 import { InputStep } from "../InputStep";
@@ -8,6 +9,11 @@ import { useDeliveryController } from "./useDeliveryController";
 export function DeliveryStep() {
   const { register, handleSubmit, isPending, isSuccess, errors, addressData } =
     useDeliveryController();
+  const [isActive, setIsActive] = useState<boolean>(false);
+
+  const toggleValue = () => {
+    setIsActive((prev) => !prev);
+  };
 
   return (
     <>
@@ -51,16 +57,17 @@ export function DeliveryStep() {
         </div>
       )}
 
-      {isSuccess && (
+      {isSuccess && !isActive && (
         <BoxAdress
           addess={addressData.address}
           city={addressData.city}
           zone={addressData.zone}
           state={addressData.state}
+          isOpen={toggleValue}
         />
       )}
 
-      {isSuccess && (
+      {isSuccess && !isActive && (
         <div>
           <form className="w-full flex gap-2.5 flex-col uppercase space-y-3 mt-7">
             <InputStep
@@ -100,20 +107,22 @@ export function DeliveryStep() {
         </div>
       )}
 
-      {/* {isSuccess && (
+      {isActive && (
         <div>
           <form className="w-full flex flex-col uppercase space-y-3 mt-4">
             <InputStep
               className="w-full"
               label="Rua"
               {...register("address")}
-              readOnly
             />
             <InputStep
               className="w-full"
               label="Número"
               placeholder="n°152"
-              {...register("number")}
+              {...register("number", {
+                required: "Campo obrigatório",
+              })}
+              error={errors.number?.message}
             />
             <InputStep
               className="w-full"
@@ -125,13 +134,29 @@ export function DeliveryStep() {
               className="w-full"
               label="Cidade"
               {...register("city")}
-              readOnly
             />
             <InputStep
               className="w-full"
               label="estado"
               {...register("state")}
-              readOnly
+            />
+
+            <InputStep
+              className="w-full"
+              label="Complemento e referência"
+              placeholder="Complemento"
+              {...register("complement", {
+                required: "Campo obrigatório",
+              })}
+              error={errors.complement?.message}
+            />
+            <InputStep
+              className="w-full"
+              label="Destinatário"
+              {...register("name", {
+                required: "Campo obrigatório",
+              })}
+              error={errors.name?.message}
             />
           </form>
 
@@ -143,7 +168,7 @@ export function DeliveryStep() {
             Ir para pagamento
           </StepperNextStepButton>
         </div>
-      )} */}
+      )}
     </>
   );
 }
