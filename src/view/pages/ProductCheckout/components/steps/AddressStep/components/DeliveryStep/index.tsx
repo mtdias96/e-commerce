@@ -3,12 +3,22 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Spinner } from "../../../../../../../components/Spinner";
 import { InputStep } from "../InputStep";
 import { StepperNextStepButton } from "../StepperAddress";
-import { BoxAdress } from "./boxAddress";
+
+import { BoxAdress } from "./components/BoxAddress";
+
+import { FreightInfo } from "./components/FreightInfo";
 import { useDeliveryController } from "./useDeliveryController";
 
 export function DeliveryStep() {
-  const { register, handleSubmit, isPending, isSuccess, errors, addressData } =
-    useDeliveryController();
+  const {
+    register,
+    handleSubmit,
+    isPending,
+    isSuccess,
+    errors,
+    addressData,
+    cepResults,
+  } = useDeliveryController();
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const toggleValue = () => {
@@ -53,7 +63,7 @@ export function DeliveryStep() {
 
       {isPending && (
         <div className="w-full flex items-center justify-center mt-8">
-          <Spinner className="w-10 h-10" />
+          <Spinner className="w-7 h-7" />
         </div>
       )}
 
@@ -97,6 +107,14 @@ export function DeliveryStep() {
             />
           </form>
 
+          {cepResults.map(({ deliveryTime, name, price }) => (
+            <FreightInfo
+              deliveryTime={deliveryTime}
+              name={name}
+              price={price}
+              key={name}
+            />
+          ))}
           <StepperNextStepButton
             className="mt-4 mb-10 h-12 bg-orange-700 uppercase w-full rounded-sm"
             type="submit"
@@ -159,7 +177,14 @@ export function DeliveryStep() {
               error={errors.name?.message}
             />
           </form>
-
+          {cepResults.map(({ deliveryTime, name, price }) => (
+            <FreightInfo
+              deliveryTime={deliveryTime}
+              name={name}
+              price={price}
+              key={name}
+            />
+          ))}
           <StepperNextStepButton
             className="mt-4 mb-10 h-12 bg-orange-700 uppercase w-full rounded-sm"
             type="submit"
