@@ -2,8 +2,10 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
 import { useState } from "react";
+import { useCepCalculator } from "../../../../../../../../app/hooks/useCepCalculator";
 import { cepAddress } from "../../../../../../../../app/services/CepService/cepAddress";
 import { sleep } from "../../../../../../../../app/utils/sleep";
+import { UseToggleCartMenu } from "../../../../../../../components/Menu/ToggleCartMenu/useToggleCartMenu";
 import { useStepper } from "../StepperAddress/useStepperAddress";
 
 interface IPersonalData {
@@ -26,6 +28,9 @@ export function useDeliveryController() {
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<IPersonalData>({ shouldFocusError: true, mode: "onChange" });
+  const { cepResults, calculateCep } = useCepCalculator();
+  const { productCart } = UseToggleCartMenu();
+
   const { nextStep } = useStepper();
 
   const { mutateAsync, isPending, isSuccess } = useMutation({
@@ -35,10 +40,14 @@ export function useDeliveryController() {
     },
   });
 
+  const handleCepSubmit = (cep: string) => {
+    calculateCep("11015230", cep, productCart.length);
+  };
+
+
   const handleSubmit = submit(
     async (data) => {
       try {
-        console.log(data);
         const { bairro, logradouro, localidade, uf } = await mutateAsync(data.cep);
         setValue('address', logradouro);
         setValue('zone', bairro);
@@ -52,6 +61,7 @@ export function useDeliveryController() {
           state: uf,
         });
 
+        handleCepSubmit(data.cep)
       } catch (error) {
         console.error('Erro ao buscar o endereço:', error);
       }
@@ -60,7 +70,6 @@ export function useDeliveryController() {
       console.log({ errors });
     }
   );
-
 
   return {
     handleSubmit,
@@ -71,5 +80,6 @@ export function useDeliveryController() {
     isPending,
     isSuccess,
     addressData,
+    cepResults
   };
 }
