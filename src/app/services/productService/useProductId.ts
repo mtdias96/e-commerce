@@ -10,7 +10,6 @@ export function useProductId(productId: string) {
       const response = await httpClient.get(`/produto/:${productId}`);
       return response.data.product;
     },
-    enabled: !!productId,
   });
 
   return { data, isLoading };
