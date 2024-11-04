@@ -6,8 +6,8 @@ import { useCart } from "../../../app/hooks/useCart";
 import { productService } from "../../../app/services/productService";
 
 export function useProductInfoController(id: string) {
-  const [selectedSize, setSelectedSize] = useState<string>('');
-  const { data: product } = productService.useProductId(id);
+  const [selectedSize, setSelectedSize] = useState<string>("");
+  const { data: product, isLoading } = productService.useProductId(id);
   const [quantity, setQuantity] = useState(0);
   const isMobile = useMediaQuery({ maxWidth: 727 });
   const settings = {
@@ -39,17 +39,19 @@ export function useProductInfoController(id: string) {
 
   const handleProductAction = (action: () => void) => {
     if (!selectedSize) {
-      toast.error('Escolha um tamanho');
+      toast.error("Escolha um tamanho");
       return;
     }
 
     if (product) {
-      const selectedVariation = product.variations.find(v => v.size === selectedSize);
+      const selectedVariation = product.variations.find(
+        (v) => v.size === selectedSize
+      );
       if (selectedVariation) {
         const productWithSelectedVariation = {
           ...product,
           size: selectedSize,
-          quantity
+          quantity,
         };
         handleProductCart(productWithSelectedVariation);
         action();
@@ -65,5 +67,19 @@ export function useProductInfoController(id: string) {
     handleProductAction(toggleMenuCart);
   };
 
-  return { handleMinus, handlePus, quantity,  addChekout, product, handleSelectSize, settings, isMobile, selectedSize, addCart };
+  console.log(isLoading);
+
+  return {
+    handleMinus,
+    handlePus,
+    quantity,
+    addChekout,
+    product,
+    handleSelectSize,
+    settings,
+    isMobile,
+    selectedSize,
+    addCart,
+    isLoading,
+  };
 }
