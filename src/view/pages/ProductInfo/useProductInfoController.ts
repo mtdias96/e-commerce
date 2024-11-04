@@ -67,8 +67,6 @@ export function useProductInfoController(id: string) {
     handleProductAction(toggleMenuCart);
   };
 
-  console.log(isLoading);
-
   return {
     handleMinus,
     handlePus,
