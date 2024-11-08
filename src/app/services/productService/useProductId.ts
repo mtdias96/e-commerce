@@ -4,7 +4,7 @@ import { IProduct } from "../../interfaces/IProduct";
 import httpClient from "../httpClient";
 
 export function useProductId(productId: string) {
-  const { data, isLoading } = useQuery<IProduct>({
+  const { data, isLoading, isPending } = useQuery<IProduct>({
     queryKey: ["product", productId],
     queryFn: async () => {
       const response = await httpClient.get(`/produto/:${productId}`);
@@ -12,5 +12,5 @@ export function useProductId(productId: string) {
     },
   });
 
-  return { data, isLoading };
+  return { data, isLoading, isPending };
 }

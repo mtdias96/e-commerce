@@ -1,57 +1,55 @@
-import airmax1 from '../../assets/images/products/1.png'
-import airmax10 from '../../assets/images/products/10.png'
-import airmax11 from '../../assets/images/products/11.png'
-import airmax12 from '../../assets/images/products/12.png'
-import airmax13 from '../../assets/images/products/13.png'
-import airmax14 from '../../assets/images/products/14.png'
-import airmax15 from '../../assets/images/products/15.png'
-import airmax16 from '../../assets/images/products/16.png'
-import airmax17 from '../../assets/images/products/17.png'
-import airmax18 from '../../assets/images/products/18.png'
-import airmax19 from '../../assets/images/products/19.png'
-import airmax2 from '../../assets/images/products/2.png'
-import airmax20 from '../../assets/images/products/20.png'
-import airmax21 from '../../assets/images/products/21.png'
-import airmax22 from '../../assets/images/products/22.png'
-import airmax23 from '../../assets/images/products/23.png'
-import airmax24 from '../../assets/images/products/24.png'
-import airmax25 from '../../assets/images/products/25.png'
-import airmax26 from '../../assets/images/products/26.png'
-import airmax27 from '../../assets/images/products/27.png'
-import airmax28 from '../../assets/images/products/28.png'
-import airmax29 from '../../assets/images/products/29.png'
-import airmax3 from '../../assets/images/products/3.png'
-import airmax30 from '../../assets/images/products/30.png'
-import airmax31 from '../../assets/images/products/31.png'
-import airmax32 from '../../assets/images/products/32.png'
-import airmax33 from '../../assets/images/products/33.png'
-import airmax34 from '../../assets/images/products/34.png'
-import airmax35 from '../../assets/images/products/35.png'
-import airmax36 from '../../assets/images/products/36.png'
-import airmax37 from '../../assets/images/products/37.png'
-import airmax38 from '../../assets/images/products/38.png'
-import airmax39 from '../../assets/images/products/39.png'
-import airmax4 from '../../assets/images/products/4.png'
-import airmax40 from '../../assets/images/products/40.png'
-import airmax45 from '../../assets/images/products/45.png'
-import airmax46 from '../../assets/images/products/46.png'
-import airmax47 from '../../assets/images/products/47.png'
-import airmax48 from '../../assets/images/products/48.png'
-import airmax49 from '../../assets/images/products/49.png'
-import airmax5 from '../../assets/images/products/5.png'
-import airmax50 from '../../assets/images/products/50.png'
-import airmax51 from '../../assets/images/products/51.png'
-import airmax52 from '../../assets/images/products/52.png'
-import airmax53 from '../../assets/images/products/53.png'
-import airmax54 from '../../assets/images/products/54.png'
-import airmax55 from '../../assets/images/products/55.png'
-import airmax56 from '../../assets/images/products/56.png'
-import airmax6 from '../../assets/images/products/6.png'
-import airmax7 from '../../assets/images/products/7.png'
-import airmax8 from '../../assets/images/products/8.png'
-import airmax9 from '../../assets/images/products/9.png'
-
-
+import airmax1 from "../../assets/images/products/1.jpg";
+import airmax10 from "../../assets/images/products/10.jpg";
+import airmax11 from "../../assets/images/products/11.jpg";
+import airmax12 from "../../assets/images/products/12.jpg";
+import airmax13 from "../../assets/images/products/13.jpg";
+import airmax14 from "../../assets/images/products/14.jpg";
+import airmax15 from "../../assets/images/products/15.jpg";
+import airmax16 from "../../assets/images/products/16.jpg";
+import airmax17 from "../../assets/images/products/17.jpg";
+import airmax18 from "../../assets/images/products/18.jpg";
+import airmax19 from "../../assets/images/products/19.jpg";
+import airmax2 from "../../assets/images/products/2.jpg";
+import airmax20 from "../../assets/images/products/20.jpg";
+import airmax21 from "../../assets/images/products/21.jpg";
+import airmax22 from "../../assets/images/products/22.jpg";
+import airmax23 from "../../assets/images/products/23.jpg";
+import airmax24 from "../../assets/images/products/24.jpg";
+import airmax25 from "../../assets/images/products/25.jpg";
+import airmax26 from "../../assets/images/products/26.jpg";
+import airmax27 from "../../assets/images/products/27.jpg";
+import airmax28 from "../../assets/images/products/28.jpg";
+import airmax29 from "../../assets/images/products/29.jpg";
+import airmax3 from "../../assets/images/products/3.jpg";
+import airmax30 from "../../assets/images/products/30.jpg";
+import airmax31 from "../../assets/images/products/31.jpg";
+import airmax32 from "../../assets/images/products/32.jpg";
+import airmax33 from "../../assets/images/products/33.jpg";
+import airmax34 from "../../assets/images/products/34.jpg";
+import airmax35 from "../../assets/images/products/35.jpg";
+import airmax36 from "../../assets/images/products/36.jpg";
+import airmax37 from "../../assets/images/products/37.jpg";
+import airmax38 from "../../assets/images/products/38.jpg";
+import airmax39 from "../../assets/images/products/39.jpg";
+import airmax4 from "../../assets/images/products/4.jpg";
+import airmax40 from "../../assets/images/products/40.jpg";
+import airmax45 from "../../assets/images/products/45.jpg";
+import airmax46 from "../../assets/images/products/46.jpg";
+import airmax47 from "../../assets/images/products/47.jpg";
+import airmax48 from "../../assets/images/products/48.jpg";
+import airmax49 from "../../assets/images/products/49.jpg";
+import airmax5 from "../../assets/images/products/5.jpg";
+import airmax50 from "../../assets/images/products/50.jpg";
+import airmax51 from "../../assets/images/products/51.jpg";
+import airmax52 from "../../assets/images/products/52.jpg";
+import airmax53 from "../../assets/images/products/53.jpg";
+import airmax54 from "../../assets/images/products/54.jpg";
+import airmax55 from "../../assets/images/products/55.jpg";
+import airmax56 from "../../assets/images/products/56.jpg";
+import airmax6 from "../../assets/images/products/6.jpg";
+import airmax7 from "../../assets/images/products/7.jpg";
+import airmax8 from "../../assets/images/products/8.jpg";
+import airmax9 from "../../assets/images/products/9.jpg";
 
 const imgGroup: Record<number, string> = {
   1: airmax1,
@@ -106,6 +104,6 @@ const imgGroup: Record<number, string> = {
   54: airmax54,
   55: airmax55,
   56: airmax56,
-}
+};
 
-export default imgGroup
+export default imgGroup;

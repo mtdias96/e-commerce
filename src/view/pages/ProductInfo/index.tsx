@@ -25,6 +25,7 @@ export function ProductInfo() {
     isMobile,
     isLoading,
   } = useProductInfoController(id || "");
+
   scrollTop();
 
   return (
