@@ -7,7 +7,11 @@ import { productService } from "../../../app/services/productService";
 
 export function useProductInfoController(id: string) {
   const [selectedSize, setSelectedSize] = useState<string>("");
-  const { data: product, isLoading } = productService.useProductId(id);
+  const {
+    data: product,
+    isLoading,
+    isPending,
+  } = productService.useProductId(id);
   const [quantity, setQuantity] = useState(0);
   const isMobile = useMediaQuery({ maxWidth: 727 });
   const settings = {
@@ -66,6 +70,8 @@ export function useProductInfoController(id: string) {
   const addCart = () => {
     handleProductAction(toggleMenuCart);
   };
+
+  console.log({ isLoading, isPending });
 
   return {
     handleMinus,
