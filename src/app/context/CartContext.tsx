@@ -9,8 +9,6 @@ export interface IProductWithSize extends IProduct {
 interface CartContextValue {
   productCart: IProductWithSize[];
   totalPrice: number;
-  isMenuCartOpen: boolean;
-  toggleMenuCart(): void;
   handleProductCart(product: IProductWithSize): void;
   handleremoveProductList(name: string): void;
 }
@@ -18,13 +16,8 @@ interface CartContextValue {
 export const CartContext = createContext({} as CartContextValue);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isMenuCartOpen, setIsMenuCartOpen] = useState<boolean>(false);
   const [productCart, setProductCart] = useState<IProductWithSize[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
-
-  function toggleMenuCart() {
-    setIsMenuCartOpen(!isMenuCartOpen);
-  }
 
   useEffect(() => {
     const total: number = productCart.reduce(
@@ -51,8 +44,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         productCart,
         handleremoveProductList,
         totalPrice,
-        toggleMenuCart,
-        isMenuCartOpen,
       }}
     >
       {children}
