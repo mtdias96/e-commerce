@@ -2,18 +2,16 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useMediaQuery } from "react-responsive";
 import { To, useNavigate } from "react-router-dom";
-import { useCart } from "../../../app/hooks/useCart";
 import { productService } from "../../../app/services/productService";
+import { useStore } from "../../../app/store";
+import { useShallow } from "zustand/shallow";
 
 export function useProductInfoController(id: string) {
   const [selectedSize, setSelectedSize] = useState<string>("");
-  const {
-    data: product,
-    isLoading,
-    isPending,
-  } = productService.useProductId(id);
+  const { data: product, isLoading } = productService.useProductId(id);
   const [quantity, setQuantity] = useState(0);
   const isMobile = useMediaQuery({ maxWidth: 727 });
+
   const settings = {
     dots: true,
     arrows: false,
@@ -22,8 +20,15 @@ export function useProductInfoController(id: string) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
   const navigate = useNavigate();
-  const { toggleMenuCart } = useCart();
+
+  const { toggleMenuCart, handleProductCart } = useStore(
+    useShallow((state) => ({
+      toggleMenuCart: state.cart.toggleMenuCart,
+      handleProductCart: state.cart.handleProductCart,
+    }))
+  );
 
   function handlePus() {
     setQuantity((prevState: number) => prevState + 1);
@@ -38,8 +43,6 @@ export function useProductInfoController(id: string) {
   const handleSelectSize = (size: string) => {
     setSelectedSize(size);
   };
-
-  const { handleProductCart } = useCart();
 
   const handleProductAction = (action: () => void) => {
     if (!selectedSize) {
@@ -70,8 +73,6 @@ export function useProductInfoController(id: string) {
   const addCart = () => {
     handleProductAction(toggleMenuCart);
   };
-
-  console.log({ isLoading, isPending });
 
   return {
     handleMinus,

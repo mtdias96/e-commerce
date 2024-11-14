@@ -23,11 +23,11 @@ export function CartCardStep({
   id,
   handleremoveProductList,
 }: CardCartProps) {
-  const { counterProduct, handleMinus, handlePlus } = useCartCardSteps();
-
   const isDesktop = useMediaQuery({
     query: "(min-width: 850px)",
   });
+
+  const { counterProduct, handleMinus, handlePlus } = useCartCardSteps();
 
   return (
     <div>

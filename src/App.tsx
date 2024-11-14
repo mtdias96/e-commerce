@@ -1,9 +1,8 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { Toaster } from "react-hot-toast"
-import { Router } from "./Router"
-import { AuthProvider } from "./app/context/AuthContext"
-import { CartProvider } from "./app/context/CartContext"
-import { FilterProvider } from "./app/context/FilterContext"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
+import { Router } from "./Router";
+import { AuthProvider } from "./app/context/AuthContext";
+import { FilterProvider } from "./app/context/FilterContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -11,23 +10,20 @@ const queryClient = new QueryClient({
       staleTime: 10 * 60 * 1000, //10 minutes
       retry: false,
       refetchOnWindowFocus: false,
-    }
-  }
-})
+    },
+  },
+});
 function App() {
-
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <FilterProvider>
-          <CartProvider>
-            <Router />
-            <Toaster />
-          </CartProvider>
+          <Router />
+          <Toaster />
         </FilterProvider>
       </AuthProvider>
     </QueryClientProvider>
-  )
+  );
 }
 
-export default App
+export default App;

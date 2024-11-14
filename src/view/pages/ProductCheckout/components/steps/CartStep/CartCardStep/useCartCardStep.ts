@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 export function useCartCardSteps() {
@@ -18,11 +17,5 @@ export function useCartCardSteps() {
     });
   }
 
-  return { counterProduct, handleMinus, handlePlus, totalPriceQuantity };
+  return { totalPriceQuantity, handleMinus, handlePlus, counterProduct };
 }
-
-
-
-
-
-

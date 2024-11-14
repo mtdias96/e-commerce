@@ -1,17 +1,16 @@
 import { useStore } from "../../../../app/store";
-import { useCart } from "../../../../app/hooks/useCart";
 import { useShallow } from "zustand/shallow";
 
 export function UseToggleCartMenu() {
-  const { productCart } = useCart();
-  const productsCounter = productCart.length;
-
-  const { isMenuCartOpen, toggleMenuCart } = useStore(
+  const { isMenuCartOpen, toggleMenuCart, productCart } = useStore(
     useShallow((state) => ({
       isMenuCartOpen: state.cart.isMenuCartOpen,
       toggleMenuCart: state.cart.toggleMenuCart,
+      productCart: state.cart.productCart,
     }))
   );
+
+  const productsCounter = productCart.length;
 
   return { productsCounter, toggleMenuCart, isMenuCartOpen, productCart };
 }

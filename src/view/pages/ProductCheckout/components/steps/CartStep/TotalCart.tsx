@@ -1,4 +1,4 @@
-import { useCart } from "../../../../../../app/hooks/useCart";
+import { useStore } from "../../../../../../app/store";
 import { formatCurrency } from "../../../../../../app/utils/formatCurrency";
 import { Button } from "../../../../../components/Button";
 
@@ -8,7 +8,7 @@ interface ITotalCart {
 
 /*Mover para components productcheckout*/
 export function TotalCart({ nextStep }: ITotalCart) {
-  const { totalPrice } = useCart();
+  const totalPrice = useStore((state) => state.cart.totalPrice);
 
   return (
     <section className="border px-4 py-6 w-full">

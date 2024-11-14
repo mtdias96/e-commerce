@@ -8,6 +8,7 @@ import { FinishStep } from "./components/steps/FinishStep";
 import { PaymentStep } from "./components/steps/PaymentStep";
 
 export function ProductCheckout() {
+  console.log("renderizou");
   return (
     <div className="">
       <header className="flex items-center justify-between gap-2 py-8 mx-4  md:px-8 ">
