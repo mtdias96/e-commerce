@@ -46,24 +46,6 @@ export const createCartSlice: StoreSlice<CartSlice> = (set) => ({
       state.cart.totalPrice = total;
     }),
 
-  //   set((state) => {
-  //     state.cart.productCart = state.cart.productCart.filter(
-  //       (product) => product.id !== id
-  //     );
-
-  //     // Recalculate total after removing a product
-  //     const total = state.cart.productCart.reduce((sum, item) => {
-  //       return sum + item.price * (item.quantity || 1);
-  //     }, 0);
-
-  //     state.cart.totalPrice = total;
-
-  //     // console.log(
-  //     //   "Updated cart after removal:",
-  //     //   JSON.parse(JSON.stringify(state.cart.productCart))
-  //     // );
-  //     // console.log("New total after removal:", total);
-  //   }),
   handleremoveProductList: (id: string) =>
     set((state) => {
       const updatedCart = state.cart.productCart.filter(
