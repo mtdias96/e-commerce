@@ -1,21 +1,22 @@
-import { useEffect, useState } from "react";
-import { useCart } from "../../../app/hooks/useCart";
+import { useMemo } from "react";
 import { useDiscount } from "../../../app/hooks/useDiscount";
-
+import { useStore } from "../../../app/store";
 
 export function useProductCartController() {
-  const [priceProducts, setPriceProducts] = useState(0)
-  const { productCart } = useCart();
-  const { valueDiscount, discountedValue } = useDiscount(priceProducts)
+  const { productCart, totalPrice } = useStore((state) => ({
+    productCart: state.cart.productCart,
+    totalPrice: state.cart.totalPrice,
+  }));
 
-  useEffect(() => {
-    const total = productCart.reduce((acc, product) => acc + product.price, 0)
-    setPriceProducts(total)
-  }, [productCart])
+  const { valueDiscount, discountedValue } = useDiscount(totalPrice);
 
-
-
-  return { productCart, priceProducts, valueDiscount, discountedValue };
+  return useMemo(
+    () => ({
+      productCart,
+      totalPrice,
+      valueDiscount,
+      discountedValue,
+    }),
+    [productCart, totalPrice, valueDiscount, discountedValue]
+  );
 }
-
-

@@ -1,9 +1,15 @@
 import { useState } from "react";
-import { useCart } from "../../../../../../app/hooks/useCart";
+import { useStore } from "../../../../../../app/store";
+import { useShallow } from "zustand/shallow";
 
 export function useCardCartController() {
   const [quantity, setQuantity] = useState(1);
-  const { handleremoveProductList } = useCart();
+
+  const { handleremoveProductList } = useStore(
+    useShallow((state) => ({
+      handleremoveProductList: state.cart.handleremoveProductList,
+    }))
+  );
 
   function handlePus() {
     setQuantity((prevState: number) => prevState + 1);
